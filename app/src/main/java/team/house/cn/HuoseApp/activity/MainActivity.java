@@ -1,6 +1,7 @@
 package team.house.cn.HuoseApp.activity;
 
 
+import android.content.Intent;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
@@ -49,7 +50,8 @@ public class MainActivity extends BaseActivity {
         super.initEvent();
         mGridViewServiceType.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                Toast.makeText(MainActivity.this, (position + 1), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MainActivity.this, (position + 1), Toast.LENGTH_SHORT).show();
+                MainActivity.this.startActivity(new Intent(MainActivity.this, ReservationServiceActivity.class));
             }
         });
     }
@@ -64,15 +66,19 @@ public class MainActivity extends BaseActivity {
         }
 
     }
+    private void showRightText() {
+        mRightView.setText("登陆");
+    }
     @Override
     protected void onClickListener(View v) {
         super.onClickListener(v);
+        this.startActivity(new Intent(this, LoginActivity.class));
     }
 
     @Override
     protected void initTitle() {
         super.initTitle();
-
+        showRightText();
     }
 
 

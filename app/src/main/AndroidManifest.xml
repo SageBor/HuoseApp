@@ -20,6 +20,9 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".activity.LoginActivity"></activity>
+        <activity android:name=".activity.ResgisterAvtivity"></activity>
+        <activity android:name=".activity.ReservationServiceActivity"></activity>
     </application>
 
 </manifest>

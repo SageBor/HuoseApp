@@ -10,6 +10,10 @@ public  class  AppConfig {
     public class  Urls {
         // 定位城市信息
         public static final String URL_GET_POSSTION = "do=app&view=get_position";
+        // 验证码
+        public static final String URL_GET_CODE = "index.php?do=app&view=get_verification_code";
+        // 用户注册
+        public static final String URL_REGUSTER= "index.php?do=app&view=regist";
 
     }
     // 本地百度定位城市在Share中存储key

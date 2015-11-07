@@ -119,9 +119,9 @@ public abstract class BaseActivity extends Activity implements
     public void onClick(View v) {
         int id = v.getId();
         switch (id) {
-           /* case R.id.left_btn:
+            case R.id.tv_left:
                 onBackPressed();
-                break;*/
+                break;
             default:
                 onClickListener(v);
                 break;

@@ -119,7 +119,7 @@
     <color name="cededed">#ededed</color>
     <color name="c0040ff">#0040ff</color>
     <color name="cf3f5f7">#f3f5f7</color>
-    <color name="c53c8e6">#53c8e6</color>
+    <!--<color name="c53c8e6">#53c8e6</color>-->
     <color name="cd6c996">#d6c996</color>
     <color name="cfff9e5">#fff9e5</color>
     <color name="cf5ecd0">#f5ecd0</color>
@@ -130,4 +130,10 @@
     <color name="cddf5fb">#ddf5fb</color>
     <color name="c4C000000">#4C000000</color>
     <color name="c34c06f">#34c06f</color>
+    <color name="c07c6ef">#07c6ef</color>
+    <color name="c7f7f7f">#7f7f7f</color>
+    <color name="cc9caca">#c9caca</color>
+    <color name="c727171">#727171</color>
+    <color name="c595757">#595757</color>
+    <color name="caaaaaa">#aaaaaa</color>
 </resources>
