@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/title_group"
+    android:layout_width="fill_parent"
+    android:layout_height="@dimen/title_height"
+    android:background="@color/c34c06f"
+    android:baselineAligned="false">
+
+    <TextView
+        android:id="@+id/tv_city"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_centerVertical="true"
+        android:drawablePadding="3dp"
+        android:drawableRight="@drawable/head_city_btn"
+        android:padding="15dp"
+        android:text="长春"
+        android:textColor="@color/cf3f5f7"
+        android:textSize="@dimen/wb_dialog_button_size" />
+    <!-- 返回按钮  不可修改 -->
+
+    <TextView
+        android:id="@+id/tv_left"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_centerVertical="true"
+        android:drawableLeft="@drawable/head_city_btn"
+        android:drawablePadding="3dp"
+        android:padding="15dp"
+        android:textColor="@color/cf3f5f7"
+        android:textSize="@dimen/wb_dialog_button_size"
+        android:visibility="gone" />
+    <!--android:drawableLeft="@drawable/jz_title_back_btn"-->
+
+    <TextView
+        android:id="@+id/tv_right"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:gravity="center_vertical"
+        android:padding="15dp"
+        android:text="服务说明"
+        android:textColor="@color/cf3f5f7"
+        android:textSize="@dimen/template_frame_item_secondtextsize" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:text="三个阿姨"
+        android:textColor="@color/cf3f5f7"
+        android:textSize="19sp"
+        android:textStyle="bold" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/cc4c9cd" />
+</RelativeLayout>

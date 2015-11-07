@@ -1,0 +1,51 @@
+<resources>
+
+    <dimen name="timeline_item_image_text_size">11sp</dimen>
+    <dimen name="manager_account_margin">10dp</dimen>
+    <dimen name="manager_account_textleft">14.6dip</dimen>
+    <dimen name="manager_account_row_height">50.6dip</dimen>
+    <dimen name="template_frame_item_maintextsize">18sp</dimen>
+    <dimen name="template_frame_item_secondtextsize">14sp</dimen>
+    <dimen name="wb_title_full_height">45dip</dimen>
+    <dimen name="wb_home_title_textsize_26">17.3sp</dimen>
+    <dimen name="wb_dialog_button_size">16sp</dimen>
+    <dimen name="wb_dialog_title_size">26sp</dimen>
+    <dimen name="wb_dialog_content_size">19sp</dimen>
+    <dimen name="public_dialog_loading_icon_width">54dip</dimen>
+    <dimen name="public_dialog_loading_icon_height">52dip</dimen>
+    <dimen name="title_height">54dip</dimen>
+    <!--
+         时间控件
+    <integer name="number_picker_size">25</integer>
+     <integer name="number_picker_sizescal">27</integer>
+    -->
+    <!-- 列表页 -->
+    <dimen name="size_image">50dp</dimen>
+    <dimen name="size_goto_image">20dp</dimen>
+
+    <!-- 分享 -->
+    <dimen name="share_content_height">256dip</dimen>
+    <dimen name="share_cancel_btn_margin">5dip</dimen>
+    <dimen name="share_cancel_btn_textsize">16dip</dimen>
+    <dimen name="share_gridview_horizontalSpacing">20dip</dimen>
+
+    <!-- Loading控件的适配  (3.0版本IM在用，如果修改，请通知) -->
+    <dimen name="loading_width">276.7dip</dimen>
+    <dimen name="loading_height">260dip</dimen>
+    <dimen name="loading_progressbar_marginTop">19.3dip</dimen>
+    <dimen name="loading_textview_marginTop">16.7dip</dimen>
+    <dimen name="loading_linearlayout_marginTop">25dip</dimen>
+    <dimen name="loading_button_width">80dip</dimen>
+    <dimen name="loading_button_height">31dip</dimen>
+    <dimen name="loading_button_marginLeft">32dip</dimen>
+    <dimen name="loading_imageview_linearlayout_marginTop">20dip</dimen>
+    <dimen name="loading_imageview_marginLeft">20dip</dimen>
+    <dimen name="loading_text_marginRight">13.3dip</dimen>
+    <dimen name="public_loading_icon_width">40dip</dimen>
+    <dimen name="public_loading_icon_height">40dip</dimen>
+    <dimen name="public_loadingweb_icon_width">40dip</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+</resources>

@@ -1,0 +1,148 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_main_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cf5f5f5"
+    android:orientation="vertical" >
+
+    <!-- title -->
+
+    <!--<RelativeLayout-->
+        <!--android:id="@+id/title_group"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="@dimen/title_height"-->
+        <!--android:background="@color/cf6f6f7"-->
+        <!--android:baselineAligned="false" >-->
+
+        <!--&lt;!&ndash; 返回按钮  不可修改 &ndash;&gt;-->
+
+        <!--<com.wuba.huoyun.views.DrawableCenterButton-->
+            <!--android:id="@+id/left_btn"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="fill_parent"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:background="@color/cf6f6f7"-->
+            <!--android:drawableLeft="@drawable/jz_title_back_btn"-->
+            <!--android:drawablePadding="3dp"-->
+            <!--android:padding="15dp"-->
+            <!--android:textColor="@drawable/bg_head_left_text_selector"-->
+            <!--android:textSize="@dimen/wb_dialog_button_size" />-->
+
+        <!--<ImageButton-->
+            <!--android:id="@+id/right_btn"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="fill_parent"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:padding="10dp"-->
+            <!--android:src="@drawable/bg_showactivitydialog_btn"-->
+            <!--android:background="@android:color/transparent"-->
+            <!--android:visibility="invisible" />-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/title_text"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerInParent="true"-->
+            <!--android:ellipsize="end"-->
+            <!--android:singleLine="true"-->
+            <!--android:textColor="@color/c333333"-->
+            <!--android:textSize="19sp"-->
+            <!--android:textStyle="bold" />-->
+
+        <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="0.5dp"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:background="@color/cc4c9cd" />-->
+    <!--</RelativeLayout>-->
+    <!--&lt;!&ndash; end title &ndash;&gt;-->
+
+    <!--<RelativeLayout-->
+        <!--android:id="@+id/r_fujincheliang"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="50dp"-->
+        <!--android:background="@drawable/bg_btn_choose_route"-->
+        <!--android:visibility="gone" >-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/txt_fujincheliang"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_marginLeft="15dp"-->
+            <!--android:text="@string/mainfragment_fujin"-->
+            <!--android:textColor="@color/c8c7054"-->
+            <!--android:textSize="16sp" />-->
+
+        <!--<com.wuba.huoyun.views.RiseNumberTextView-->
+            <!--android:id="@+id/txt_carnum"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_toRightOf="@id/txt_fujincheliang"-->
+            <!--android:text="0"-->
+            <!--android:textColor="@color/ce6454a"-->
+            <!--android:textSize="20sp" />-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/txt_huoche"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_toRightOf="@id/txt_carnum"-->
+            <!--android:text="@string/mainfragment_huoche"-->
+            <!--android:textColor="@color/c8c7054"-->
+            <!--android:textSize="16sp" />-->
+
+        <!--<ImageView-->
+            <!--android:id="@+id/imageView1"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_marginRight="15dp"-->
+            <!--android:src="@drawable/rigtharrow_route" />-->
+
+        <!--<View-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="0.5dp"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:background="@color/ce0d8b8" />-->
+    <!--</RelativeLayout>-->
+
+    <LinearLayout
+        android:id="@+id/requestloading_success"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="15dp"
+        android:orientation="vertical"
+        android:visibility="visible" >
+
+        <ListView
+            android:id="@+id/list_mainfragment_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/cf5f5f5"
+            android:divider="@color/cf5f5f5"
+            android:dividerHeight="15dp"
+            android:scrollbars="none" />
+    </LinearLayout>
+
+    <!--<include-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="fill_parent"-->
+        <!--layout="@layout/layout_nocarinfo"-->
+        <!--android:visibility="gone" />-->
+
+    <!--<include-->
+        <!--android:id="@+id/loading_view"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="fill_parent"-->
+        <!--layout="@layout/public_requestloading_web"-->
+        <!--android:visibility="gone" />-->
+
+</LinearLayout>
