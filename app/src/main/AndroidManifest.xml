@@ -23,6 +23,7 @@
         <activity android:name=".activity.LoginActivity"></activity>
         <activity android:name=".activity.ResgisterAvtivity"></activity>
         <activity android:name=".activity.ReservationServiceActivity"></activity>
+        <activity android:name=".activity.ChooseAddressActivity"></activity>
     </application>
 
 </manifest>

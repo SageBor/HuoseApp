@@ -14,6 +14,8 @@ public  class  AppConfig {
         public static final String URL_GET_CODE = "index.php?do=app&view=get_verification_code";
         // 用户注册
         public static final String URL_REGUSTER= "index.php?do=app&view=regist";
+        // 地址列表
+        public static final String URL_GET_ADDRESS="index.php?do=app&view=get_address";
 
     }
     // 本地百度定位城市在Share中存储key

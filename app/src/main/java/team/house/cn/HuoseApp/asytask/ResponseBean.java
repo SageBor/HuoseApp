@@ -8,9 +8,9 @@ import org.json.JSONObject;
 public class ResponseBean {
     private int code;
     private String msg;
-    private JSONObject data;
+    private String data;
 
-    public ResponseBean(int _code, String _msg, JSONObject _data) {
+    public ResponseBean(int _code, String _msg, String _data) {
         code = _code;
         msg = _msg;
         data = _data;
@@ -33,11 +33,11 @@ public class ResponseBean {
         this.msg = msg;
     }
 
-    public JSONObject getData() {
+    public String getData() {
         return data;
     }
 
-    public void setData(JSONObject data) {
+    public void setData(String data) {
         this.data = data;
     }
 }

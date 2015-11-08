@@ -55,7 +55,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:background="@drawable/duihao" />
+                    android:background="@drawable/lookrighticon" />
 
             </RelativeLayout>
 
@@ -65,12 +65,14 @@
                 android:background="@color/ca9a9a9"></View>
 
             <RelativeLayout
+                android:id="@+id/rl_serviceAddress"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:padding="10dp">
 
                 <TextView
+                    android:id="@+id/tv_serviceAddress"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/location"
@@ -86,7 +88,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:background="@drawable/duihao" />
+                    android:background="@drawable/lookrighticon" />
 
             </RelativeLayout>
 
@@ -116,7 +118,7 @@
                         android:id="@+id/gv_serviceInfo"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:numColumns="2" />
+                        android:numColumns="3" />
 
                 </LinearLayout>
 
@@ -195,7 +197,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:drawablePadding="5dp"
-                        android:drawableRight="@drawable/duihao"
+                        android:drawableRight="@drawable/lookrighticon"
                         android:text="试用期间按服务价格30/天计算日新"
                         android:textColor="@color/caaaaaa"
                         android:textSize="12sp" />
@@ -237,7 +239,7 @@
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
                             android:drawablePadding="5dp"
-                            android:drawableRight="@drawable/duihao"
+                            android:drawableRight="@drawable/lookrighticon"
                             android:text="请选择"
                             android:textColor="@color/caaaaaa"
                             android:textSize="12sp" />
@@ -275,7 +277,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:drawablePadding="5dp"
-                        android:drawableRight="@drawable/duihao"
+                        android:drawableRight="@drawable/lookrighticon"
                         android:text="请选择"
                         android:textColor="@color/caaaaaa"
                         android:textSize="12sp" />
@@ -317,7 +319,7 @@
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
                             android:drawablePadding="5dp"
-                            android:drawableRight="@drawable/duihao"
+                            android:drawableRight="@drawable/lookrighticon"
                             android:text="请选择"
                             android:textColor="@color/caaaaaa"
                             android:textSize="12sp" />
@@ -361,7 +363,7 @@
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
                             android:drawablePadding="5dp"
-                            android:drawableRight="@drawable/duihao"
+                            android:drawableRight="@drawable/lookrighticon"
                             android:text="请选择"
                             android:textColor="@color/caaaaaa"
                             android:textSize="12sp" />
@@ -453,7 +455,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:drawablePadding="5dp"
-                        android:drawableRight="@drawable/duihao"
+                        android:drawableRight="@drawable/lookrighticon"
                         android:text="请选择"
                         android:textColor="@color/caaaaaa"
                         android:textSize="12sp" />
@@ -487,7 +489,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:drawablePadding="5dp"
-                        android:drawableRight="@drawable/duihao"
+                        android:drawableRight="@drawable/lookrighticon"
                         android:text="100元"
                         android:textColor="@color/caaaaaa"
                         android:textSize="12sp" />
@@ -533,7 +535,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:drawablePadding="5dp"
-                        android:drawableRight="@drawable/duihao"
+                        android:drawableRight="@drawable/lookrighticon"
                         android:textSize="12sp" />
 
                 </RelativeLayout>
@@ -565,7 +567,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:drawablePadding="5dp"
-                        android:drawableRight="@drawable/duihao"
+                        android:drawableRight="@drawable/lookrighticon"
                         android:textSize="12sp" />
 
                 </RelativeLayout>
@@ -601,7 +603,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:drawablePadding="5dp"
-                        android:drawableRight="@drawable/duihao"
+                        android:drawableRight="@drawable/lookrighticon"
                         android:text="请填写"
                         android:textColor="@color/caaaaaa"
                         android:textSize="12sp" />

@@ -33,9 +33,13 @@ public class UserUtil {
                 if (responseBean != null) {
                     int code = responseBean.getCode();
                     String msg = responseBean.getMsg();
-                    JSONObject jsonData = responseBean.getData();
-                    if (code == 0) {
 
+                    if (code == 0) {
+                        try {
+                            JSONObject jsonData = new JSONObject(responseBean.getData());
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     } else {
 //                        Toast.makeText(MainActivity.this, codeMsg, Toast.LENGTH_SHORT).show();
                     }
@@ -65,7 +69,11 @@ public class UserUtil {
                 if (responseBean != null) {
                     int code = responseBean.getCode();
                     String msg = responseBean.getMsg();
-                    JSONObject jsonData = responseBean.getData();
+                    try {
+                        JSONObject jsonData = new JSONObject(responseBean.getData());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                     if (code == 0) {
 
                     } else {

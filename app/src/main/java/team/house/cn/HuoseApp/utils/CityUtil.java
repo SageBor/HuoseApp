@@ -24,22 +24,24 @@ public class CityUtil {
 
     /**
      * save city info
+     *
      * @param proId
      * @param cityId
      * @param cityName
      * @param key
      */
-    public static void saveCity(int proId, int cityId, String cityName, String key){
+    public static void saveCity(int proId, int cityId, String cityName, String key) {
         String realCty = proId + "~" + cityId + "~" + cityName;
         PreferenceUtil.putString(HouseApplication.getHuoYunApplicationContext(), key, realCty);
     }
 
     /**
      * get city info
+     *
      * @param key
      * @return
      */
-    public static Map getCity(String key){
+    public static Map getCity(String key) {
         String cityInfo = PreferenceUtil.getString(HouseApplication.getHuoYunApplicationContext(), key);
         if (!TextUtils.isEmpty(cityInfo)) {
             String[] cityArray = cityInfo.split("~");
@@ -57,7 +59,7 @@ public class CityUtil {
     public static String getCityName(String key) {
         Map cityInfo = getCity(key);
         if (cityInfo != null) {
-            return (String)cityInfo.get("cityName");
+            return (String) cityInfo.get("cityName");
 
         }
         return "";
@@ -76,9 +78,10 @@ public class CityUtil {
                 if (responseBean != null) {
                     int code = responseBean.getCode();
                     String msg = responseBean.getMsg();
-                    JSONObject jsonData = responseBean.getData();
+
                     if (code == 0) {
                         try {
+                            JSONObject jsonData = new JSONObject(responseBean.getData());
                             int upid = jsonData.getInt("upid");
                             int id = jsonData.getInt("id");
                             String name = jsonData.getString("name");

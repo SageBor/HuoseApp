@@ -12,6 +12,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.HttpHeaderParser;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 
 import org.json.JSONException;
@@ -58,10 +59,11 @@ public class BaseRequest {
 
                     int code = jsonObject.getInt("rst_code");
                     String codeMsg = jsonObject.getString("rst_msg");
-                    JSONObject jsonData = jsonObject.getJSONObject("data");
-                    ResponseBean responseBean = new ResponseBean(code, codeMsg, jsonData);
+                    String data = jsonObject.getString("data");
+                    ResponseBean responseBean = new ResponseBean(code, codeMsg, data);
                     baseResponse.successful(responseBean);
                     if (code == 0) {
+                        JSONObject jsonData = new JSONObject(data);
                         int upid = jsonData.getInt("upid");
                         int id = jsonData.getInt("id");
                         String name = jsonData.getString("name");
@@ -88,7 +90,9 @@ public class BaseRequest {
         jsonRequet.setRetryPolicy(new DefaultRetryPolicy(10*1000,2,1));
         HouseApplication.mQueue.add(jsonRequet);
 
+
     }
+
     //解析返回的数据
     protected Response<JSONObject> parseNetworkResponse(NetworkResponse response) {
         try {
