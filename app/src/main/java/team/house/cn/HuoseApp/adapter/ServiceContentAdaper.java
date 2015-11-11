@@ -62,6 +62,7 @@ public class ServiceContentAdaper extends BaseAdapter {
             viewHolder = (ToggleButton_ViewHolder) convertView.getTag();
         }
         ServiceContentBean  serviceContentBean = mServiceContentBeans.get(i);
+        viewHolder.mToggleButton.setText(serviceContentBean.getIndus_name());
         viewHolder.mToggleButton.setTextOff(serviceContentBean.getIndus_name());
         viewHolder.mToggleButton.setOnCheckedChangeListener(new OnCheckedChangeListener() {
             @Override

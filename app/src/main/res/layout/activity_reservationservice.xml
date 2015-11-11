@@ -126,7 +126,7 @@
 
                 <!-- 服务频率  长时工-->
                 <LinearLayout
-                    android:id="@+id/ll_servicerequency"
+                    android:id="@+id/ll_serviceweek"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -142,10 +142,12 @@
                         android:textSize="19sp"></TextView>
 
                     <GridView
-                        android:id="@+id/gv_servicerequency"
+                        android:id="@+id/gv_serviceweek"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:numColumns="2" />
+                        android:horizontalSpacing="10dp"
+                        android:verticalSpacing="10dp"
+                        android:numColumns="3" />
 
                 </LinearLayout>
 
@@ -171,7 +173,9 @@
                         android:id="@+id/gv_serviceModel"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:numColumns="2" />
+                        android:horizontalSpacing="10dp"
+                        android:verticalSpacing="10dp"
+                        android:numColumns="3" />
 
                 </LinearLayout>
 

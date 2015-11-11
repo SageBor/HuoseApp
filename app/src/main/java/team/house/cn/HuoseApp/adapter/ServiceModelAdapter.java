@@ -11,40 +11,37 @@ import android.widget.ToggleButton;
 import java.util.List;
 
 import team.house.cn.HuoseApp.R;
+import team.house.cn.HuoseApp.bean.ServiceModelBean;
 import team.house.cn.HuoseApp.bean.ServiceWeekBean;
 
 /**
  * Created by kn on 15/11/12.
- * 服务频率
  */
-public class ServiceWeekAdapter extends BaseAdapter {
+public class ServiceModelAdapter extends BaseAdapter{
+
     private LayoutInflater inflater;
-    private List<ServiceWeekBean> mServiceWeekBeans;
-    public ServiceWeekAdapter(List<ServiceWeekBean> mSerivceWeekBean, Context context) {
-        this.mServiceWeekBeans = mSerivceWeekBean;
+    private List<ServiceModelBean> mServiceModelBeans;
+    public ServiceModelAdapter(List<ServiceModelBean> mServiceModelBeans, Context context) {
+        this.mServiceModelBeans = mServiceModelBeans;
         inflater = LayoutInflater.from(context);
 
     }
-    public void addItems(List<ServiceWeekBean> mSerivceWeekBean) {
-        mServiceWeekBeans = mSerivceWeekBean;
+    public void addItems(List<ServiceModelBean> mServiceModelBeans) {
+        mServiceModelBeans = mServiceModelBeans;
     }
-
     @Override
     public int getCount() {
-
-        return mServiceWeekBeans.size();
+        return mServiceModelBeans.size();
     }
 
     @Override
     public Object getItem(int position) {
-
-        return mServiceWeekBeans.get(position);
+        return mServiceModelBeans.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-
-        return position;
+        return mServiceModelBeans.get(position).getEmployment_typ();
     }
 
     @Override
@@ -58,9 +55,9 @@ public class ServiceWeekAdapter extends BaseAdapter {
         } else {
             viewHolder = (ToggleButton_ViewHolder) convertView.getTag();
         }
-        ServiceWeekBean serviceWeekBean = mServiceWeekBeans.get(position);
-        viewHolder.mToggleButton.setText(serviceWeekBean.getWeek_name());
-        viewHolder.mToggleButton.setTextOff(serviceWeekBean.getWeek_name());
+        ServiceModelBean serviceModelBean = mServiceModelBeans.get(position);
+        viewHolder.mToggleButton.setText(serviceModelBean.getEmployment_typ_name());
+        viewHolder.mToggleButton.setTextOff(serviceModelBean.getEmployment_typ_name());
         viewHolder.mToggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -68,7 +65,7 @@ public class ServiceWeekAdapter extends BaseAdapter {
 
             }
         });
-        viewHolder.mToggleButton.setTextOn(serviceWeekBean.getWeek_name());
+        viewHolder.mToggleButton.setTextOn(serviceModelBean.getEmployment_typ_name());
         return convertView;
     }
 }
