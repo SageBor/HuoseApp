@@ -15,6 +15,7 @@ import team.house.cn.HuoseApp.application.HouseApplication;
 import team.house.cn.HuoseApp.asytask.BaseRequest;
 import team.house.cn.HuoseApp.asytask.BaseResponse;
 import team.house.cn.HuoseApp.asytask.ResponseBean;
+import team.house.cn.HuoseApp.bean.CityBean;
 import team.house.cn.HuoseApp.constans.AppConfig;
 
 /**
@@ -41,25 +42,22 @@ public class CityUtil {
      * @param key
      * @return
      */
-    public static Map getCity(String key) {
+    public static CityBean getCity(String key) {
+        CityBean cityBean = null;
         String cityInfo = PreferenceUtil.getString(HouseApplication.getHuoYunApplicationContext(), key);
         if (!TextUtils.isEmpty(cityInfo)) {
             String[] cityArray = cityInfo.split("~");
             if (cityArray != null && cityArray.length == 3) {
-                Map cityInfos = new HashMap();
-                cityInfos.put("proId", cityArray[0]);
-                cityInfos.put("cityId", cityArray[1]);
-                cityInfos.put("cityName", cityArray[2]);
-                return cityInfos;
+                cityBean = new CityBean(Integer.parseInt(cityArray[0]),Integer.parseInt(cityArray[1]), cityArray[2]);
             }
         }
-        return null;
+        return cityBean;
     }
 
     public static String getCityName(String key) {
-        Map cityInfo = getCity(key);
+        CityBean cityInfo = getCity(key);
         if (cityInfo != null) {
-            return (String) cityInfo.get("cityName");
+            return (String) cityInfo.getCityName();
 
         }
         return "";

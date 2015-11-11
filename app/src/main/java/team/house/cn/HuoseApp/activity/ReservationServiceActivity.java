@@ -26,16 +26,21 @@ import java.util.Map;
 import team.house.cn.HuoseApp.R;
 import team.house.cn.HuoseApp.adapter.ServiceContentAdaper;
 import team.house.cn.HuoseApp.adapter.ServiceModelAdapter;
+import team.house.cn.HuoseApp.adapter.ServiceToolsAdapter;
 import team.house.cn.HuoseApp.adapter.ServiceWeekAdapter;
 import team.house.cn.HuoseApp.application.HouseApplication;
 import team.house.cn.HuoseApp.asytask.BaseRequest;
 import team.house.cn.HuoseApp.asytask.BaseResponse;
 import team.house.cn.HuoseApp.asytask.ResponseBean;
+import team.house.cn.HuoseApp.bean.ChoosePriceBean;
+import team.house.cn.HuoseApp.bean.CityBean;
 import team.house.cn.HuoseApp.bean.ServiceContentBean;
 import team.house.cn.HuoseApp.bean.ServiceModelBean;
 import team.house.cn.HuoseApp.bean.ServiceTimeBean;
+import team.house.cn.HuoseApp.bean.ServiceToolsBean;
 import team.house.cn.HuoseApp.bean.ServiceWeekBean;
 import team.house.cn.HuoseApp.constans.AppConfig;
+import team.house.cn.HuoseApp.utils.CityUtil;
 import team.house.cn.HuoseApp.utils.PreferenceUtil;
 
 /**
@@ -43,6 +48,7 @@ import team.house.cn.HuoseApp.utils.PreferenceUtil;
  * 预约服务
  */
 public class ReservationServiceActivity extends BaseActivity {
+    private int mPosition;
     private RelativeLayout mServiceAddressRelativeLayout;
     private TextView mServiceAddressTextView;
     private GridView mServiceContentGridView; // 服务内容
@@ -60,6 +66,18 @@ public class ReservationServiceActivity extends BaseActivity {
     private List<ServiceModelBean> mServiceModelBeanList; //服务模式数据集合
 
     private TextView mServiceTimeTextView;// 服务起步时间及起步价
+    private LinearLayout mServiceTryTimeLinearLayout;// 试用时间
+    private RelativeLayout mServiceStartTimeRelativeLayout; // 开始时间
+    private LinearLayout mServiceTimeLinearLayout;// 雇佣时间
+    private LinearLayout mServiceOverTimeLinearLayout;// 结束时间
+    // 自选价格空间还没定义 稍后补上
+    private List<ChoosePriceBean> mChoosePriceBeanList;// 自选价格集合
+
+    private LinearLayout mServiceToolsLinearLayout;// 随手带保洁用品 父容器
+    private GridView mServiceToolsGradView; // 随手带保洁用品
+    private ServiceToolsAdapter mServiceToolsAdapter; // 保洁用品适配器
+    private List<ServiceToolsBean> mServiceToolsBeanList;// 保洁用品集合
+
 
     @Override
     protected void initView() {
@@ -85,6 +103,16 @@ public class ReservationServiceActivity extends BaseActivity {
         mServiceModelGridView.setAdapter(mServiceModelAdapter);
 
         mServiceTimeTextView = (TextView) findViewById(R.id.tv_serviceTime);
+        mServiceTryTimeLinearLayout = (LinearLayout) findViewById(R.id.ll_serviceTryTime);
+        mServiceStartTimeRelativeLayout = (RelativeLayout) findViewById(R.id.rl_serviceStarTime);
+        mServiceTimeLinearLayout = (LinearLayout) findViewById(R.id.ll_servicereTime);
+        mServiceOverTimeLinearLayout = (LinearLayout) findViewById(R.id.ll_serviceOverTime);
+        mChoosePriceBeanList = new ArrayList<ChoosePriceBean>();
+
+        mServiceToolsLinearLayout = (LinearLayout) findViewById(R.id.ll_servicetools);
+        mServiceToolsGradView = (GridView) findViewById(R.id.gv_servicetools);
+        mServiceToolsBeanList = new ArrayList<ServiceToolsBean>();
+        mServiceToolsAdapter = new ServiceToolsAdapter(mServiceToolsBeanList, this);
 
 
     }
@@ -92,30 +120,32 @@ public class ReservationServiceActivity extends BaseActivity {
     @Override
     protected void initData() {
         super.initData();
-        ServiceContentBean serviceContentBean = new ServiceContentBean(5, "日常保洁");
-        ServiceContentBean serviceContentBean2 = new ServiceContentBean(6, "开荒");
-        mServiceContentBeanList.add(serviceContentBean);
-        mServiceContentBeanList.add(serviceContentBean2);
-        mServiceContentAdaper.addItems(mServiceContentBeanList);
-        mServiceContentAdaper.notifyDataSetChanged();
-
-        mSerivceWeekLinearlayout.setVisibility(View.VISIBLE);
-        ServiceWeekBean serviceWeekBean = new ServiceWeekBean(1, "星期一", 5);
-        ServiceWeekBean serviceWeekBean2 = new ServiceWeekBean(2, "星期二", 5);
-        mServiceWeekBeanList.add(serviceWeekBean);
-        mServiceWeekBeanList.add(serviceWeekBean2);
-        mServiceWeekAdapter.addItems(mServiceWeekBeanList);
-        mServiceWeekAdapter.notifyDataSetChanged();
-
-
-        mServiceModelLinearLayout.setVisibility(View.VISIBLE);
-        ServiceModelBean serviceModelBean = new ServiceModelBean(1, "住家");
-        ServiceModelBean serviceModelBean1 = new ServiceModelBean(2,"不住家");
-        mServiceModelBeanList.add(serviceModelBean);
-        mServiceModelBeanList.add(serviceModelBean1);
-        mServiceModelAdapter.addItems(mServiceModelBeanList);
-        mServiceModelAdapter.notifyDataSetChanged();
-//        getConfigInfoFromService();
+        Intent intent = getIntent();
+        mPosition = intent.getIntExtra("position", 1);
+//        ServiceContentBean serviceContentBean = new ServiceContentBean(5, "日常保洁");
+//        ServiceContentBean serviceContentBean2 = new ServiceContentBean(6, "开荒");
+//        mServiceContentBeanList.add(serviceContentBean);
+//        mServiceContentBeanList.add(serviceContentBean2);
+//        mServiceContentAdaper.addItems(mServiceContentBeanList);
+//        mServiceContentAdaper.notifyDataSetChanged();
+//
+//        mSerivceWeekLinearlayout.setVisibility(View.VISIBLE);
+//        ServiceWeekBean serviceWeekBean = new ServiceWeekBean(1, "星期一", 5);
+//        ServiceWeekBean serviceWeekBean2 = new ServiceWeekBean(2, "星期二", 5);
+//        mServiceWeekBeanList.add(serviceWeekBean);
+//        mServiceWeekBeanList.add(serviceWeekBean2);
+//        mServiceWeekAdapter.addItems(mServiceWeekBeanList);
+//        mServiceWeekAdapter.notifyDataSetChanged();
+//
+//
+//        mServiceModelLinearLayout.setVisibility(View.VISIBLE);
+//        ServiceModelBean serviceModelBean = new ServiceModelBean(1, "住家");
+//        ServiceModelBean serviceModelBean1 = new ServiceModelBean(2,"不住家");
+//        mServiceModelBeanList.add(serviceModelBean);
+//        mServiceModelBeanList.add(serviceModelBean1);
+//        mServiceModelAdapter.addItems(mServiceModelBeanList);
+//        mServiceModelAdapter.notifyDataSetChanged();
+        getConfigInfoFromService();
     }
 
     @Override
@@ -128,6 +158,10 @@ public class ReservationServiceActivity extends BaseActivity {
 
             }
         });
+        mServiceTryTimeLinearLayout.setOnClickListener(this);
+        mServiceStartTimeRelativeLayout.setOnClickListener(this);
+        mServiceTimeLinearLayout.setOnClickListener(this);
+        mServiceOverTimeLinearLayout.setOnClickListener(this);
     }
 
     @Override
@@ -137,6 +171,22 @@ public class ReservationServiceActivity extends BaseActivity {
         if (viewId == R.id.tv_serviceAddress) {
             // 进入选择地址页面
             this.startActivityForResult(new Intent(this, ChooseAddressActivity.class), 1);
+        }
+        // 试用时间
+        if (viewId == R.id.ll_serviceTryTime){
+
+        }
+        //开始时间
+        if (viewId == R.id.rl_serviceStarTime){
+
+        }
+        // 雇佣时间
+        if (viewId == R.id.ll_servicereTime){
+
+        }
+        //结束时间
+        if (viewId == R.id.ll_serviceOverTime){
+
         }
     }
 
@@ -159,95 +209,114 @@ public class ReservationServiceActivity extends BaseActivity {
     }
 
     private void getConfigInfoFromService() {
-        String cityName = PreferenceUtil.getString(HouseApplication.getHuoYunApplicationContext(), AppConfig.Preference_LocaCityName);
-        Map paraments = new HashMap<String, String>();
-        paraments.put("dis_upid", "省id");
-        paraments.put("dis_id", "市id");
-        paraments.put("indus_pid", "服务分类大类Id");
-        BaseRequest.instance().doRequest(Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_GET_CONFIG, paraments, new BaseResponse() {
-            @Override
-            public void successful(ResponseBean responseBean) {
-                if (responseBean != null) {
-                    int code = responseBean.getCode();
-                    String msg = responseBean.getMsg();
 
-                    if (code == 0) {
-                        try {
-                            JSONObject jsonData = new JSONObject(responseBean.getData());
-                            // 服务内容
-                            JSONArray indus = jsonData.getJSONArray("indus");// 服务小类
-
-                            JSONArray select_price = jsonData.getJSONArray("select_price");
-                            JSONArray select_supplies = jsonData.getJSONArray("select_supplies");
+        CityBean cityBean = CityUtil.getCity(AppConfig.Preference_ChooseCityNameFromService);
+        if (cityBean != null) {
 
 
-                            if (indus != null && indus.length() > 0) {
-                                for (int i = 0; i < indus.length(); i++) {
-                                    JSONObject serviceContentJson = indus.getJSONObject(i);
-                                    ServiceContentBean serviceContentBean = new ServiceContentBean(serviceContentJson.getInt("indus_id"), serviceContentJson.getString("indus_name"));
-                                    mServiceContentBeanList.add(serviceContentBean);
+            Map paraments = new HashMap<String, String>();
+            paraments.put("dis_upid", cityBean.getProvinceId());
+            paraments.put("dis_id", cityBean.getCityId());
+            paraments.put("indus_pid", mPosition);
+            BaseRequest.instance().doRequest(Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_GET_CONFIG, paraments, new BaseResponse() {
+                @Override
+                public void successful(ResponseBean responseBean) {
+                    if (responseBean != null) {
+                        int code = responseBean.getCode();
+                        String msg = responseBean.getMsg();
 
+                        if (code == 0) {
+                            try {
+                                JSONObject jsonData = new JSONObject(responseBean.getData());
+                                // 服务内容
+                                JSONArray indus = jsonData.getJSONArray("indus");// 服务小类
+                                if (indus != null && indus.length() > 0) {
+                                    for (int i = 0; i < indus.length(); i++) {
+                                        JSONObject serviceContentJson = indus.getJSONObject(i);
+                                        ServiceContentBean serviceContentBean = new ServiceContentBean(serviceContentJson.getInt("indus_id"), serviceContentJson.getString("indus_name"));
+                                        mServiceContentBeanList.add(serviceContentBean);
+
+                                    }
+                                    if (mServiceContentBeanList.size() > 0) {
+                                        mServiceContentAdaper.addItems(mServiceContentBeanList);
+                                        mServiceContentAdaper.notifyDataSetChanged();
+                                    }
                                 }
-                                if (mServiceContentBeanList.size() > 0) {
-                                    mServiceContentAdaper.addItems(mServiceContentBeanList);
-                                    mServiceContentAdaper.notifyDataSetChanged();
+                                // 服务起步时间及单价
+                                JSONArray basic_limit = jsonData.getJSONArray("basic_limit");
+                                if (basic_limit != null && basic_limit.length() > 0)
+                                    for (int i = 0; i < basic_limit.length(); i++) {
+                                        JSONObject serviceTimeJson = basic_limit.getJSONObject(i);
+                                        ServiceTimeBean serviceTimeBean = new ServiceTimeBean(serviceTimeJson.getInt("basic_price"), serviceTimeJson.getInt("basic_hours"), serviceTimeJson.getInt("indus_id"));
+                                        // 小时工及长期工此文案   保姆其他
+                                        mServiceTimeTextView.setText("基础价格" + serviceTimeBean.getBasic_price() + "元/小时," + serviceTimeBean.getBasic_hours() + "小时起雇");
+                                    }
+                                // 自选时间列表
+                                JSONArray select_price = jsonData.getJSONArray("select_price");
+                                if (select_price != null && select_price.length() > 0) {
+                                    for (int i = 0; i < select_price.length(); i++) {
+                                        JSONObject priceJson = select_price.getJSONObject(i);
+                                        ChoosePriceBean choosePriceBean = new ChoosePriceBean(priceJson.getInt("price"), priceJson.getString("price_name"), priceJson.getInt("indus_id"));
+                                        mChoosePriceBeanList.add(choosePriceBean);
+                                    }
+                                }
+                                //保洁用品
+                                JSONArray select_supplies = jsonData.getJSONArray("select_supplies");
+                                if (select_supplies != null && select_supplies.length() > 0) {
+                                    for (int i = 0; i < select_supplies.length(); i++) {
+                                        JSONObject toolsJson = select_supplies.getJSONObject(i);
+                                        ServiceToolsBean serviceToolsBean = new ServiceToolsBean(toolsJson.getInt("supplies_id"), toolsJson.getString("supplies_name"), toolsJson.getInt("indus_id"));
+                                        mServiceToolsBeanList.add(serviceToolsBean);
+                                    }
+                                    if (mServiceToolsBeanList.size() > 0) {
+                                        mServiceToolsAdapter.addItems(mServiceToolsBeanList);
+                                        mServiceToolsAdapter.notifyDataSetChanged();
+                                    }
                                 }
 
+                                // 服务频率
+                                JSONArray weeks = jsonData.getJSONArray("weeks");
+                                if (weeks != null && weeks.length() > 0) {
+                                    for (int i = 0; i < weeks.length(); i++) {
+                                        JSONObject serviceWeek = weeks.getJSONObject(i);
+                                        ServiceWeekBean serviceWeekBean = new ServiceWeekBean(serviceWeek.getInt("week_id"), serviceWeek.getString("week_name"), serviceWeek.getInt("indus_id"));
+                                        mServiceWeekBeanList.add(serviceWeekBean);
+                                    }
+                                    if (mServiceWeekBeanList.size() > 0) {
+                                        mServiceWeekAdapter.addItems(mServiceWeekBeanList);
+                                        mServiceWeekAdapter.notifyDataSetChanged();
+                                    }
+                                }
+                                // 服务模式
+                                JSONArray employment_typ = jsonData.getJSONArray("employment_typ");
+                                if (employment_typ != null && employment_typ.length() > 0) {
+                                    for (int i = 0; i < employment_typ.length(); i++) {
+                                        JSONObject modelJson = employment_typ.getJSONObject(i);
+                                        ServiceModelBean serviceModelBean = new ServiceModelBean(modelJson.getInt("employment_typ"), modelJson.getString("employment_typ_name"));
+                                        mServiceModelBeanList.add(serviceModelBean);
+                                    }
+                                    if (mServiceModelBeanList.size() > 0) {
+                                        mServiceModelAdapter.addItems(mServiceModelBeanList);
+                                        mServiceModelAdapter.notifyDataSetChanged();
+                                    }
+                                }
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
                             }
-
-                            // 服务起步时间及单价
-                            JSONArray basic_limit = jsonData.getJSONArray("basic_limit");
-                            if (basic_limit != null && basic_limit.length() > 0)
-                                for (int i = 0; i < basic_limit.length(); i++) {
-                                    JSONObject serviceTimeJson = basic_limit.getJSONObject(i);
-                                    ServiceTimeBean serviceTimeBean= new ServiceTimeBean(serviceTimeJson.getInt("basic_price"), serviceTimeJson.getInt("basic_hours"), serviceTimeJson.getInt("indus_id"));
-                                    // 小时工及长期工此文案   保姆其他
-                                    mServiceTimeTextView.setText("基础价格" + serviceTimeBean.getBasic_price() + "元/小时," + serviceTimeBean.getBasic_hours() + "小时起雇");
-
-                                }
-                            // 服务频率
-                            JSONArray weeks = jsonData.getJSONArray("weeks");
-                            if (weeks != null && weeks.length() > 0) {
-                                for (int i = 0; i < weeks.length(); i++)
-                                {
-                                    JSONObject serviceWeek = weeks.getJSONObject(i);
-                                    ServiceWeekBean serviceWeekBean = new ServiceWeekBean(serviceWeek.getInt("week_id"), serviceWeek.getString("week_name"), serviceWeek.getInt("indus_id"));
-                                    mServiceWeekBeanList.add(serviceWeekBean);
-                                }
-                                if (mServiceWeekBeanList.size() > 0) {
-                                    mServiceWeekAdapter.addItems(mServiceWeekBeanList);
-                                    mServiceWeekAdapter.notifyDataSetChanged();
-                                }
-                            }
-                            // 服务模式
-                            JSONArray employment_typ = jsonData.getJSONArray("employment_typ");
-                            if (employment_typ != null && employment_typ.length() > 0){
-                                for (int i = 0; i < employment_typ.length(); i++){
-                                    JSONObject modelJson = employment_typ.getJSONObject(i);
-                                    ServiceModelBean serviceModelBean = new ServiceModelBean(modelJson.getInt("employment_typ"), modelJson.getString("employment_typ_name"));
-                                    mServiceModelBeanList.add(serviceModelBean);
-                                }
-                                if (mServiceModelBeanList.size() > 0){
-                                    mServiceModelAdapter.addItems(mServiceModelBeanList);
-                                    mServiceModelAdapter.notifyDataSetChanged();
-                                }
-                            }
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    } else {
+                        } else {
 //                        Toast.makeText(MainActivity.this, codeMsg, Toast.LENGTH_SHORT).show();
+                        }
                     }
+
                 }
 
-            }
+                @Override
+                public void failure(VolleyError error) {
 
-            @Override
-            public void failure(VolleyError error) {
+                }
 
-            }
-
-        });
+            });
+        }
     }
 }

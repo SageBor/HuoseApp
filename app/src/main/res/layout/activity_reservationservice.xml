@@ -400,7 +400,10 @@
                         android:textSize="19sp"></TextView>
                     <LinearLayout
                         android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"></LinearLayout>
+                        android:layout_height="wrap_content">
+
+
+                    </LinearLayout>
                     <TextView
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
@@ -415,6 +418,7 @@
 
                 <!--随手带 小时工/长期工 -->
                 <LinearLayout
+                    android:id="@+id/ll_servicetools"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -430,10 +434,10 @@
                         android:textSize="19sp"></TextView>
 
                     <GridView
-                        android:id="@+id/gv_servicetool"
+                        android:id="@+id/gv_servicetools"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:numColumns="2" />
+                        android:numColumns="3" />
 
                 </LinearLayout>
 

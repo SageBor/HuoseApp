@@ -51,7 +51,9 @@ public class MainActivity extends BaseActivity {
         mGridViewServiceType.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 //                Toast.makeText(MainActivity.this, (position + 1), Toast.LENGTH_SHORT).show();
-                MainActivity.this.startActivity(new Intent(MainActivity.this, ReservationServiceActivity.class));
+                Intent intent = new Intent(MainActivity.this, ReservationServiceActivity.class);
+                intent.putExtra("position", position + 1);
+                MainActivity.this.startActivity(intent);
             }
         });
     }
