@@ -59,6 +59,7 @@ public class HouseApplication extends Application {
         super.onCreate();
         mContext = getApplicationContext();
         mQueue = Volley.newRequestQueue(this.getApplicationContext());
+        CityUtil.getLocationFromService();
 
 //        OkVolley.getInstance().init(this)
 //                .setUserAgent(OkVolley.generateUserAgent(this))

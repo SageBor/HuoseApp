@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 /**
  * Created by kenan on 15/11/8.
+ * 服务大类
  */
 public class ServiceContentBean implements Serializable {
     private int indus_id;

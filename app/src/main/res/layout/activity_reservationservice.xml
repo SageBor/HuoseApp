@@ -118,6 +118,8 @@
                         android:id="@+id/gv_serviceInfo"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
+                        android:horizontalSpacing="10dp"
+                        android:verticalSpacing="10dp"
                         android:numColumns="3" />
 
                 </LinearLayout>

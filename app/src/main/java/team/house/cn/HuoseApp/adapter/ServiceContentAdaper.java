@@ -5,10 +5,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 
@@ -26,6 +29,9 @@ public class ServiceContentAdaper extends BaseAdapter {
         this.mServiceContentBeans = mServiceContentBeans;
         inflater = LayoutInflater.from(context);
 
+    }
+    public void addItems(List<ServiceContentBean> _mServiceContentBeans) {
+        mServiceContentBeans = _mServiceContentBeans;
     }
 
     @Override
@@ -46,22 +52,41 @@ public class ServiceContentAdaper extends BaseAdapter {
 
     @Override
     public View getView(int i, View convertView, ViewGroup viewGroup) {
-        ViewHolder viewHolder;
+        ToggleButton_ViewHolder viewHolder;
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.item_reservationservice, null);
-            viewHolder = new ViewHolder();
+            viewHolder = new ToggleButton_ViewHolder();
             viewHolder.mToggleButton = (ToggleButton) convertView.findViewById(R.id.btn_check);
             convertView.setTag(viewHolder);
         } else {
-            viewHolder = (ViewHolder) convertView.getTag();
+            viewHolder = (ToggleButton_ViewHolder) convertView.getTag();
         }
         ServiceContentBean  serviceContentBean = mServiceContentBeans.get(i);
         viewHolder.mToggleButton.setTextOff(serviceContentBean.getIndus_name());
+        viewHolder.mToggleButton.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                toggleButton.setChecked(isChecked);
+
+            }
+        });
         viewHolder.mToggleButton.setTextOn(serviceContentBean.getIndus_name());
         return convertView;
     }
 
-    class ViewHolder {
-        public ToggleButton mToggleButton;
-    }
+//    class ViewHolder {
+//        public ToggleButton mToggleButton;
+//
+//
+////        mToggleButton.setOnCheckedChangeListener(new View.OnCheckedChangeListener()
+////        {
+////            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
+////            {
+////                toggleButton.setChecked(isChecked);
+////                imageView.setImageResource(isChecked ? R.drawable.bulb_on : R.drawable.bulb_off);
+////
+////            }
+////
+////        });
+//    }
 }

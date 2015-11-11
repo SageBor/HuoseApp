@@ -62,17 +62,6 @@ public class BaseRequest {
                     String data = jsonObject.getString("data");
                     ResponseBean responseBean = new ResponseBean(code, codeMsg, data);
                     baseResponse.successful(responseBean);
-                    if (code == 0) {
-                        JSONObject jsonData = new JSONObject(data);
-                        int upid = jsonData.getInt("upid");
-                        int id = jsonData.getInt("id");
-                        String name = jsonData.getString("name");
-                        String realCty = upid + "~" + id + "~" + name;
-                        PreferenceUtil.putString(HouseApplication.getHuoYunApplicationContext(), AppConfig.Preference_RealCityNameFromService, realCty);
-//                        mCityView.setText(name);
-                    } else {
-//                        Toast.makeText(MainActivity.this, codeMsg, Toast.LENGTH_SHORT).show();
-                    }
 
                 } catch (JSONException e) {
                     e.printStackTrace();
