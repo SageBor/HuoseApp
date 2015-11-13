@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import team.house.cn.HuoseApp.R;
+import team.house.cn.HuoseApp.activity.ReservationServiceActivity;
 import team.house.cn.HuoseApp.bean.ServiceContentBean;
 
 /**
@@ -24,8 +25,10 @@ import team.house.cn.HuoseApp.bean.ServiceContentBean;
 public class ServiceContentAdaper extends BaseAdapter {
     private LayoutInflater inflater;
     private List<ServiceContentBean> mServiceContentBeans;
+    private ReservationServiceActivity reservationServiceActivity;
 
-    public ServiceContentAdaper(List<ServiceContentBean> mServiceContentBeans, Context context) {
+    public ServiceContentAdaper(List<ServiceContentBean> mServiceContentBeans, ReservationServiceActivity context) {
+        reservationServiceActivity = context;
         this.mServiceContentBeans = mServiceContentBeans;
         inflater = LayoutInflater.from(context);
 
@@ -70,6 +73,7 @@ public class ServiceContentAdaper extends BaseAdapter {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     updateServiceContent(i);
+                    reservationServiceActivity.serviceContentGridView_ItemChecked(mServiceContentBeans.get(i));
                 }
 
 

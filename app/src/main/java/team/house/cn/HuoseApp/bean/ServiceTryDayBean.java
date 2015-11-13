@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by kn on 15/11/12.
  * 试用天数bean
  */
-public class ServiceTryDayBean implements Serializable {
+public class ServiceTryDayBean /*implements Serializable*/ {
     private int try_days;
     private String try_days_name;
 

@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Created by kn on 15/11/12.
  */
-public class HourBean implements Serializable{
+public class HourBean  implements Serializable{
     private int hour;
     private String hour_name;
 

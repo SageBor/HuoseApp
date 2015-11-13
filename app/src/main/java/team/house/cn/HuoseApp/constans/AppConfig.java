@@ -20,6 +20,11 @@ public  class  AppConfig {
         public static final String URL_GET_CONFIG = "do=app&view=get_task_config";
         // 取得时间选择列表
         public static final String URL_GET_HOURE = "do=app&view=get_select_hours";
+        // 取得试用天数列表
+        public static final String URL_GET_TRYDAYS = "do=app&view=get_try_days";
+        // 获取雇佣时间列表 月
+        public static final String URL_GET_MONTH = "do=app&view=get_employment_month";
+
 
     }
     // 本地百度定位城市在Share中存储key

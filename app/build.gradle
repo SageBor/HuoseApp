@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "team.house.cn.HuoseApp"
-        minSdkVersion 9
+        minSdkVersion 14
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -29,6 +29,7 @@ dependencies {
     compile files('libs/picasso-2.5.2.jar')
 //    compile 'im.amomo.volley:okvolley:1.1.7@aar'
     compile 'com.mcxiaoke.volley:library:1.0.19'
+    compile 'com.anton46:stepsview:0.0.2'
 //    compile 'com.mcxiaoke.volley:library:1.0.19-SNAPSHOT'
 //    compile 'com.mcxiaoke.volley:library:1.0.16'
 //    compile files('libs/volley.jar')
