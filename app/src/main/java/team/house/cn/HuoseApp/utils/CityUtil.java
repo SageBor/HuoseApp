@@ -48,7 +48,7 @@ public class CityUtil {
         if (!TextUtils.isEmpty(cityInfo)) {
             String[] cityArray = cityInfo.split("~");
             if (cityArray != null && cityArray.length == 3) {
-                cityBean = new CityBean(Integer.parseInt(cityArray[0]),Integer.parseInt(cityArray[1]), cityArray[2]);
+                cityBean = new CityBean(Integer.parseInt(cityArray[0]), Integer.parseInt(cityArray[1]), cityArray[2]);
             }
         }
         return cityBean;

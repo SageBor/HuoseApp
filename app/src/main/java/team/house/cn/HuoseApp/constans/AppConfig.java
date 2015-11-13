@@ -11,13 +11,15 @@ public  class  AppConfig {
         // 定位城市信息
         public static final String URL_GET_POSSTION = "do=app&view=get_position";
         // 验证码
-        public static final String URL_GET_CODE = "index.php?do=app&view=get_verification_code";
+        public static final String URL_GET_CODE = "do=app&view=get_verification_code";
         // 用户注册
-        public static final String URL_REGUSTER = "index.php?do=app&view=regist";
+        public static final String URL_REGUSTER = "do=app&view=regist";
         // 地址列表
-        public static final String URL_GET_ADDRESS = "index.php?do=app&view=get_address";
+        public static final String URL_GET_ADDRESS = "do=app&view=get_address";
         // 预约服务页面配置参数借口
-        public static final String URL_GET_CONFIG = "index.php?do=app&view=get_task_config";
+        public static final String URL_GET_CONFIG = "do=app&view=get_task_config";
+        // 取得时间选择列表
+        public static final String URL_GET_HOURE = "do=app&view=get_select_hours";
 
     }
     // 本地百度定位城市在Share中存储key
@@ -26,5 +28,8 @@ public  class  AppConfig {
     public static final String Preference_RealCityNameFromService = "realCtityfromservice" ;
     // 选择城市信息在Share中存储key
     public static final String Preference_ChooseCityNameFromService = "chooseCtityfromservice" ;
+    //
+
+    public static final String AppRootDir = "huoseapp";//手机根目录名称
 
 }

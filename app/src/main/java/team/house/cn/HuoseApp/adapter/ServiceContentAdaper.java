@@ -51,7 +51,7 @@ public class ServiceContentAdaper extends BaseAdapter {
     }
 
     @Override
-    public View getView(int i, View convertView, ViewGroup viewGroup) {
+    public View getView(final int i, View convertView, ViewGroup viewGroup) {
         ToggleButton_ViewHolder viewHolder;
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.item_reservationservice, null);
@@ -64,17 +64,32 @@ public class ServiceContentAdaper extends BaseAdapter {
         ServiceContentBean  serviceContentBean = mServiceContentBeans.get(i);
         viewHolder.mToggleButton.setText(serviceContentBean.getIndus_name());
         viewHolder.mToggleButton.setTextOff(serviceContentBean.getIndus_name());
+        viewHolder.mToggleButton.setChecked(serviceContentBean.isChecked());
         viewHolder.mToggleButton.setOnCheckedChangeListener(new OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                toggleButton.setChecked(isChecked);
+                if (isChecked) {
+                    updateServiceContent(i);
+                }
+
 
             }
         });
         viewHolder.mToggleButton.setTextOn(serviceContentBean.getIndus_name());
         return convertView;
     }
+    private void updateServiceContent (int mPosition){
 
+        for (int j = 0; j < mServiceContentBeans.size(); j++){
+            if (j != mPosition) {
+                mServiceContentBeans.get(j).setIsChecked(false);
+            } else {
+                mServiceContentBeans.get(j).setIsChecked(true);
+            }
+
+        }
+        this.notifyDataSetChanged();
+    }
 //    class ViewHolder {
 //        public ToggleButton mToggleButton;
 //

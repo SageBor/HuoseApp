@@ -10,9 +10,20 @@ public class ServiceContentBean implements Serializable {
     private int indus_id;
     private String indus_name;
 
-    public ServiceContentBean(int indus_id, String indus_name) {
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+    public void setIsChecked(boolean isChecked) {
+        this.isChecked = isChecked;
+    }
+
+    private boolean isChecked;
+
+    public ServiceContentBean(int indus_id, String indus_name, boolean isChecked) {
         this.indus_id = indus_id;
         this.indus_name = indus_name;
+        this.isChecked = isChecked;
     }
 
     public String getIndus_name() {

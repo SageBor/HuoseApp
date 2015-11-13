@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_datetimedialog"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:gravity="bottom"
+    android:orientation="vertical"
+    android:shadowColor="@color/black"
+    android:shadowDx="0"
+    android:shadowDy="-5"
+    android:shadowRadius="-2.5" >
+    <!--<View-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="4dip"-->
+        <!--android:background="@color/ce6454a" />-->
+    
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/wb_title_full_height"
+        android:background="@drawable/jz_sharp_click"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="76dp"
+            android:layout_height="fill_parent"
+            android:background="@drawable/jz_btn_npleft"
+            android:layout_alignParentLeft="true"
+            android:shadowColor="@color/black"
+            android:shadowDx="0"
+            android:shadowDy="0.5"
+            android:shadowRadius="0.5"
+            android:text="@string/cancel"
+            android:textColor="@color/c292e36"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+
+        
+        <View
+            android:id="@+id/numpkline1"
+            android:layout_width="0.5dip"
+            android:layout_height="fill_parent"
+            android:layout_toRightOf="@id/btnCancel"
+            android:background="#cad1db" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_toRightOf="@id/numpkline1"
+            android:gravity="center"
+            android:shadowColor="@color/black"
+            android:shadowDx="0"
+            android:shadowDy="0.5"
+            android:shadowRadius="0.5"
+            android:text=""
+            android:textColor="#ffccce"
+            android:textSize="17sp" />
+
+        <Button
+            android:id="@+id/btnOK"
+            android:layout_width="76dp"
+            android:layout_height="fill_parent"
+            android:background="@drawable/jz_btn_npright"
+            android:layout_alignParentRight="true"
+            android:shadowColor="@color/black"
+            android:shadowDx="0"
+            android:shadowDy="0.5"
+            android:shadowRadius="0.5"
+            android:text="确定"
+            android:textColor="@drawable/jz_np_text"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+          <View
+            android:layout_width="0.5dip"
+            android:layout_height="fill_parent"
+            android:layout_toLeftOf="@id/btnOK"
+            android:background="#cad1db" />
+          
+    </RelativeLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dip"
+        android:background="@color/cd6d6d6" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:background="@drawable/wheel_bg_gradient"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <team.house.cn.HuoseApp.widget.WuBaNumberPicker
+            android:id="@+id/wvMonth"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            />
+
+        <team.house.cn.HuoseApp.widget.WuBaNumberPicker
+            android:id="@+id/wvHour"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1.5"
+            android:visibility="gone"
+             />
+        
+        <team.house.cn.HuoseApp.widget.WuBaNumberPicker
+            android:id="@+id/wvMinute"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+             android:visibility="gone"
+            android:layout_weight="1.5" />
+                
+    </LinearLayout>
+
+</LinearLayout>

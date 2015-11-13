@@ -533,11 +533,11 @@ public class CommonTools {
 //    return (int) (pxValue / scale + 0.5f);
 //  }
 //
-//  public static int dip2px(Context context, float dipValue) {
-//    final float scale = context.getResources().getDisplayMetrics().density;
-//    return (int) (dipValue * scale + 0.5f);
-//  }
-//
+  public static int dip2px(Context context, float dipValue) {
+    final float scale = context.getResources().getDisplayMetrics().density;
+    return (int) (dipValue * scale + 0.5f);
+  }
+
 //  /**
 //   * 停用 通过用设置Activity的切换动画
 //   *
@@ -884,18 +884,18 @@ public class CommonTools {
 //    return false;
 //  }
 //
-//  /**
-//   * 检查某个文件是否存在
-//   *
-//   * @param path
-//   * @return
-//   */
-//  public static boolean checkFileExist(String path) {
-//    if (path == null)
-//      return false;
-//
-//    return new File(path).exists();
-//  }
+  /**
+   * 检查某个文件是否存在
+   *
+   * @param path
+   * @return
+   */
+  public static boolean checkFileExist(String path) {
+    if (path == null)
+      return false;
+
+    return new File(path).exists();
+  }
 //
 //  /**
 //   *
@@ -910,16 +910,16 @@ public class CommonTools {
 //    return true;
 //  }
 //
-//  // 将路径相连起来
-//  public static String joinPath(String prefix, String suffix) {
-//    int prefixLength = prefix.length();
-//    boolean haveSlash = (prefixLength > 0 && prefix.charAt(prefixLength - 1) == File.separatorChar);
-//    if (!haveSlash) {
-//      haveSlash = (suffix.length() > 0 && suffix.charAt(0) == File.separatorChar);
-//    }
-//    return haveSlash ? (prefix + suffix) : (prefix + File.separatorChar + suffix);
-//  }
-//
+  // 将路径相连起来
+  public static String joinPath(String prefix, String suffix) {
+    int prefixLength = prefix.length();
+    boolean haveSlash = (prefixLength > 0 && prefix.charAt(prefixLength - 1) == File.separatorChar);
+    if (!haveSlash) {
+      haveSlash = (suffix.length() > 0 && suffix.charAt(0) == File.separatorChar);
+    }
+    return haveSlash ? (prefix + suffix) : (prefix + File.separatorChar + suffix);
+  }
+
 //  /**
 //   * 为HttpGet 的 url 方便的添加多个name value 参数。
 //   *
