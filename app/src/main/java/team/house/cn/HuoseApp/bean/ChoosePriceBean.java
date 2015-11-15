@@ -11,6 +11,10 @@ public class ChoosePriceBean implements Serializable {
     private String price_name;
     private int indus_id;
 
+    public ChoosePriceBean() {
+
+    }
+
     public int getPrice() {
         return price;
     }

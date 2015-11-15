@@ -1,6 +1,7 @@
 package team.house.cn.HuoseApp.activity;
 
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.text.TextUtils;
 import android.view.View;
@@ -13,6 +14,7 @@ import team.house.cn.HuoseApp.R;
 import team.house.cn.HuoseApp.adapter.ServiceTypeAdapter;
 import team.house.cn.HuoseApp.constans.AppConfig;
 import team.house.cn.HuoseApp.utils.CityUtil;
+import team.house.cn.HuoseApp.utils.UserUtil;
 
 
 /**
@@ -27,6 +29,16 @@ public class MainActivity extends BaseActivity {
         super.initView();
         this.setContentView(R.layout.activity_mian);
         mGridViewServiceType = (GridView) findViewById(R.id.gv_servicetype);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (UserUtil.getUseridFromSharepreference() == 0){
+            mRightView.setText("登陆");
+        } else {
+            mRightView.setText("退出");
+        }
     }
 
     @Override
@@ -74,7 +86,12 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onClickListener(View v) {
         super.onClickListener(v);
-        this.startActivity(new Intent(this, LoginActivity.class));
+        if (mRightView.getText().toString().equals("登陆")) {
+            this.startActivity(new Intent(this, LoginActivity.class));
+        } else {
+
+
+        }
     }
 
     @Override

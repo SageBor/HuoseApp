@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -77,12 +78,16 @@ public class ReservationServiceActivity extends BaseActivity {
     private TextView mServiceTimeTextView;// 服务起步时间及起步价
     private List<ServiceBseTimeBean> mServiceTimeBeanList;
     private LinearLayout mServiceTryTimeLinearLayout;// 试用时间
+    private TextView mServiceTryTimeTextView; //试用时间view
 
     private RelativeLayout mServiceStartTimeRelativeLayout; // 开始时间
+    private TextView mServiceStartTimeTextView;
     private List<HourBean> startHourBeanList;// 小时工 长时工
     private LinearLayout mServiceTimeLinearLayout;// 雇佣时间
+    private TextView mServiceEmploymentTimeTextView;
     private List<ServiceEmploymentMonthBean> mServiceEmploymentMonthBeanList;
     private LinearLayout mServiceOverTimeLinearLayout;// 结束时间
+    private TextView mServiceOverTimeTextView;
     private List<HourBean> endHourBeanList;// 小时工 长时工
     private StepsView stepsView;
     private List<ChoosePriceBean> mChoosePriceBeanList;// 自选价格集合
@@ -91,9 +96,16 @@ public class ReservationServiceActivity extends BaseActivity {
     private GridView mServiceToolsGradView; // 随手带保洁用品
     private ServiceToolsAdapter mServiceToolsAdapter; // 保洁用品适配器
     private List<ServiceToolsBean> mServiceToolsBeanList;// 保洁用品集合
+    private RelativeLayout mServiceCouponsRelativeLayout;// 使用优惠券 父容器
+    private RelativeLayout mSystemChooseAuntRelativelayout;// 系统选择阿姨
+    private RelativeLayout mChooseAuntRelativeLayout; //自选阿姨
+    private TextView mOrderMoneyTextView; //订单金额
 
     private List<ServiceTryDayBean> serviceTryDayBeanList;
     private ServiceContentBean serviceContentBean;
+    private Button mCommitButton;
+
+//    private  ServiceTryDayBean mServiceTryDayBean;
 
 
     @Override
@@ -123,9 +135,13 @@ public class ReservationServiceActivity extends BaseActivity {
         mServiceTimeBeanList = new ArrayList<ServiceBseTimeBean>();
 
         mServiceTryTimeLinearLayout = (LinearLayout) findViewById(R.id.ll_serviceTryTime);
+        mServiceTryTimeTextView = (TextView) findViewById(R.id.tv_serviceTryTime);
         mServiceStartTimeRelativeLayout = (RelativeLayout) findViewById(R.id.rl_serviceStarTime);
+        mServiceStartTimeTextView = (TextView) findViewById(R.id.tv_serviceStarTime);
         mServiceTimeLinearLayout = (LinearLayout) findViewById(R.id.ll_servicereTime);
+        mServiceEmploymentTimeTextView = (TextView) findViewById(R.id.tv_serviceireTime);
         mServiceOverTimeLinearLayout = (LinearLayout) findViewById(R.id.ll_serviceOverTime);
+        mServiceOverTimeTextView = (TextView) findViewById(R.id.tv_serviceOverTime);
         stepsView = (StepsView) findViewById(R.id.stepsView);
         mChoosePriceBeanList = new ArrayList<ChoosePriceBean>();
 
@@ -134,6 +150,12 @@ public class ReservationServiceActivity extends BaseActivity {
         mServiceToolsBeanList = new ArrayList<ServiceToolsBean>();
         mServiceToolsAdapter = new ServiceToolsAdapter(mServiceToolsBeanList, this);
         mServiceToolsGradView.setAdapter(mServiceToolsAdapter);
+        mServiceCouponsRelativeLayout = (RelativeLayout) findViewById(R.id.rl_serviceoupons);
+        mOrderMoneyTextView = (TextView) findViewById(R.id.tv_orderMoney);
+        mSystemChooseAuntRelativelayout = (RelativeLayout) findViewById(R.id.rl_systemChooseAunt);
+        mChooseAuntRelativeLayout = (RelativeLayout) findViewById(R.id.rl_chooseAunt);
+
+        mCommitButton = (Button) findViewById(R.id.bt_commit);
 
 
     }
@@ -156,32 +178,14 @@ public class ReservationServiceActivity extends BaseActivity {
     protected void initEvent() {
         super.initEvent();
         mServiceAddressRelativeLayout.setOnClickListener(this);
-//        mServiceContentGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                ToggleButton_ViewHolder viewHolder = (ToggleButton_ViewHolder) view.getTag();
-//                if (viewHolder.mToggleButton.isChecked()) {
-//
-//                }
-//
-//            }
-//        });
         mServiceTryTimeLinearLayout.setOnClickListener(this);
         mServiceStartTimeRelativeLayout.setOnClickListener(this);
         mServiceTimeLinearLayout.setOnClickListener(this);
         mServiceOverTimeLinearLayout.setOnClickListener(this);
+        mCommitButton.setOnClickListener(this);
+        mSystemChooseAuntRelativelayout.setOnClickListener(this);
+        mChooseAuntRelativeLayout.setOnClickListener(this);
     }
-
-//    private void updateServiceContent(int mPosition) {
-//
-//        for (int j = 0; j < mServiceModelBeanList.size(); j++) {
-//            if (j != mPosition) {
-//                mServiceContentBeanList.get(j).setIsChecked(false);
-//            }
-//
-//        }
-//        mServiceContentAdaper.notifyDataSetChanged();
-//    }
 
     @Override
     protected void onClickListener(View v) {
@@ -200,6 +204,13 @@ public class ReservationServiceActivity extends BaseActivity {
 
                     @Override
                     public void onDateTimeChange(String date, String time, int dayItem, int hourItem) {
+                        mServiceTryTimeTextView.setText(time + "天");
+                        for (ServiceTryDayBean serviceTryDayBean : serviceTryDayBeanList) {
+                            if (serviceTryDayBean.getTry_days() == Integer.parseInt(time)) {
+//                                mServiceTryDayBean = serviceTryDayBean;
+                                mCommitReservationServiceBean.setServiceTryDayBean(serviceTryDayBean);
+                            }
+                        }
 
                     }
                 });
@@ -217,6 +228,14 @@ public class ReservationServiceActivity extends BaseActivity {
                     @Override
                     public void onDateTimeChange(String date, String time, int dayItem, int hourItem) {
                         String startTime = date + time + ":00";
+                        mServiceStartTimeTextView.setText(startTime);
+                        mCommitReservationServiceBean.setStart_time(date);
+                        for (HourBean hourBean : startHourBeanList) {
+                            if (hourBean.getHour() == Integer.parseInt(time)){
+                                mCommitReservationServiceBean.setStartHouBean(hourBean);
+                            }
+                        }
+
                     }
                 });
             } else {
@@ -229,9 +248,17 @@ public class ReservationServiceActivity extends BaseActivity {
                 DateTimeDialog dateTimeDialog = new DateTimeDialog(this, mServiceEmploymentMonthBeanList, 0);
                 dateTimeDialog.init();
                 dateTimeDialog.setOnDateTimeChanged(new DateTimeDialog.DateTimeChange() {
-
                     @Override
                     public void onDateTimeChange(String date, String time, int dayItem, int hourItem) {
+                        String month = time + "个月";
+                        mServiceEmploymentTimeTextView.setText(month);
+                        for (ServiceEmploymentMonthBean serviceEmploymentMonthBean : mServiceEmploymentMonthBeanList) {
+                            if (serviceEmploymentMonthBean.getEmployment_month() == Integer.parseInt(time)){
+                                mCommitReservationServiceBean.setServiceEmploymentMonth(serviceEmploymentMonthBean);
+                            }
+
+                        }
+
 
                     }
                 });
@@ -250,17 +277,47 @@ public class ReservationServiceActivity extends BaseActivity {
                     @Override
                     public void onDateTimeChange(String date, String time, int dayItem, int hourItem) {
                         String endTime = date + time + ":00";
+                        mServiceOverTimeTextView.setText(endTime);
+                        mCommitReservationServiceBean.setEnd_time(date);
+                        for (HourBean hourBean : endHourBeanList) {
+                            if (hourBean.getHour() == Integer.parseInt(time)){
+                                mCommitReservationServiceBean.setEndHouBean(hourBean);
+                            }
+                        }
                     }
                 });
             } else {
                 Toast.makeText(this, "数据获取中", Toast.LENGTH_SHORT).show();
             }
         }
+        if (viewId == R.id.bt_commit) {
+            mCommitReservationServiceBean.setServiceWeekBeanList(mServiceWeekAdapter.getCHooseServiceWeeksList());
+            mCommitReservationServiceBean.setServiceToolsBeanList(mServiceToolsAdapter.getCHooseServiceToolsList());
+            Intent intent = new Intent();
+            intent.putExtra("CommitReservationServiceBean",mCommitReservationServiceBean);
+            intent.setClass(this, CommitOrderActivity.class);
+            this.startActivity(intent);
+//            Toast.makeText(this, "请完善信息", Toast.LENGTH_LONG).show();
+        }
+        if (viewId == R.id.rl_systemChooseAunt) {
+            Intent intent = new Intent (this, ChooseAuntActivity.class);
+            intent.putExtra("type", 1); //系统选择阿姨
+            intent.putExtra("positoin", mPosition); //服务大类
+            this.startActivityForResult(intent, 2);
+        }
+        if (viewId == R.id.rl_chooseAunt) {
+            Intent intent = new Intent (this, ChooseAuntActivity.class);
+            intent.putExtra("positoin", mPosition); //服务大类
+            intent.putExtra("type", 2); //选择阿姨
+            this.startActivityForResult(intent, 3);
+        }
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        // 选择路线
         if (requestCode == 1) {
             String addressId = data.getStringExtra("address_id");
             String addressInfo = data.getStringExtra("address_info");
@@ -268,12 +325,25 @@ public class ReservationServiceActivity extends BaseActivity {
                 mServiceAddressTextView.setText(addressInfo);
             }
         }
+        //系统选择阿姨
+        if (requestCode == 2 && resultCode == RESULT_OK)
+        {
+            mCommitReservationServiceBean.setEmployment_uid(data.getIntExtra("auntId", 0));
+        }
+        //系统选择阿姨
+        if (requestCode == 3 && resultCode == RESULT_OK)
+        {
+            mCommitReservationServiceBean.setEmployment_uid(data.getIntExtra("auntId", 0));
+        }
     }
 
     @Override
     protected void initTitle() {
         super.initTitle();
         mTitleView.setText("预约服务");
+        mCityView.setVisibility(View.GONE);
+        mLeftView.setVisibility(View.VISIBLE);
+        mRightView.setText("服务说明");
     }
 
     private void showViewBymPosition() {
@@ -403,7 +473,7 @@ public class ReservationServiceActivity extends BaseActivity {
 
     }
 
-    private void stepsView() {
+    private void showstepsView() {
         List<ChoosePriceBean> choosePriceBeanList = new ArrayList<ChoosePriceBean>();
         if (mChoosePriceBeanList != null)  {
             for (ChoosePriceBean choosePriceBean : mChoosePriceBeanList) {
@@ -414,22 +484,23 @@ public class ReservationServiceActivity extends BaseActivity {
             }
         }
         String[] labels = new String[choosePriceBeanList.size()];
-        for (int i = 0; i < mChoosePriceBeanList.size(); i++){
-            labels[i] = mChoosePriceBeanList.get(i).getPrice_name();
+        for (int i = 0; i < choosePriceBeanList.size(); i++){
+            labels[i] = choosePriceBeanList.get(i).getPrice_name();
         }
-        stepsView.setLabels(labels)
-                .setBarColorIndicator(this.getContext().getResources().getColor(R.color.material_blue_grey_800))
-                .setProgressColorIndicator(this.getContext().getResources().getColor(R.color.orange))
-                .setLabelColorIndicator(this.getContext().getResources().getColor(R.color.orange))
-                .setCompletedPosition(0)
-                .drawView();
+//        stepsView.setLabels(labels)
+//                .setBarColorIndicator(this.getResources().getColor(R.color.cdededd))
+//                .setProgressColorIndicator(this.getResources().getColor(R.color.c07c6ef))
+//                .setLabelColorIndicator(this.getResources().getColor(R.color.c07c6ef))
+//                .setCompletedPosition(0)
+//                .drawView();
     }
-    // Adaper 点击回调
+    // 用户选择服务内容回调
     public void serviceContentGridView_ItemChecked(ServiceContentBean _serviceContentBean) {
         serviceContentBean = _serviceContentBean;
+        mCommitReservationServiceBean.setServiceContentBean(serviceContentBean);
         indus_id = serviceContentBean.getIndus_id();
         getTimeFromServiceAndUpdateView(1);
-        stepsView();
+        showstepsView();
         switch (mPosition) {
             // 长期工
             case 2:
@@ -487,6 +558,14 @@ public class ReservationServiceActivity extends BaseActivity {
         }
 
 
+    }
+
+    /**
+     * 用户选择服务模式回调
+     * @param serviceModelBean
+     */
+    public void serviceModel_ItemChecked(ServiceModelBean serviceModelBean) {
+        mCommitReservationServiceBean.setServiceModelBean(serviceModelBean);
     }
 //    private void getServiceContentId(){
 //        ServiceContentBean serviceContentBean =  getCheckedServiceContent();
@@ -594,7 +673,7 @@ public class ReservationServiceActivity extends BaseActivity {
         paramMap.put("dis_id", mCityId);
         paramMap.put("indus_pid", mPosition);// 服务大类Id
         paramMap.put("indus_id", indus_id);// 服务小类Id
-        BaseRequest.instance().doRequest(Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_GET_TRYDAYS, paramMap, new BaseResponse() {
+        BaseRequest.instance().doRequest(Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_GET_MONTH, paramMap, new BaseResponse() {
 
             @Override
             public void successful(ResponseBean responseBean) {
@@ -624,5 +703,6 @@ public class ReservationServiceActivity extends BaseActivity {
             }
         });
     }
+
 
 }

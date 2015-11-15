@@ -25,7 +25,18 @@
         android:orientation="vertical"
         android:layout_below="@+id/layout_head"
         android:layout_above="@+id/bottom">
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/slidebanner"/>
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="30dp"
+            android:text="最新公告:为庆祝三个阿姨上线充值既有赠送,详情请点击"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"/>
         <GridView
+            android:layout_marginTop="10dp"
             android:id="@+id/gv_servicetype"
             android:padding="10dp"
             android:verticalSpacing="10dp"

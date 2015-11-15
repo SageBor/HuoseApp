@@ -83,7 +83,7 @@
                         android:src="@drawable/duihao" />
 
                     <EditText
-                        android:id="@+id/et_psw"
+                        android:id="@+id/et_code"
                         android:layout_width="140dp"
                         android:layout_height="wrap_content"
                         android:background="@null"
@@ -93,9 +93,10 @@
 
                 </LinearLayout>
 
+
                 <Button
                     android:layout_marginLeft="10dp"
-                    android:id="@+id/bt_getpwd"
+                    android:id="@+id/bt_getcode"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:background="@color/c07c6ef"
@@ -103,6 +104,49 @@
                     android:scaleType="center"
                     android:text="点击获取"
                     android:textColor="@color/white" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_login_et_shape"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="fill_parent"
+                    android:background="@color/c07c6ef"
+                    android:scaleType="center"
+                    android:src="@drawable/lock"/>
+                <EditText
+                    android:id="@+id/et_psw"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:hint="请输入登陆密码"
+                    android:textColorHint="@color/c7f7f7f"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_login_et_shape"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="fill_parent"
+                    android:background="@color/c07c6ef"
+                    android:scaleType="center"
+                    android:src="@drawable/lock"/>
+                <EditText
+                    android:id="@+id/et_psw2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:hint="请重复输入登陆密码"
+                    android:textColorHint="@color/c7f7f7f"/>
+
             </LinearLayout>
         </LinearLayout>
 

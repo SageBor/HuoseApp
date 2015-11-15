@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+    <!--title-->
+    <LinearLayout
+        android:id="@+id/layout_head"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <include layout="@layout/public_title"></include>
+    </LinearLayout>
+    <!--bottom-->
+    <LinearLayout
+        android:id="@+id/bottom"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <include layout="@layout/public_bottom"></include>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bottom"
+        android:layout_below="@+id/layout_head"
+        android:background="@drawable/bg">
+
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_margin="30dp"
+                android:background="@drawable/bg_white_shape"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:drawableLeft="@drawable/order_current"
+                        android:text="订单详情"
+                        android:textColor="@color/c595757"
+                        android:textSize="19sp" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:background="@color/cc9caca"></View>
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_serviceContent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="服务信息:家政保洁"
+                        android:textSize="14sp" />
+                    <TextView
+                        android:id="@+id/tv_serviceWeek"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="服务频率:"
+                        android:textSize="14sp"
+                        android:paddingTop="5dp"
+                        android:visibility="gone"/>
+
+                    <TextView
+                        android:id="@+id/tv_startServiceTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:text="服务时间:服务开始日期"
+                        android:textSize="14sp" />
+                    <TextView
+                        android:id="@+id/tv_endServiceTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:text="服务结束日期:"
+
+                        android:visibility="gone"
+                        android:textSize="14sp" />
+                    <TextView
+                        android:id="@+id/tv_ServiceWorkTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:visibility="gone"
+                        android:text="服务时间段:"
+                        android:textSize="14sp" />
+                    <TextView
+                        android:id="@+id/tv_serviceTools"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:text="随手带:"
+                        android:visibility="gone"
+                        android:textSize="14sp" />
+                    <TextView
+                        android:id="@+id/tv_orderMoney"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:text="订单金额:"
+                        android:textSize="14sp" />
+                    <TextView
+                        android:id="@+id/tv_auntName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:text="阿姨姓名::"
+                        android:textSize="14sp" />
+                    <TextView
+                        android:id="@+id/tv_auntMoble"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:text="阿姨电话::"
+                        android:textSize="14sp" />
+                    <TextView
+                        android:id="@+id/tv_score"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:text="评分"
+                        android:textSize="14sp" />
+                    <TextView
+                        android:id="@+id/tv_scoreContent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:text="评分内容:"
+                        android:textSize="14sp" />
+                    <TextView
+                        android:id="@+id/tv_suggest"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:text="意见建议:"
+                        android:textSize="14sp" />
+                    <TextView
+                        android:id="@+id/tv_serviceModel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:text="服务模式:"
+                        android:visibility="gone"
+                        android:textSize="14sp" />
+                    <TextView
+                        android:id="@+id/tv_serviceTryDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:text="试用期限:"
+                        android:visibility="gone"
+                        android:textSize="14sp" />
+                    <TextView
+                        android:id="@+id/tv_serviceEmploymentDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:text="雇佣期限:"
+                        android:textSize="14sp"
+                        android:visibility="gone"/>
+                    <TextView
+                        android:id="@+id/tv_serviceAddress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:text="服务地点:吉林省长春市红旗及万达广场"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tv_coupons"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:text="优惠券:25元优惠券"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tv_margin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:text="保证金:100元"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tv_contact"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:text="联系人:张小姐"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tv_contact_mobile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:text="联系电话:129127498213740"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tv_ordertate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="5dp"
+                        android:text="订单状态:待服务(待确认/待付款)"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp">
+
+                    <LinearLayout
+                        android:id="@+id/ll_serverbtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/bt_start"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:background="@color/cc9caca"
+                            android:text="开始服务"
+                            android:textColor="@color/white"
+                            android:textSize="17sp" />
+
+                        <Button
+                            android:id="@+id/bt_end"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_marginLeft="10dp"
+                            android:background="@color/cc9caca"
+                            android:text="结束服务"
+                            android:textColor="@color/white"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/bt_pay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_below="@+id/ll_serverbtn"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/cc9caca"
+                        android:text="余额支付"
+                        android:textColor="@color/white"
+                        android:textSize="17sp" />
+                </RelativeLayout>
+
+            </LinearLayout>
+        </ScrollView>
+    </RelativeLayout>
+</RelativeLayout>

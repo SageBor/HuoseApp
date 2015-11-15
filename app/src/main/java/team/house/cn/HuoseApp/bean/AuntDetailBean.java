@@ -22,6 +22,10 @@ public class AuntDetailBean extends AuntBean implements Serializable{
         this.is_booking = is_booking;
     }
 
+    public AuntDetailBean() {
+
+    }
+
     public String getIdcard() {
         return idcard;
     }

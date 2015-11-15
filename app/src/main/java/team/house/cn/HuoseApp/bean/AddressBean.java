@@ -22,6 +22,8 @@ public class AddressBean implements Serializable {
         iSDefault = is_default;
     }
 
+    public AddressBean() {
+    }
 
     public int getmAddlesId() {
         return mAddlesId;

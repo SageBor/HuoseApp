@@ -1,0 +1,107 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg">
+    <!--title-->
+    <LinearLayout
+        android:id="@+id/layout_head"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <include layout="@layout/public_title"></include>
+    </LinearLayout>
+    <!--bottom-->
+    <LinearLayout
+        android:id="@+id/bottom"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <include layout="@layout/public_bottom"></include>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bottom"
+        android:layout_below="@+id/layout_head"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/white">
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/c7f7f7f"
+                android:textSize="16sp"
+                android:layout_margin="20dp"
+                android:text="选择支付方式"/>
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1px"
+                android:background="@color/c7f7f7f"></View>
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/c7f7f7f"
+                    android:textSize="16sp"
+                    android:layout_margin="20dp"
+                    android:text="账户余额支付"/>
+                <TextView
+                    android:layout_margin="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=">"
+                    android:textSize="16sp"
+                    android:textColor="@color/c595757"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"/>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1px"
+                android:background="@color/c7f7f7f"></View>
+
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="20dp">
+            <Button
+                android:layout_below="@+id/ll_serverbtn"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/white"
+                android:layout_marginTop="10dp"
+                android:background="@color/cc9caca"
+                android:text="支付余额"
+                android:textSize="17sp"
+                android:id="@+id/bt_pay" />
+            <TextView
+                android:paddingTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/c000000"
+                android:gravity="center_horizontal"
+                android:textSize="10sp"
+                android:text="确认支付后保证金托管至三个阿姨服务平台\n待确认结束服务后自动结算,\n确认结束服务后请于48小时内支付余款超时将自动由账户扣除\n如需取消订单请联系客服退还的保证金将自动返还账户"
+                android:layout_below="@+id/bt_pay"
+                android:layout_centerHorizontal="true" />
+
+        </RelativeLayout>
+
+        </RelativeLayout>
+    </RelativeLayout>

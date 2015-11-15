@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:autofit="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+        <ImageView
+            android:layout_margin="10dp"
+            android:id="@+id/img_driver"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/bjtx"
+            android:layout_centerVertical="true"></ImageView>
+
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/img_driver"
+        android:layout_toLeftOf="@+id/iv_icon"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:paddingTop="15dp">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:id="@+id/txt_auntname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="张三姨"
+                android:textColor="@color/c595757"
+                android:textSize="17sp"
+                />
+
+            <TextView
+                android:id="@+id/tv_mobile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:gravity="center"
+                android:text="183103929083"
+                android:textColor="@color/c595757"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="9dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/txt_auntscore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="暂无评价"
+                android:textColor="@color/c595757"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/txt_service_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="服务100次"
+                android:paddingLeft="10dp"
+                android:textColor="@color/c595757"
+                android:textSize="12sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:text="技能:保洁 看护 月嫂"
+                android:textColor="@color/c595757"
+                android:textSize="12sp"
+                android:id="@+id/tv_service" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="15dp" >
+
+            <TextView
+                android:id="@+id/tv_age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/c595757"
+                android:textSize="12sp"
+                android:text="年龄:50 长春人"/>
+
+
+        </LinearLayout>
+    </LinearLayout>
+  <!--  <ImageView
+        android:id="@+id/iv_icon"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_margin="10dp"
+        android:background="@drawable/lookrighticon"/>-->
+    <TextView
+        android:id="@+id/iv_icon"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_margin="10dp"
+        android:textColor="@color/c595757"
+        android:text=">"/>
+
+
+
+
+</RelativeLayout>

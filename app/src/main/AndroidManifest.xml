@@ -21,10 +21,31 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activity.LoginActivity"></activity>
-        <activity android:name=".activity.ResgisterAvtivity"></activity>
-        <activity android:name=".activity.ReservationServiceActivity"></activity>
-        <activity android:name=".activity.ChooseAddressActivity"></activity>
+        <activity android:name=".activity.LoginActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".activity.ResgisterAvtivity"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".activity.ReservationServiceActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".activity.ChooseAddressActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".activity.ChooseAuntActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".activity.AuntDetailActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".activity.CommitOrderActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".activity.CurrentOrderActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".activity.MyAccountActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".activity.MyBalanceActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".activity.OrderPayActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".activity.UserAccountActivity"
+            android:screenOrientation="portrait"></activity>
+
     </application>
 
 </manifest>

@@ -1,6 +1,7 @@
 package team.house.cn.HuoseApp.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
@@ -38,6 +39,8 @@ public abstract class BaseActivity extends Activity implements
     protected TextView mOrder;
     protected TextView mUcenter;
     protected TextView mHotLine;
+
+
 
     protected Resources resources;
 //    protected UserHelper userHelper;
@@ -95,6 +98,29 @@ public abstract class BaseActivity extends Activity implements
 
 
     protected void onClickListener(View v) {
+        int viewId = v.getId();
+        switch (viewId)
+        {
+            case R.id.tv_main:
+                startActivity(new Intent(this, MainActivity.class));
+                this.finish();
+                break;
+            case R.id.tv_order:
+
+                startActivity(new Intent(this, CurrentOrderActivity.class));
+                this.finish();
+                break;
+            case R.id.tv_ucenter:
+
+                startActivity(new Intent(this, UserAccountActivity.class));
+                this.finish();
+                break;
+            case R.id.tv_hotline:
+
+                startActivity(new Intent(this, MainActivity.class));
+                this.finish();
+
+        }
     }
 
 

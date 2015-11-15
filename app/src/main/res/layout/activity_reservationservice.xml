@@ -48,7 +48,7 @@
                     android:paddingLeft="15dp"
                     android:text="18612310824"
                     android:textColor="@color/c595757"
-                    android:textSize="19sp" />
+                    android:textSize="16sp" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -81,7 +81,7 @@
                     android:paddingLeft="22dp"
                     android:text="长春市"
                     android:textColor="@color/c595757"
-                    android:textSize="19sp" />
+                    android:textSize="16sp" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -112,7 +112,7 @@
                         android:layout_height="fill_parent"
                         android:text="服务内容"
                         android:textColor="@color/caaaaaa"
-                        android:textSize="19sp"></TextView>
+                        android:textSize="16sp"></TextView>
 
                     <team.house.cn.HuoseApp.views.ScrollGridView
                         android:id="@+id/gv_serviceInfo"
@@ -139,7 +139,7 @@
                         android:layout_height="fill_parent"
                         android:text="服务频率 长时工"
                         android:textColor="@color/caaaaaa"
-                        android:textSize="19sp"></TextView>
+                        android:textSize="16sp"></TextView>
 
                     <team.house.cn.HuoseApp.views.ScrollGridView
                         android:id="@+id/gv_serviceweek"
@@ -167,7 +167,7 @@
                         android:layout_height="fill_parent"
                         android:text="服务模式 保姆/月嫂"
                         android:textColor="@color/caaaaaa"
-                        android:textSize="19sp"></TextView>
+                        android:textSize="16sp"></TextView>
 
                     <team.house.cn.HuoseApp.views.ScrollGridView
                         android:id="@+id/gv_serviceModel"
@@ -194,7 +194,7 @@
                         android:layout_height="fill_parent"
                         android:text="服务时间"
                         android:textColor="@color/caaaaaa"
-                        android:textSize="19sp"></TextView>
+                        android:textSize="16sp"></TextView>
 
                     <TextView
                         android:id="@+id/tv_serviceTime"
@@ -234,9 +234,9 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="fill_parent"
-                            android:text="试用时间 保姆/月嫂"
+                            android:text="试用时间"
                             android:textColor="@color/caaaaaa"
-                            android:textSize="19sp"></TextView>
+                            android:textSize="16sp"></TextView>
 
                         <TextView
                             android:id="@+id/tv_serviceTryTime"
@@ -274,7 +274,7 @@
                         android:layout_height="fill_parent"
                         android:text="开始时间"
                         android:textColor="@color/caaaaaa"
-                        android:textSize="19sp"></TextView>
+                        android:textSize="16sp"></TextView>
 
                     <TextView
                         android:id="@+id/tv_serviceStarTime"
@@ -314,9 +314,9 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="fill_parent"
-                            android:text="试雇佣时间 保姆/月嫂"
+                            android:text="试雇佣时间"
                             android:textColor="@color/caaaaaa"
-                            android:textSize="19sp"></TextView>
+                            android:textSize="16sp"></TextView>
 
                         <TextView
                             android:id="@+id/tv_serviceireTime"
@@ -358,9 +358,9 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="fill_parent"
-                            android:text="结束时间 小时/长期工"
+                            android:text="结束时间"
                             android:textColor="@color/caaaaaa"
-                            android:textSize="19sp"></TextView>
+                            android:textSize="16sp"></TextView>
 
                         <TextView
                             android:id="@+id/tv_serviceOverTime"
@@ -397,12 +397,13 @@
                         android:layout_height="fill_parent"
                         android:text="自选/心里价格"
                         android:textColor="@color/caaaaaa"
-                        android:textSize="19sp"></TextView>
+                        android:textSize="16sp"></TextView>
                     <com.anton46.stepsview.StepsView
                         xmlns:app="http://schemas.android.com/apk/res-auto"
                         android:id="@+id/stepsView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:visibility="gone"
                         />
 
                     <TextView
@@ -432,12 +433,14 @@
                         android:layout_height="fill_parent"
                         android:text="随手带"
                         android:textColor="@color/caaaaaa"
-                        android:textSize="19sp"></TextView>
+                        android:textSize="16sp"></TextView>
 
                     <team.house.cn.HuoseApp.views.ScrollGridView
                         android:id="@+id/gv_servicetools"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
+                        android:horizontalSpacing="10dp"
+                        android:verticalSpacing="10dp"
                         android:numColumns="3" />
 
                 </LinearLayout>
@@ -455,9 +458,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="fill_parent"
-                        android:text="试用优惠券"
+                        android:text="使用用优惠券"
                         android:textColor="@color/caaaaaa"
-                        android:textSize="19sp"></TextView>
+                        android:textSize="16sp"></TextView>
 
                     <TextView
                         android:id="@+id/tv_serviceoupons"
@@ -491,7 +494,7 @@
                         android:layout_height="fill_parent"
                         android:text="订单金额"
                         android:textColor="@color/caaaaaa"
-                        android:textSize="19sp"></TextView>
+                        android:textSize="16sp"></TextView>
 
                     <TextView
                         android:id="@+id/tv_orderMoney"
@@ -517,7 +520,7 @@
                     android:paddingTop="15dp"
                     android:text="选择阿姨"
                     android:textColor="@color/caaaaaa"
-                    android:textSize="19sp"></TextView>
+                    android:textSize="16sp"></TextView>
                 <View
                     android:layout_width="fill_parent"
                     android:layout_height="1dp"
@@ -525,6 +528,7 @@
 
                 <!-- 系统推荐-->
                 <RelativeLayout
+                    android:id="@+id/rl_systemChooseAunt"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:paddingBottom="5dp"
@@ -537,7 +541,7 @@
                         android:layout_height="fill_parent"
                         android:text="系统推荐"
                         android:textColor="@color/caaaaaa"
-                        android:textSize="19sp"></TextView>
+                        android:textSize="16sp"></TextView>
 
                     <TextView
                         android:id="@+id/tv_systemAunt"
@@ -557,6 +561,7 @@
 
                 <!-- 自选阿姨-->
                 <RelativeLayout
+                    android:id="@+id/rl_chooseAunt"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:paddingBottom="5dp"
@@ -569,7 +574,7 @@
                         android:layout_height="fill_parent"
                         android:text="自选阿姨"
                         android:textColor="@color/caaaaaa"
-                        android:textSize="19sp"></TextView>
+                        android:textSize="16sp"></TextView>
 
                     <TextView
                         android:id="@+id/tv_choosewAunt"
@@ -605,7 +610,7 @@
                         android:layout_height="fill_parent"
                         android:text="其他需求"
                         android:textColor="@color/caaaaaa"
-                        android:textSize="19sp"></TextView>
+                        android:textSize="1sp"></TextView>
 
                     <TextView
                         android:id="@+id/tv_orther"
@@ -640,6 +645,7 @@
                         android:layout_below="@+id/ll_logininfo"
                         android:layout_centerHorizontal="true"/>
                     <TextView
+                        android:layout_below="@+id/bt_commit"
                         android:id="@+id/tv_commitip"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"

@@ -9,6 +9,10 @@ public class HourBean  implements Serializable{
     private int hour;
     private String hour_name;
 
+    public HourBean() {
+
+    }
+
     public int getHour() {
         return hour;
     }

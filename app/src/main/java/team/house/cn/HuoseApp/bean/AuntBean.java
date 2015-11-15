@@ -29,6 +29,9 @@ public class AuntBean implements Serializable {
         this.user_pic = user_pic;
     }
 
+    public AuntBean() {
+    }
+
     public int getUid() {
         return uid;
     }

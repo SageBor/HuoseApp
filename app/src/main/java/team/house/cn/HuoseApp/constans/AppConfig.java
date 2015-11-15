@@ -13,10 +13,12 @@ public  class  AppConfig {
         // 验证码
         public static final String URL_GET_CODE = "do=app&view=get_verification_code";
         // 用户注册
-        public static final String URL_REGUSTER = "do=app&view=regist";
+        public static final String URL_REGISTER = "do=app&view=regist";
+        // 用户登陆
+        public static final String URL_LOGIN = "do=app&view=login";
         // 地址列表
         public static final String URL_GET_ADDRESS = "do=app&view=get_address";
-        // 预约服务页面配置参数借口
+        // 预约服务页面配置参数
         public static final String URL_GET_CONFIG = "do=app&view=get_task_config";
         // 取得时间选择列表
         public static final String URL_GET_HOURE = "do=app&view=get_select_hours";
@@ -24,6 +26,14 @@ public  class  AppConfig {
         public static final String URL_GET_TRYDAYS = "do=app&view=get_try_days";
         // 获取雇佣时间列表 月
         public static final String URL_GET_MONTH = "do=app&view=get_employment_month";
+        // 阿姨列表
+        public static final String URL_GET_AUNTLIST = "do=app&view=get_ayi_list";
+        // 阿姨详情
+        public static final String URL_GET_AUNTDETAIL = "do=app&view=get_ayi_detail";
+        // 当前订单
+        public static final String URL_GET_CURRENT_ORDER = "do=app&view=get_task_current_list";
+        // 预约服务
+        public static final String URL_COMMIT_ORDER = "do=app&view=add_task";
 
 
     }

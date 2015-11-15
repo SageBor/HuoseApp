@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+    <!--title-->
+    <LinearLayout
+        android:id="@+id/layout_head"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <include layout="@layout/public_title"></include>
+    </LinearLayout>
+    <!--bottom-->
+    <LinearLayout
+        android:id="@+id/bottom"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <include layout="@layout/public_bottom"></include>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bottom"
+        android:layout_below="@+id/layout_head"
+        android:orientation="vertical"
+        android:background="@drawable/bg">
+        <RelativeLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+
+            android:background="@color/white">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="我的余额"
+                android:textColor="@color/c7f7f7f"
+                android:textSize="19sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:textColor="@color/c07c6ef"
+                android:textSize="16sp"
+                android:layout_alignParentRight="true"
+                android:text="300元"/>
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:padding="20dp"
+            android:layout_marginTop="10dp">
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/c7f7f7f"
+                    android:text="充值"
+                    android:textSize="17sp"/>
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:hint="请输入充值金额"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/c7f7f7f"
+                    android:text="输入兑换码获取代金券"
+                    android:textSize="17sp"/>
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:hint="请输入兑换码"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_height="30dp"
+                android:textColor="@color/white"
+                android:layout_marginLeft="10dp"
+                android:background="@color/cc9caca"
+                android:text="确定充值"
+                android:textSize="17sp"
+                android:id="@+id/bt_recharge" />
+        </RelativeLayout>
+
+
+    </LinearLayout>
+</RelativeLayout>

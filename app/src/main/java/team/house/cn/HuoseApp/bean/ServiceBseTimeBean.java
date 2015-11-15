@@ -11,6 +11,10 @@ public class ServiceBseTimeBean implements Serializable {
     private int basic_hours;
     private int indus_id;
 
+    public ServiceBseTimeBean() {
+
+    }
+
     public int getBasic_price() {
         return basic_price;
     }

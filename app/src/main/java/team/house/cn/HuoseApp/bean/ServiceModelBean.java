@@ -9,6 +9,19 @@ import java.io.Serializable;
 public class ServiceModelBean implements Serializable {
     private  int employment_typ;
     private String employment_typ_name;
+    private boolean isChecked = false;
+
+    public ServiceModelBean() {
+
+    }
+
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+    public void setIsChecked(boolean isChecked) {
+        this.isChecked = isChecked;
+    }
 
     public ServiceModelBean(int employment_typ, String employment_typ_name) {
         this.employment_typ = employment_typ;

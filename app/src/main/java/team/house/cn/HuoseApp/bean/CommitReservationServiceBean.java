@@ -1,32 +1,33 @@
 package team.house.cn.HuoseApp.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by kn on 15/11/12.
  */
-public class CommitReservationServiceBean implements Serializable{
+public class  CommitReservationServiceBean implements Serializable{
     private int uid; //用户Id
     private String username; //用户姓名
     private int indus_pid; //服务分类 大类 小时工
-    private ServiceContentBean serviceContentBean;
+    private ServiceContentBean serviceContentBean = new ServiceContentBean();
     private int indus_id; //服务内容 小类
-    private ServiceModelBean serviceModelBean;
+    private ServiceModelBean serviceModelBean = new ServiceModelBean();
     private int employment_typ; // 服务模式
-    private List<ServiceWeekBean> serviceWeekBeanList;
+    private List<ServiceWeekBean> serviceWeekBeanList = new ArrayList<ServiceWeekBean>();
     private int week_id; //服务频率 值：星期ID  形式(逗号分隔)： 星期ID,星期ID,星期ID
-    private ServiceBseTimeBean serviceBseTimeBean;
-    private ServiceTryDayBean serviceTryDayBean;
+    private ServiceBseTimeBean serviceBseTimeBean = new ServiceBseTimeBean();
+    private ServiceTryDayBean serviceTryDayBean = new ServiceTryDayBean();
     private int try_days; //试用天数
     private String start_time; //开始日期
     private String end_time; //结束日期
-    private ServiceEmploymentMonthBean serviceEmploymentMonth;
+    private ServiceEmploymentMonthBean serviceEmploymentMonth = new ServiceEmploymentMonthBean();
     private int employment_month; //雇佣时间
-    private ChoosePriceBean choosePriceBean;
+    private ChoosePriceBean choosePriceBean = new ChoosePriceBean();
     private float price; //心里价位
 
-    private AuntBean auntBean;
+    private AuntBean auntBean = new AuntBean();
     private int employment_uid; //阿姨Id
     private String task_desc; //备注
     private int pay_typ; // 支付方式 1:账户余额支付,  2:支付宝,  3:微信支付    *现在只支持余额支付，其他两个先屏蔽
@@ -36,13 +37,13 @@ public class CommitReservationServiceBean implements Serializable{
     private float paied_cash; // 保证金 暂时和订单总价保持一致
     private String mobile; //手机号
     private String truename; //真实姓名
-    private List<ServiceToolsBean> serviceToolsBeanList;
+    private List<ServiceToolsBean> serviceToolsBeanList = new ArrayList<ServiceToolsBean>();
     private String supplies_id; //值：保洁用品ID  形式(逗号分隔)： 保洁用品ID,保洁用品ID,保洁用品ID
-    private AddressBean addressBean;
+    private AddressBean addressBean = new AddressBean();
     private int address_id; // 服务地址Id
-    private HourBean startHouBean;
+    private HourBean startHouBean = new HourBean();
     private int start_hour; //开始时刻
-    private HourBean endHouBean;
+    private HourBean endHouBean = new HourBean();
     private int end_hour; //结束时刻
 
 

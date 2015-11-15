@@ -67,6 +67,7 @@ public class ChooseAddressActivity extends BaseActivity {
     @Override
     protected void initTitle() {
         super.initTitle();
+        mTitleView.setText("选择地址");
     }
 
     @Override

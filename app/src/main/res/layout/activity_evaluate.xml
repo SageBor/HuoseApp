@@ -1,0 +1,101 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:hedgehog="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/bg"
+    android:orientation="vertical">
+    <!--title-->
+    <LinearLayout
+        android:id="@+id/layout_head"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <include layout="@layout/public_title"></include>
+    </LinearLayout>
+    <!--bottom-->
+    <LinearLayout
+        android:id="@+id/bottom"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <include layout="@layout/public_bottom"></include>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bottom"
+        android:layout_below="@+id/layout_head">
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="感谢您使用我们的服务,请对我们的富足进行评价,以便我们及时作出改进,更好的为您服务"
+            android:textColor="@color/c7f7f7f"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="您对我们的服务是否满意?"
+            android:textColor="@color/c7f7f7f"
+            android:textSize="16sp" />
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <com.hedgehog.ratingbar.RatingBar
+                android:id="@+id/ratingbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="50dp"
+                hedgehog:clickable="true"
+                hedgehog:starCount="5"
+                hedgehog:starEmpty="@drawable/start_gray"
+                hedgehog:starFill="@drawable/star_blue"
+                hedgehog:starImageSize="30dp" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="您对为你服务的阿姨评价如何?"
+            android:textColor="@color/c7f7f7f"
+            android:textSize="16sp" />
+
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/bg_edit_shape"
+            android:inputType="textMultiLine"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="您有什么意见或建议?"
+            android:textColor="@color/c7f7f7f"
+            android:textSize="16sp" />
+
+        <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/bg_edit_shape"
+            android:inputType="textMultiLine"/>
+    </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

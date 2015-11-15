@@ -26,6 +26,9 @@ public class ServiceContentBean implements Serializable {
         this.isChecked = isChecked;
     }
 
+    public ServiceContentBean() {
+    }
+
     public String getIndus_name() {
         return indus_name;
     }
