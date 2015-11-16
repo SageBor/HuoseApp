@@ -5,6 +5,7 @@
     <TextView
         android:id="@+id/tv_item_address"
         android:layout_width="fill_parent"
+        android:padding="20dp"
         android:layout_height="wrap_content" />
 
 

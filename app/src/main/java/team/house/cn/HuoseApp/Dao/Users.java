@@ -7,7 +7,7 @@ public class Users {
 
     private int uid;
     private String username;
-    private String truename;
+    private String truename = "zhangdan";
     private String sex;
     private String marry;
     private String mobile;

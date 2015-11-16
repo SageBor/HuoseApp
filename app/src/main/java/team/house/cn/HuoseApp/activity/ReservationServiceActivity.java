@@ -32,6 +32,7 @@ import team.house.cn.HuoseApp.adapter.ToggleButton_ViewHolder;
 import team.house.cn.HuoseApp.asytask.BaseRequest;
 import team.house.cn.HuoseApp.asytask.BaseResponse;
 import team.house.cn.HuoseApp.asytask.ResponseBean;
+import team.house.cn.HuoseApp.bean.AddressBean;
 import team.house.cn.HuoseApp.bean.ChoosePriceBean;
 import team.house.cn.HuoseApp.bean.CityBean;
 import team.house.cn.HuoseApp.bean.CommitReservationServiceBean;
@@ -104,6 +105,7 @@ public class ReservationServiceActivity extends BaseActivity {
     private List<ServiceTryDayBean> serviceTryDayBeanList;
     private ServiceContentBean serviceContentBean;
     private Button mCommitButton;
+    private ServiceBseTimeBean serviceBaseTimeBean;
 
 //    private  ServiceTryDayBean mServiceTryDayBean;
 
@@ -293,6 +295,10 @@ public class ReservationServiceActivity extends BaseActivity {
         if (viewId == R.id.bt_commit) {
             mCommitReservationServiceBean.setServiceWeekBeanList(mServiceWeekAdapter.getCHooseServiceWeeksList());
             mCommitReservationServiceBean.setServiceToolsBeanList(mServiceToolsAdapter.getCHooseServiceToolsList());
+            mCommitReservationServiceBean.setChoosePriceBean(mChoosePriceBeanList.get(0)); //暂时先获取自选价格第一个
+            mCommitReservationServiceBean.setTask_cash(mChoosePriceBeanList.get(0).getPrice() * serviceBaseTimeBean.getBasic_hours());
+
+            mCommitReservationServiceBean.setPaied_cash(mChoosePriceBeanList.get(0).getPrice() * serviceBaseTimeBean.getBasic_hours());
             Intent intent = new Intent();
             intent.putExtra("CommitReservationServiceBean",mCommitReservationServiceBean);
             intent.setClass(this, CommitOrderActivity.class);
@@ -319,9 +325,11 @@ public class ReservationServiceActivity extends BaseActivity {
         super.onActivityResult(requestCode, resultCode, data);
         // 选择路线
         if (requestCode == 1 && resultCode == RESULT_OK) {
-            String addressId = data.getStringExtra("address_id");
+            AddressBean addressBean = (AddressBean) data.getSerializableExtra("address");
             String addressInfo = data.getStringExtra("address_info");
-            if (TextUtils.isEmpty(addressId) && TextUtils.isEmpty(addressInfo)) {
+            if (addressBean != null) {
+//                mCommitReservationServiceBean.setAddress_id(addressId);
+                mCommitReservationServiceBean.setAddressBean(addressBean);
                 mServiceAddressTextView.setText(addressInfo);
             }
         }
@@ -494,6 +502,12 @@ public class ReservationServiceActivity extends BaseActivity {
                 .setCompletedPosition(0)
                 .drawView();
     }
+
+    @Override
+    public void onClick(View v) {
+        super.onClick(v);
+    }
+
     // 用户选择服务内容回调
     public void serviceContentGridView_ItemChecked(ServiceContentBean _serviceContentBean) {
         serviceContentBean = _serviceContentBean;
@@ -535,6 +549,7 @@ public class ReservationServiceActivity extends BaseActivity {
                 if (mServiceTimeBeanList != null) {
                     for (ServiceBseTimeBean serviceBseTimeBean : mServiceTimeBeanList) {
                         if (indus_id == serviceBseTimeBean.getIndus_id())
+                            serviceBaseTimeBean = serviceBseTimeBean;
                             mServiceTimeTextView.setText("基础价格" + serviceBseTimeBean.getBasic_price() + "元/小时," + serviceBseTimeBean.getBasic_hours() + "小时起雇");
                     }
                 }

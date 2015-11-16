@@ -29,19 +29,18 @@ public class AddressAdapter extends BaseAdapter {
     }
     @Override
     public int getCount() {
-        mAddressList.size();
-        return 0;
+        return mAddressList.size();
+
     }
 
     @Override
     public Object getItem(int i) {
-        mAddressList.get(i);
-        return null;
+        return mAddressList.get(i);
     }
 
     @Override
     public long getItemId(int i) {
-        AddressBean addressBean= mAddressList.get(i);
+//        AddressBean addressBean= mAddressList.get(i);
         return i;
     }
 

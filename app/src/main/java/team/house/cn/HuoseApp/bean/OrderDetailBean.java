@@ -7,10 +7,10 @@ import java.io.Serializable;
  */
 public class OrderDetailBean implements Serializable {
     private int task_id;
+    private int uid;
     private String indus_pid;
     private String indus_id;
     private String week_name;
-
     private String start_time;
     private String end_time;
     private String work_time;
@@ -48,6 +48,14 @@ public class OrderDetailBean implements Serializable {
     }
 
     public OrderDetailBean() {
+    }
+
+    public int getUid() {
+        return uid;
+    }
+
+    public void setUid(int uid) {
+        this.uid = uid;
     }
 
     public String getWeek_name() {

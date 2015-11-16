@@ -157,30 +157,30 @@ public class CommitOrderActivity extends BaseActivity {
 
     private void commitService() {
         Map params = new HashMap<>();
-        params.put("uid", mUser.getUid());
-        params.put("username", mUser.getUsername());
-        params.put("indus_pid", mCommitReservationServiceBean.getIndus_pid());
-        params.put("indus_id", mCommitReservationServiceBean.getServiceContentBean().getIndus_id());
-        params.put("employment_typ", mCommitReservationServiceBean.getServiceModelBean().getEmployment_typ());
-        params.put("week_id", getWeeksId());
-        params.put("try_days", mCommitReservationServiceBean.getServiceTryDayBean().getTry_days());
-        params.put("start_time", mCommitReservationServiceBean.getStart_time());
-        params.put("end_time", mCommitReservationServiceBean.getEnd_time());
-        params.put("employment_month", mCommitReservationServiceBean.getServiceEmploymentMonth().getEmployment_month());
-        params.put("price", mCommitReservationServiceBean.getChoosePriceBean().getPrice());// 心里价位
-        params.put("employment_uid", mCommitReservationServiceBean.getEmployment_uid()); //阿姨id
-        params.put("task_desc", ""); //备注
-        params.put("pay_typ", 1); // 支付方式
-        params.put("model_id", 3); // 罚单模式
-        params.put("task_cash", mCommitReservationServiceBean.getTask_cash()); //订单金额  暂未获取
-        params.put("paied_cash", mCommitReservationServiceBean.getPaied_cash()); //保证金  暂未获取
-        params.put("mobile", mUser.getMobile()); //手机号
-        params.put("truename", mUser.getTruename());//真实姓名
-        params.put("supplies_id", getToolIds()); //保洁用品id
-        params.put("address_id", mCommitReservationServiceBean.getAddress_id()); //服务地址id 暂未获取
-        params.put("start_hour", mCommitReservationServiceBean.getStartHouBean().getHour()); // /开始时刻
-        params.put("end_hour", mCommitReservationServiceBean.getEndHouBean().getHour()); //结束时刻
-        params.put("work_days", ""); //工作天数 只有长期钟点工用
+        params.put("data[uid]", mUser.getUid());
+        params.put("data[username]", mUser.getUsername());
+        params.put("data[indus_pid]", mCommitReservationServiceBean.getIndus_pid());
+        params.put("data[indus_id]", mCommitReservationServiceBean.getServiceContentBean().getIndus_id());
+        params.put("data[employment_typ]", mCommitReservationServiceBean.getServiceModelBean().getEmployment_typ());
+        params.put("data[week_id]", getWeeksId());
+        params.put("data[try_days]", mCommitReservationServiceBean.getServiceTryDayBean().getTry_days());
+        params.put("data[start_time]", mCommitReservationServiceBean.getStart_time());
+        params.put("data[end_time]", mCommitReservationServiceBean.getEnd_time());
+        params.put("data[employment_month]", mCommitReservationServiceBean.getServiceEmploymentMonth().getEmployment_month());
+        params.put("data[price]", mCommitReservationServiceBean.getChoosePriceBean().getPrice());// 心里价位
+        params.put("data[employment_uid]", mCommitReservationServiceBean.getEmployment_uid()); //阿姨id
+        params.put("data[task_desc]", ""); //备注
+        params.put("data[pay_typ]", 1); // 支付方式
+        params.put("data[model_id]", 3); // 发单模式
+        params.put("data[task_cash]", mCommitReservationServiceBean.getTask_cash()); //订单金额  暂未获取
+        params.put("data[paied_cash]", mCommitReservationServiceBean.getPaied_cash()); //保证金  暂未获取
+        params.put("data[mobile]", mUser.getMobile()); //手机号
+        params.put("data[truename]", "张小姐"/*mUser.getTruename()*/);//真实姓名
+        params.put("data[supplies_id]", getToolIds()); //保洁用品id
+        params.put("data[address_id]", mCommitReservationServiceBean.getAddressBean().getmAddlesId()); //服务地址id 暂未获取
+        params.put("data[start_hour]", mCommitReservationServiceBean.getStartHouBean().getHour()); // /开始时刻
+        params.put("data[end_hour]", mCommitReservationServiceBean.getEndHouBean().getHour()); //结束时刻
+        params.put("data[work_days]", ""); //工作天数 只有长期钟点工用
         BaseRequest.instance().doRequest(Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_COMMIT_ORDER, params, new BaseResponse() {
             @Override
             public void successful(ResponseBean responseBean) {

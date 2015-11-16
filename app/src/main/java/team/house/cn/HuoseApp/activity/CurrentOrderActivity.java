@@ -86,6 +86,44 @@ public class CurrentOrderActivity extends BaseActivity {
         mServiceTryDateTextView = (TextView) findViewById(R.id.tv_serviceTryDate);
         mServiceEmploymentTextView = (TextView) findViewById(R.id.tv_serviceEmploymentDate);
         mServiceAddressTextView = (TextView) findViewById(R.id.tv_serviceAddress);
+        mCouponsTextView = (TextView) findViewById(R.id.tv_coupons);
+        mMarginTextView = (TextView) findViewById(R.id.tv_margin);
+        mContactTextView = (TextView) findViewById(R.id.tv_contact);
+        mContactMobileTextView = (TextView) findViewById(R.id.tv_contact_mobile);
+        mOrderStateTextView = (TextView) findViewById(R.id.tv_ordertate);
+        mStartServiceButton = (Button) findViewById(R.id.bt_start);
+        mEndServiceButton = (Button) findViewById(R.id.bt_end);
+        mPayButton = (Button) findViewById(R.id.bt_pay);
+
+    }
+    private void showView() {
+        mServiceContentTextView.setText(orderDetailBean.getIndus_id());
+        mServiceWeekTextView.setText(orderDetailBean.getWeek_name());
+        mServiceStartTimeTextView.setText(orderDetailBean.getStart_time());
+        mServiceEndTimeTextView.setText(orderDetailBean.getEnd_time());
+        mServiceWorkTimeTextView.setText(orderDetailBean.getWork_time());
+        mServiceToolsTextView.setText(orderDetailBean.getSupplies_name());
+        mOrderMoneyTextView.setText(orderDetailBean.getTask_cash());
+        mAuntNameTextView.setText(orderDetailBean.getEmployment_truename());
+        mAuntMobileTextView.setText(orderDetailBean.getEmployment_mobile());
+        mSoreTextView.setText(orderDetailBean.getAid_star());
+        mSoreContentTextView.setText(orderDetailBean.getMark_content());
+        mSuggestTextView.setText(orderDetailBean.getSuggest());
+        mServiceModelTextView.setText(orderDetailBean.getEmployment_typ());
+        mServiceTryDateTextView.setText(orderDetailBean.getTry_days());
+        mServiceEmploymentTextView.setText(orderDetailBean.getEmployment_month());
+        mServiceAddressTextView.setText(orderDetailBean.getAddress());
+        mCouponsTextView.setText("");
+        mMarginTextView.setText(orderDetailBean.getPaied_cash());
+        mContactTextView.setText(orderDetailBean.getTruename());
+        mContactMobileTextView.setText(orderDetailBean.getContact());
+        mOrderStateTextView.setText(orderDetailBean.getTask_status());
+
+
+
+
+
+
     }
 
     @Override
@@ -142,10 +180,14 @@ public class CurrentOrderActivity extends BaseActivity {
                         if (data != null && data.length() > 0) {
                             if (data.length() == 1) {
                                 JSONObject jsonObject = data.getJSONObject(0);
+                                orderDetailBean.setUid(JSONUtils.getInt(jsonObject, "uid", 0));
                                 orderDetailBean.setTask_id(JSONUtils.getInt(jsonObject, "task_id", 0));
                                 orderDetailBean.setIndus_pid(JSONUtils.getString(jsonObject, "indus_pid", ""));
                                 orderDetailBean.setIndus_id(JSONUtils.getString(jsonObject, "indus_id", ""));
+                                orderDetailBean.setWeek_name(JSONUtils.getString(jsonObject, "week_name", ""));
                                 orderDetailBean.setStart_time(JSONUtils.getString(jsonObject, "start_time", ""));
+                                orderDetailBean.setEnd_time(JSONUtils.getString(jsonObject, "end_time", ""));
+                                orderDetailBean.setWork_time(JSONUtils.getString(jsonObject, "work_time", ""));
                                 orderDetailBean.setAddress(JSONUtils.getString(jsonObject, "address", ""));
                                 orderDetailBean.setSupplies_name(JSONUtils.getString(jsonObject, "supplies_name", ""));
                                 orderDetailBean.setTask_cash(JSONUtils.getString(jsonObject, "task_cash", ""));
@@ -154,7 +196,16 @@ public class CurrentOrderActivity extends BaseActivity {
                                 orderDetailBean.setContact(JSONUtils.getString(jsonObject, "contact", ""));
                                 orderDetailBean.setTask_status(JSONUtils.getString(jsonObject, "task_status", ""));
                                 orderDetailBean.setTask_status_content(JSONUtils.getString(jsonObject, "task_status_content", ""));
-
+                                orderDetailBean.setEmployment_uid(JSONUtils.getString(jsonObject, "employment_uid", ""));
+                                orderDetailBean.setEmployment_truename(JSONUtils.getString(jsonObject, "employment_truename", ""));
+                                orderDetailBean.setEmployment_mobile(JSONUtils.getString(jsonObject, "employment_mobile", ""));
+                                orderDetailBean.setAid_star(JSONUtils.getString(jsonObject, "aid_star", ""));
+                                orderDetailBean.setMark_content(JSONUtils.getString(jsonObject, "mark_content", ""));
+                                orderDetailBean.setSuggest(JSONUtils.getString(jsonObject, "suggest", ""));
+                                orderDetailBean.setEmployment_typ(JSONUtils.getString(jsonObject, "employment_typ", ""));
+                                orderDetailBean.setTry_days(JSONUtils.getString(jsonObject, "try_days", ""));
+                                orderDetailBean.setEmployment_month(JSONUtils.getString(jsonObject, "employment_month", ""));
+                                showView();
 
                             } else {
                                 for (int i = 0; i < data.length(); i++) {
@@ -185,5 +236,6 @@ public class CurrentOrderActivity extends BaseActivity {
             }
         });
     }
+
 }
 

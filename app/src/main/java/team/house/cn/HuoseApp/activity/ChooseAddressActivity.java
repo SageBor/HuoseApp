@@ -106,9 +106,9 @@ public class ChooseAddressActivity extends BaseActivity {
         mAddressListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                AddressBean addressBean = (AddressBean) adapterView.getItemAtPosition(i);
+                AddressBean addressBean = (AddressBean) mAddressList.get(i);
                 Intent intent = new Intent();
-                intent.putExtra("address_id", addressBean.getmAddlesId());
+                intent.putExtra("address", addressBean);
                 intent.putExtra("address_info", addressBean.getmAddressAll());
                 setResult(RESULT_OK, intent);
                 finish();
@@ -116,6 +116,23 @@ public class ChooseAddressActivity extends BaseActivity {
 
             }
         });
+//        mAddressListview.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                AddressBean addressBean = (AddressBean) mAddressList.get(position);
+//                Intent intent = new Intent();
+//                intent.putExtra("address_id", addressBean.getmAddlesId());
+//                intent.putExtra("address_info", addressBean.getmAddressAll());
+//                setResult(RESULT_OK, intent);
+//                finish();
+//
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//
+//            }
+//        });
         mProvinceSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
