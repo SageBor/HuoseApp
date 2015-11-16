@@ -89,7 +89,8 @@ public class MainActivity extends BaseActivity {
         if (mRightView.getText().toString().equals("登陆")) {
             this.startActivity(new Intent(this, LoginActivity.class));
         } else {
-
+            UserUtil.exitLogin();
+            onResume();
 
         }
     }

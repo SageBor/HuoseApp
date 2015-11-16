@@ -47,7 +47,6 @@ public class BaseRequest {
         String params = getParames(param);
         if (!TextUtils.isEmpty(params)) {
 
-//                url = url + URLEncoder.encode(params, "UTF-8");
                 url = url + params;
 
         }

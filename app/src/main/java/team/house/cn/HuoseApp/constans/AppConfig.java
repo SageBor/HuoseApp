@@ -16,8 +16,12 @@ public  class  AppConfig {
         public static final String URL_REGISTER = "do=app&view=regist";
         // 用户登陆
         public static final String URL_LOGIN = "do=app&view=login";
+        // 城市列表
+        public static final String URL_CITY_LIST = "do=app&view=get_dq_list";
         // 地址列表
         public static final String URL_GET_ADDRESS = "do=app&view=get_address";
+        // 添加地址
+        public static final String URL_GET_ADDADDRESS = "do=app&view=add_address";
         // 预约服务页面配置参数
         public static final String URL_GET_CONFIG = "do=app&view=get_task_config";
         // 取得时间选择列表

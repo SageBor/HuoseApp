@@ -11,6 +11,10 @@ public class CityBean implements Serializable{
     private int cityId;
     private String cityName;
 
+    public CityBean() {
+
+    }
+
     public int getProvinceId() {
         return provinceId;
     }

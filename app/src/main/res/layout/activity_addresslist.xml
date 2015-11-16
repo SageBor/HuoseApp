@@ -21,10 +21,13 @@
         <include layout="@layout/public_bottom"></include>
     </LinearLayout>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="fill_parent"
         android:layout_below="@+id/layout_head"
         android:layout_above="@+id/bottom"
+        android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <LinearLayout
@@ -37,46 +40,58 @@
                 android:layout_height="50dp"
                 android:gravity="center"
                 android:text="添 加 服 务 地 址"/>
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                >
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/province"
+                    />
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/province"
+                    android:id="@+id/city"
+                    />
+            </RelativeLayout>
             <LinearLayout
                 android:id="@+id/ll_addServiceAddress"
                 android:layout_below="@id/tv_addServiceAddress"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="horizontal">
                 <EditText
                     android:id="@+id/et_addServiceAddress"
                     android:layout_width="fill_parent"
+                    android:layout_weight="1"
                     android:layout_height="30dp"
                     android:hint="请输入服务地址"
                     android:gravity="center_vertical"
                     android:background="@drawable/bg_login_et_shape"/>
                 <Button
                     android:id="@+id/bt_addAddress"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="fill_parent"
+                    android:layout_height="40dp"
+                    android:layout_weight="3"
                     android:background="@color/cc9caca"
                     android:textColor="@color/white"
                     android:text="提交"/>
             </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/layout_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/ll_addServiceAddress"
-            android:orientation="vertical">
 
-            <ListView
+            <team.house.cn.HuoseApp.views.ScrollListView
                 android:id="@+id/lv_address"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:divider="@null"
-                android:scrollbars="none" >
-            </ListView>
-        </LinearLayout>
+                android:layout_height="29dp"
+                android:divider="@null" >
+            </team.house.cn.HuoseApp.views.ScrollListView>
+
 
     </LinearLayout>
+    </ScrollView>
 
 
 

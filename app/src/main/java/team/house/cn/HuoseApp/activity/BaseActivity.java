@@ -10,8 +10,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import team.house.cn.HuoseApp.Dao.Users;
 import team.house.cn.HuoseApp.R;
 import team.house.cn.HuoseApp.utils.ActivityManager;
+import team.house.cn.HuoseApp.utils.UserUtil;
 
 
 /**
@@ -43,6 +45,7 @@ public abstract class BaseActivity extends Activity implements
 
 
     protected Resources resources;
+    protected Users mUserBean;
 //    protected UserHelper userHelper;
 
     @Override
@@ -50,6 +53,7 @@ public abstract class BaseActivity extends Activity implements
         super.onCreate(savedInstanceState);
         ActivityManager.getInstance().addActivity(this);
         resources = this.getResources();
+        mUserBean = UserUtil.getUserinfoFromSharepreference();
         initView();
         initPublicView();
         initEvent();

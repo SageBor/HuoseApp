@@ -48,7 +48,9 @@ public class AddressAdapter extends BaseAdapter {
     public void addItem(AddressBean bean){
         mAddressList.add(bean);
     }
-
+    public void addItems(List<AddressBean> beans){
+        mAddressList = beans;
+    }
     @Override
     public View getView(int i, View convertView, ViewGroup viewGroup) {
         ViewHolder viewHolder;

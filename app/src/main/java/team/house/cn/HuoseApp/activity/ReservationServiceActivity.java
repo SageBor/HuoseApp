@@ -13,7 +13,6 @@ import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.VolleyError;
-import com.anton46.stepsview.StepsView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -47,6 +46,7 @@ import team.house.cn.HuoseApp.bean.ServiceWeekBean;
 import team.house.cn.HuoseApp.constans.AppConfig;
 import team.house.cn.HuoseApp.proviews.DateTimeDialog;
 import team.house.cn.HuoseApp.utils.CityUtil;
+import team.house.cn.HuoseApp.views.StepsView;
 
 /**
  * Created by kenan on 15/11/7.
@@ -191,7 +191,7 @@ public class ReservationServiceActivity extends BaseActivity {
     protected void onClickListener(View v) {
         super.onClickListener(v);
         int viewId = v.getId();
-        if (viewId == R.id.tv_serviceAddress) {
+        if (viewId == R.id.rl_serviceAddress) {
             // 进入选择地址页面
             this.startActivityForResult(new Intent(this, ChooseAddressActivity.class), 1);
         }
@@ -318,7 +318,7 @@ public class ReservationServiceActivity extends BaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         // 选择路线
-        if (requestCode == 1) {
+        if (requestCode == 1 && resultCode == RESULT_OK) {
             String addressId = data.getStringExtra("address_id");
             String addressInfo = data.getStringExtra("address_info");
             if (TextUtils.isEmpty(addressId) && TextUtils.isEmpty(addressInfo)) {
@@ -487,12 +487,12 @@ public class ReservationServiceActivity extends BaseActivity {
         for (int i = 0; i < choosePriceBeanList.size(); i++){
             labels[i] = choosePriceBeanList.get(i).getPrice_name();
         }
-//        stepsView.setLabels(labels)
-//                .setBarColorIndicator(this.getResources().getColor(R.color.cdededd))
-//                .setProgressColorIndicator(this.getResources().getColor(R.color.c07c6ef))
-//                .setLabelColorIndicator(this.getResources().getColor(R.color.c07c6ef))
-//                .setCompletedPosition(0)
-//                .drawView();
+        stepsView.setLabels(labels)
+                .setBarColorIndicator(this.getResources().getColor(R.color.cdededd))
+                .setProgressColorIndicator(this.getResources().getColor(R.color.c07c6ef))
+                .setLabelColorIndicator(this.getResources().getColor(R.color.c07c6ef))
+                .setCompletedPosition(0)
+                .drawView();
     }
     // 用户选择服务内容回调
     public void serviceContentGridView_ItemChecked(ServiceContentBean _serviceContentBean) {

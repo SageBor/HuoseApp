@@ -167,4 +167,10 @@ public class UserUtil {
         return userinfo;
     }
 
+    public static void exitLogin() {
+        PreferenceUtil.putString(HouseApplication.getHuoYunApplicationContext(), "userinfo", "");
+        PreferenceUtil.putInt(HouseApplication.getHuoYunApplicationContext(), "userId", 0);
+        PreferenceUtil.putString(HouseApplication.getHuoYunApplicationContext(), "addressinfo", "");
+    }
+
 }
