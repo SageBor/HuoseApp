@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,8 +43,9 @@ import team.house.cn.HuoseApp.utils.JSONUtils;
  * Created by kenan on 15/11/8.
  */
 public class ChooseAddressActivity extends BaseActivity {
+    public final String Tag =  "ChooseAddressActivity";
     private ListView mAddressListview;
-    private LinearLayout mAddAddressLinearLayout;
+    private RelativeLayout mAddAddressLinearLayout;
     private TextView mAddAddressTextView;
     private EditText mAddAddressEditText;
     private Button mAddAddressButton;
@@ -66,7 +68,7 @@ public class ChooseAddressActivity extends BaseActivity {
     protected void initView() {
         super.initView();
         setContentView(R.layout.activity_addresslist);
-        mAddAddressLinearLayout = (LinearLayout) findViewById(R.id.ll_addServiceAddress);
+        mAddAddressLinearLayout = (RelativeLayout) findViewById(R.id.rl_addServiceAddress);
         mAddAddressTextView = (TextView) findViewById(R.id.tv_addServiceAddress);
         mAddAddressEditText = (EditText) findViewById(R.id.et_addServiceAddress);
         mAddAddressButton = (Button) findViewById(R.id.bt_addAddress);
@@ -191,7 +193,7 @@ public class ChooseAddressActivity extends BaseActivity {
     private void getListAddressFromService(){
         Map paramMap = new HashMap<>();
         paramMap.put("uid" , mUserBean.getUid());
-        BaseRequest.instance().doRequest(Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_GET_ADDRESS, paramMap, new BaseResponse() {
+        BaseRequest.instance().doRequest(Tag,Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_GET_ADDRESS, paramMap, new BaseResponse() {
             @Override
             public void successful(ResponseBean responseBean) {
                 int code = responseBean.getCode();
@@ -242,7 +244,7 @@ public class ChooseAddressActivity extends BaseActivity {
         paramMap.put("data[city]" , mCityBean.getCityId());
         paramMap.put("data[address]" , addressinfo);
         paramMap.put("data[is_default]" , 0);
-        BaseRequest.instance().doRequest(Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_GET_ADDADDRESS, paramMap, new BaseResponse() {
+        BaseRequest.instance().doRequest(Tag, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_GET_ADDADDRESS, paramMap, new BaseResponse() {
             @Override
             public void successful(ResponseBean responseBean) {
                 int code = responseBean.getCode();
@@ -286,7 +288,7 @@ public class ChooseAddressActivity extends BaseActivity {
 
     private void getCityList () {
 
-        BaseRequest.instance().doRequest(Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_CITY_LIST, null, new BaseResponse() {
+        BaseRequest.instance().doRequest(Tag, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_CITY_LIST, null, new BaseResponse() {
             @Override
             public void successful(ResponseBean responseBean) {
                 int code = responseBean.getCode();

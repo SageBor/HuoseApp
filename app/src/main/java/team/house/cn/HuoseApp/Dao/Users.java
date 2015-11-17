@@ -23,7 +23,15 @@ public class Users {
     private String user_pic;
     private boolean is_perfec;
     private String addresses;
+    private String nopay = "0";
 
+    public String getNopay() {
+        return nopay;
+    }
+
+    public void setNopay(String nopay) {
+        this.nopay = nopay;
+    }
 
     public Users() {
     }

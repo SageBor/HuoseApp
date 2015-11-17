@@ -66,11 +66,11 @@ public class CityUtil {
     /**
      * getLocation from service and save
      */
-    public static void getLocationFromService() {
+    public static void getLocationFromService(String Tag) {
         String cityName = PreferenceUtil.getString(HouseApplication.getHuoYunApplicationContext(), AppConfig.Preference_LocaCityName);
         Map paraments = new HashMap<String, String>();
         paraments.put("city_name", "长春");
-        BaseRequest.instance().doRequest(Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_GET_POSSTION, paraments, new BaseResponse() {
+        BaseRequest.instance().doRequest(Tag ,Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_GET_POSSTION, paraments, new BaseResponse() {
             @Override
             public void successful(ResponseBean responseBean) {
                 if (responseBean != null) {

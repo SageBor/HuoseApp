@@ -65,11 +65,11 @@ public class UserUtil {
     /**
      * register userinfo on service
      */
-    public static void registerUserFromService() {
+    public static void registerUserFromService(String Tag) {
         String cityName = PreferenceUtil.getString(HouseApplication.getHuoYunApplicationContext(), AppConfig.Preference_LocaCityName);
         Map paraments = new HashMap<String, String>();
         paraments.put("city_name", "长春");
-        BaseRequest.instance().doRequest(Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_GET_POSSTION, paraments, new BaseResponse() {
+        BaseRequest.instance().doRequest(Tag, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_GET_POSSTION, paraments, new BaseResponse() {
             @Override
             public void successful(ResponseBean responseBean) {
                 if (responseBean != null) {

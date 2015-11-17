@@ -86,12 +86,14 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onClickListener(View v) {
         super.onClickListener(v);
-        if (mRightView.getText().toString().equals("登陆")) {
-            this.startActivity(new Intent(this, LoginActivity.class));
-        } else {
-            UserUtil.exitLogin();
-            onResume();
+        if (v.getId() == R.id.tv_right) {
+            if (mRightView.getText().toString().equals("登陆")) {
+                this.startActivity(new Intent(this, LoginActivity.class));
+            } else {
+                UserUtil.exitLogin();
+                onResume();
 
+            }
         }
     }
 

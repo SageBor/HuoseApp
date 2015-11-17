@@ -1,6 +1,7 @@
 package team.house.cn.HuoseApp.activity;
 
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ScrollView;
@@ -22,6 +23,7 @@ import java.util.Map;
 
 import team.house.cn.HuoseApp.Dao.Users;
 import team.house.cn.HuoseApp.R;
+import team.house.cn.HuoseApp.adapter.OrderListAdapter;
 import team.house.cn.HuoseApp.asytask.BaseRequest;
 import team.house.cn.HuoseApp.asytask.BaseResponse;
 import team.house.cn.HuoseApp.asytask.ResponseBean;
@@ -36,6 +38,7 @@ import team.house.cn.HuoseApp.utils.UserUtil;
  * Created by kn on 15/11/14.
  */
 public class CurrentOrderActivity extends BaseActivity {
+    private final String Tag = "CurrentOrderActivity";
     private OrderDetailBean orderDetailBean;
     private List<OrderBean> orderBeanList;
     private int mPageNum = 1;
@@ -66,6 +69,8 @@ public class CurrentOrderActivity extends BaseActivity {
     private Button mEndServiceButton;
     private Button mPayButton;
     private ListView mOrderListView;
+    private OrderListAdapter orderListAdapter;
+    private int Status = 0; //0 - 当前订单 1- 订单详情
 
     private Users mUser;
     @Override
@@ -99,8 +104,9 @@ public class CurrentOrderActivity extends BaseActivity {
         mStartServiceButton = (Button) findViewById(R.id.bt_start);
         mEndServiceButton = (Button) findViewById(R.id.bt_end);
         mPayButton = (Button) findViewById(R.id.bt_pay);
-
         mOrderListView = (ListView) findViewById(R.id.lv_order);
+        orderListAdapter = new OrderListAdapter(orderBeanList, this);
+        mOrderListView.setAdapter(orderListAdapter);
 
     }
     private void showDetail(boolean show) {
@@ -110,27 +116,27 @@ public class CurrentOrderActivity extends BaseActivity {
     }
     private void showViewDetail() {
         showDetail(true);
-        mServiceContentTextView.setText(orderDetailBean.getIndus_id());
-        mServiceWeekTextView.setText(orderDetailBean.getWeek_name());
-        mServiceStartTimeTextView.setText(orderDetailBean.getStart_time());
-        mServiceEndTimeTextView.setText(orderDetailBean.getEnd_time());
-        mServiceWorkTimeTextView.setText(orderDetailBean.getWork_time());
-        mServiceToolsTextView.setText(orderDetailBean.getSupplies_name());
-        mOrderMoneyTextView.setText(orderDetailBean.getTask_cash());
-        mAuntNameTextView.setText(orderDetailBean.getEmployment_truename());
-        mAuntMobileTextView.setText(orderDetailBean.getEmployment_mobile());
-        mSoreTextView.setText(orderDetailBean.getAid_star());
-        mSoreContentTextView.setText(orderDetailBean.getMark_content());
-        mSuggestTextView.setText(orderDetailBean.getSuggest());
-        mServiceModelTextView.setText(orderDetailBean.getEmployment_typ());
-        mServiceTryDateTextView.setText(orderDetailBean.getTry_days());
-        mServiceEmploymentTextView.setText(orderDetailBean.getEmployment_month());
-        mServiceAddressTextView.setText(orderDetailBean.getAddress());
-        mCouponsTextView.setText("");
-        mMarginTextView.setText(orderDetailBean.getPaied_cash());
-        mContactTextView.setText(orderDetailBean.getTruename());
-        mContactMobileTextView.setText(orderDetailBean.getContact());
-        mOrderStateTextView.setText(orderDetailBean.getTask_status());
+        mServiceContentTextView.setText("服务信息:" + orderDetailBean.getIndus_id());
+        mServiceWeekTextView.setText("服务频率:" + orderDetailBean.getWeek_name());
+        mServiceStartTimeTextView.setText("服务时间:" + orderDetailBean.getStart_time());
+        mServiceEndTimeTextView.setText("服务结束日期:" + orderDetailBean.getEnd_time());
+        mServiceWorkTimeTextView.setText("服务时间段" + orderDetailBean.getWork_time());
+        mServiceToolsTextView.setText("随手带:" + orderDetailBean.getSupplies_name());
+        mOrderMoneyTextView.setText("订单金额:" + orderDetailBean.getTask_cash());
+        mAuntNameTextView.setText("阿姨姓名:" + orderDetailBean.getEmployment_truename());
+        mAuntMobileTextView.setText("阿姨电话:" + orderDetailBean.getEmployment_mobile());
+        mSoreTextView.setText("评分:" + orderDetailBean.getAid_star());
+        mSoreContentTextView.setText("评分内容:" + orderDetailBean.getMark_content());
+        mSuggestTextView.setText("意见建议:" + orderDetailBean.getSuggest());
+        mServiceModelTextView.setText("服务模式:" + orderDetailBean.getEmployment_typ());
+        mServiceTryDateTextView.setText("试用期限:" +orderDetailBean.getTry_days());
+        mServiceEmploymentTextView.setText("雇佣期限:" + orderDetailBean.getEmployment_month());
+        mServiceAddressTextView.setText("服务地点:" + orderDetailBean.getAddress());
+        mCouponsTextView.setText("优惠券:25元优惠券");
+        mMarginTextView.setText("保证金:" + orderDetailBean.getPaied_cash());
+        mContactTextView.setText("联系人:" + orderDetailBean.getTruename());
+        mContactMobileTextView.setText("联系电话:" + orderDetailBean.getContact());
+        mOrderStateTextView.setText("订单状态:" + orderDetailBean.getTask_status());
     }
 
     private void showList() {
@@ -150,6 +156,25 @@ public class CurrentOrderActivity extends BaseActivity {
 
     @Override
     protected void initEvent() {
+        mStartServiceButton.setOnClickListener(this);
+        mEndServiceButton.setOnClickListener(this);
+        mPayButton.setOnClickListener(this);
+        mOrderListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                getDetailFromService(orderBeanList.get(i));
+            }
+        });
+        mOrderListView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                getDetailFromService(orderBeanList.get(i));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
         super.initEvent();
     }
 
@@ -171,6 +196,10 @@ public class CurrentOrderActivity extends BaseActivity {
     @Override
     public void onClick(View v) {
         super.onClick(v);
+        int id = v.getId();
+        if (id == R.id.bt_pay){
+            updataOrderStates();
+        }
     }
 
     private void getInfoFromService() {
@@ -179,7 +208,7 @@ public class CurrentOrderActivity extends BaseActivity {
         param.put("group_id", 4);
         param.put("page_size", mPageSize);
         param.put("page_num", mPageNum);
-        BaseRequest.instance().doRequest(Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_GET_CURRENT_ORDER, param, new BaseResponse() {
+        BaseRequest.instance().doRequest(Tag, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_GET_CURRENT_ORDER, param, new BaseResponse() {
             @Override
             public void successful(ResponseBean responseBean) {
                 int code = responseBean.getCode();
@@ -218,6 +247,7 @@ public class CurrentOrderActivity extends BaseActivity {
                                 showViewDetail();
 
                             } else {
+                                showList();
                                 for (int i = 0; i < data.length(); i++) {
                                     JSONObject jsonObject = data.getJSONObject(i);
                                     OrderBean orderBean = new OrderBean();
@@ -229,9 +259,9 @@ public class CurrentOrderActivity extends BaseActivity {
                                     orderBean.setTask_status(JSONUtils.getString(jsonObject, "task_status", ""));
                                     orderBean.setTask_status_content(JSONUtils.getString(jsonObject, "task_status_content", ""));
                                     orderBeanList.add(orderBean);
-
-
                                 }
+                                orderListAdapter.setItems(orderBeanList);
+                                orderListAdapter.notifyDataSetChanged();
                             }
 
                         }
@@ -248,5 +278,103 @@ public class CurrentOrderActivity extends BaseActivity {
         });
     }
 
+
+    public void getDetailFromService (OrderBean orderBean) {
+        Map param = new HashMap();
+        param.put("task_id", orderBean.getTask_id());
+        param.put("indus_pid", orderBean.indus_pid());
+        BaseRequest.instance().doRequest(Tag, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_GET_ORDERDETAIL, param, new BaseResponse() {
+
+
+            @Override
+            public void successful(ResponseBean responseBean) {
+                int code = responseBean.getCode();
+                String msg = responseBean.getMsg();
+                if (code == 0) {
+                    JSONObject jsonObject = null;
+                    try {
+                        jsonObject = new JSONObject(responseBean.getData());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    orderDetailBean.setUid(JSONUtils.getInt(jsonObject, "uid", 0));
+                    orderDetailBean.setTask_id(JSONUtils.getInt(jsonObject, "task_id", 0));
+                    orderDetailBean.setIndus_pid(JSONUtils.getString(jsonObject, "indus_pid", ""));
+                    orderDetailBean.setIndus_id(JSONUtils.getString(jsonObject, "indus_id", ""));
+                    orderDetailBean.setWeek_name(JSONUtils.getString(jsonObject, "week_name", ""));
+                    orderDetailBean.setStart_time(JSONUtils.getString(jsonObject, "start_time", ""));
+                    orderDetailBean.setEnd_time(JSONUtils.getString(jsonObject, "end_time", ""));
+                    orderDetailBean.setWork_time(JSONUtils.getString(jsonObject, "work_time", ""));
+                    orderDetailBean.setAddress(JSONUtils.getString(jsonObject, "address", ""));
+                    orderDetailBean.setSupplies_name(JSONUtils.getString(jsonObject, "supplies_name", ""));
+                    orderDetailBean.setTask_cash(JSONUtils.getString(jsonObject, "task_cash", ""));
+                    orderDetailBean.setPaied_cash(JSONUtils.getString(jsonObject, "paied_cash", ""));
+                    orderDetailBean.setTruename(JSONUtils.getString(jsonObject, "truename", ""));
+                    orderDetailBean.setContact(JSONUtils.getString(jsonObject, "contact", ""));
+                    orderDetailBean.setTask_status(JSONUtils.getString(jsonObject, "task_status", ""));
+                    orderDetailBean.setTask_status_content(JSONUtils.getString(jsonObject, "task_status_content", ""));
+                    orderDetailBean.setEmployment_uid(JSONUtils.getString(jsonObject, "employment_uid", ""));
+                    orderDetailBean.setEmployment_truename(JSONUtils.getString(jsonObject, "employment_truename", ""));
+                    orderDetailBean.setEmployment_mobile(JSONUtils.getString(jsonObject, "employment_mobile", ""));
+                    orderDetailBean.setAid_star(JSONUtils.getString(jsonObject, "aid_star", ""));
+                    orderDetailBean.setMark_content(JSONUtils.getString(jsonObject, "mark_content", ""));
+                    orderDetailBean.setSuggest(JSONUtils.getString(jsonObject, "suggest", ""));
+                    orderDetailBean.setEmployment_typ(JSONUtils.getString(jsonObject, "employment_typ", ""));
+                    orderDetailBean.setTry_days(JSONUtils.getString(jsonObject, "try_days", ""));
+                    orderDetailBean.setEmployment_month(JSONUtils.getString(jsonObject, "employment_month", ""));
+                    showViewDetail();
+                    Status = 1;
+                }
+            }
+
+            @Override
+            public void failure(VolleyError error) {
+
+            }
+        });
+    }
+
+    private void updataOrderStates() {
+        Map param = new HashMap();
+        param.put("task_id", orderDetailBean.getTask_id());
+        param.put("indus_pid", orderDetailBean.getIndus_pid());
+        param.put("type", 3);
+
+        BaseRequest.instance().doRequest(Tag, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_GET_ORDERUPDATE, param, new BaseResponse() {
+            @Override
+            public void successful(ResponseBean responseBean) {
+                int code = responseBean.getCode();
+                String msg = responseBean.getMsg();
+                if (code == 0) {
+
+                } else {
+                Toast.makeText(CurrentOrderActivity.this, msg, Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void failure(VolleyError error) {
+
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (Status == 1) {
+            showList();
+            Status = 0;
+
+        } else {
+
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        BaseRequest.instance().cancelRequst(Tag);
+        super.onDestroy();
+    }
 }
 

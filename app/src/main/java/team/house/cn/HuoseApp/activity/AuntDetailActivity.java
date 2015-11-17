@@ -43,6 +43,7 @@ public class AuntDetailActivity extends BaseActivity{
     private TextView mAuntvAlidationTextView;
 
     private Button mCommitBuuton;
+    public final String Tag =  "AuntDetailActivity";
     @Override
     protected void initView() {
         super.initView();
@@ -115,7 +116,7 @@ public class AuntDetailActivity extends BaseActivity{
     private void getDetailFromService() {
         Map param = new HashMap<>();
         param.put("uid", mAuntId);
-        BaseRequest.instance().doRequest(Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_GET_AUNTDETAIL, param, new BaseResponse() {
+        BaseRequest.instance().doRequest(Tag, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_GET_AUNTDETAIL, param, new BaseResponse() {
             @Override
             public void successful(ResponseBean responseBean) {
                 int code = responseBean.getCode();

@@ -92,7 +92,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/c595757"
-                    android:text="代金券: 5张" />
+                    android:text="未结算： 0元" />
             </LinearLayout>
         </RelativeLayout>
 
@@ -115,6 +115,7 @@
                 android:textSize="19sp"
                 />
             <TextView
+                android:id="@+id/tv_balance1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="300元 充值 >"
@@ -140,13 +141,13 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/c7f7f7f"
                 android:layout_centerVertical="true"
-                android:text="tuo托管金额"
+                android:text="我的积分"
                 android:textSize="19sp"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="200元 查看订单 >"
+                android:text="200分 查看详情 >"
                 android:textSize="14sp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
@@ -157,6 +158,34 @@
             android:layout_width="fill_parent"
             android:layout_height="1px"
             android:background="@color/c7f7f7f"></View>
-        </LinearLayout>
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="30dp"
+                android:background="@color/white"
+                android:paddingRight="25dp"
+                android:paddingLeft="15dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/c7f7f7f"
+                    android:layout_centerVertical="true"
+                    android:text="收支情况"
+                    android:textSize="19sp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="查看详情 >"
+                    android:textSize="14sp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/c595757"/>
+
+            </RelativeLayout>
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1px"
+                android:background="@color/c7f7f7f"></View>
+    </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

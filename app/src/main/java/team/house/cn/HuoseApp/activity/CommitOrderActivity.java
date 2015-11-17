@@ -30,6 +30,7 @@ import team.house.cn.HuoseApp.utils.UserUtil;
  */
 public class CommitOrderActivity extends BaseActivity {
 
+    public final String Tag =  "CommitOrderActivity";
     private CommitReservationServiceBean mCommitReservationServiceBean;
     private Users mUser;
     private Button mSureButton;
@@ -181,7 +182,7 @@ public class CommitOrderActivity extends BaseActivity {
         params.put("data[start_hour]", mCommitReservationServiceBean.getStartHouBean().getHour()); // /开始时刻
         params.put("data[end_hour]", mCommitReservationServiceBean.getEndHouBean().getHour()); //结束时刻
         params.put("data[work_days]", ""); //工作天数 只有长期钟点工用
-        BaseRequest.instance().doRequest(Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_COMMIT_ORDER, params, new BaseResponse() {
+        BaseRequest.instance().doRequest(Tag, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_COMMIT_ORDER, params, new BaseResponse() {
             @Override
             public void successful(ResponseBean responseBean) {
                 int code = responseBean.getCode();

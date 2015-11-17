@@ -34,6 +34,8 @@ import team.house.cn.HuoseApp.utils.JSONUtils;
  * 系统选择/自助选择阿姨
  */
 public class ChooseAuntActivity extends BaseActivity {
+
+    public final String Tag =  "ChooseAuntActivity";
     private ListView lv_aunts;
     private List<AuntBean> auntBeanList;
     private ChooseAuntAdapter chooseAuntAdapter;
@@ -128,7 +130,7 @@ public class ChooseAuntActivity extends BaseActivity {
 //        map.put("search_content",mSearchContent);
 //        map.put("page_size", mPageSize);
 //        map.put("page_num", mPageNum);
-        BaseRequest.instance().doRequest(Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_GET_AUNTLIST, map, new BaseResponse() {
+        BaseRequest.instance().doRequest(Tag, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_GET_AUNTLIST, map, new BaseResponse() {
             @Override
             public void successful(ResponseBean responseBean) {
                 int code = responseBean.getCode();

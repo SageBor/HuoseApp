@@ -2,6 +2,7 @@ package team.house.cn.HuoseApp.application;
 
 import android.app.Application;
 import android.content.Context;
+import android.nfc.Tag;
 import android.util.Log;
 
 import java.util.HashMap;
@@ -45,6 +46,7 @@ import team.house.cn.HuoseApp.utils.PreferenceUtil;
  * Created by kenan on 2015/10/15.
  */
 public class HouseApplication extends Application {
+    private final String Tag = "HouseApplication";
     public GeoCoder geoCoder = null;
     public LocationClient mLocationClient;
     private BDLocationListener mLocationListener;
@@ -59,7 +61,7 @@ public class HouseApplication extends Application {
         super.onCreate();
         mContext = getApplicationContext();
         mQueue = Volley.newRequestQueue(this.getApplicationContext());
-        CityUtil.getLocationFromService();
+        CityUtil.getLocationFromService(Tag);
 
 //        OkVolley.getInstance().init(this)
 //                .setUserAgent(OkVolley.generateUserAgent(this))
@@ -89,7 +91,7 @@ public class HouseApplication extends Application {
                 if (poiInfo != null && poiInfo.size() > 0) {
                     String cityName = poiInfo.get(0).city;
                     PreferenceUtil.putString(getHuoYunApplicationContext(), AppConfig.Preference_LocaCityName, cityName);
-                    CityUtil.getLocationFromService();
+                    CityUtil.getLocationFromService(Tag);
 //                    saveAddress(poiInfo.get(0).address, poiInfo.get(0).name);
                     return;
                 }

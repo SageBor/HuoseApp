@@ -31,7 +31,8 @@
         <ScrollView
             android:id="@+id/sv_order_detail"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:visibility="gone">
 
             <LinearLayout
                 android:layout_width="fill_parent"
@@ -241,6 +242,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
+                        android:visibility="gone"
                         android:orientation="horizontal">
 
                         <Button
@@ -278,13 +280,13 @@
 
             </LinearLayout>
         </ScrollView>
-        <team.house.cn.HuoseApp.views.ScrollListView
+        <ListView
             android:id="@+id/lv_order"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:scrollbars="none"
             android:background="@color/white">
 
-        </team.house.cn.HuoseApp.views.ScrollListView>
+        </ListView>
     </RelativeLayout>
 </RelativeLayout>

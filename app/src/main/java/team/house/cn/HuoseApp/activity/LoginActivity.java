@@ -35,6 +35,7 @@ import team.house.cn.HuoseApp.utils.UserUtil;
  * Created by kenan on 15/11/7.
  */
 public class LoginActivity extends BaseActivity {
+    private final String Tag = "LoginActivity";
     private EditText mPhoneEditText;
     private EditText mPSWEditText;
     private Button mLoginBotton;
@@ -113,7 +114,7 @@ public class LoginActivity extends BaseActivity {
         Map params = new HashMap();
         params.put("username", mPhoneEditText.getText());
         params.put("password", mPSWEditText.getText());
-        BaseRequest.instance().doRequest(Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_LOGIN, params, new BaseResponse() {
+        BaseRequest.instance().doRequest(Tag, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_LOGIN, params, new BaseResponse() {
             @Override
             public void successful(ResponseBean responseBean) {
                 int code = responseBean.getCode();

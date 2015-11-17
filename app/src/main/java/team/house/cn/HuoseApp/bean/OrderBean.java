@@ -82,4 +82,21 @@ public class OrderBean implements Serializable {
     public void setTask_status_content(String task_status_content) {
         this.task_status_content = task_status_content;
     }
+
+    public int indus_pid() {
+        if (indus_pid.equals("钟点工")) {
+            return 1;
+        }
+        if (indus_pid.equals("长期钟点工")) {
+            return 2;
+        }
+        if (indus_pid.equals("保姆")) {
+            return 3;
+        }
+        if (indus_pid.equals("月嫂")) {
+            return 4;
+        }
+        return 1;
+    }
+
 }

@@ -35,6 +35,7 @@ import team.house.cn.HuoseApp.utils.PreferenceUtil;
 public class BaseRequest {
     private long mRequestBeginTime = 0;
     private static BaseRequest mBaseRequest = null;
+    private JsonObjectRequest jsonRequet;
     public static BaseRequest  instance () {
         if (mBaseRequest == null ) {
             mBaseRequest = new BaseRequest();
@@ -42,16 +43,13 @@ public class BaseRequest {
         return mBaseRequest;
     }
 
-    public void doRequest(int method, String url, Map param, final BaseResponse baseResponse) {
+    public void doRequest(String tag, int method, String url, Map param, final BaseResponse baseResponse) {
 
         String params = getParames(param);
         if (!TextUtils.isEmpty(params)) {
-
                 url = url + params;
-
         }
 
-        JsonObjectRequest jsonRequet;
         jsonRequet = new JsonObjectRequest(method, url, new Response.Listener<JSONObject>() {
             public void onResponse(JSONObject jsonObject) {
                 try {
@@ -64,21 +62,23 @@ public class BaseRequest {
 
                 } catch (JSONException e) {
                     e.printStackTrace();
-//                    toast(R.string.json_error);
                 }
             }
         },
                 new Response.ErrorListener() {
                     public void onErrorResponse(VolleyError error) {
                         baseResponse.failure(error);
-//                        Toast.makeText(MainActivity.this, "error" ,Toast.LENGTH_LONG);
                     }
                 });
-//        jsonRequet.setTag(TAG);
-        jsonRequet.setRetryPolicy(new DefaultRetryPolicy(10*1000,2,1));
+        jsonRequet.setTag(tag);
+        jsonRequet.setRetryPolicy(new DefaultRetryPolicy(10 * 1000, 2,1));
         HouseApplication.mQueue.add(jsonRequet);
 
 
+    }
+
+    public void cancelRequst(Object object) {
+        HouseApplication.mQueue.cancelAll(object);
     }
 
     //解析返回的数据

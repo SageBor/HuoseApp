@@ -1,14 +1,23 @@
 package team.house.cn.HuoseApp.activity;
 
+import android.Manifest;
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+
+import java.lang.annotation.Target;
 
 import team.house.cn.HuoseApp.Dao.Users;
 import team.house.cn.HuoseApp.R;
@@ -43,7 +52,6 @@ public abstract class BaseActivity extends Activity implements
     protected TextView mHotLine;
 
 
-
     protected Resources resources;
     protected Users mUserBean;
 //    protected UserHelper userHelper;
@@ -61,7 +69,7 @@ public abstract class BaseActivity extends Activity implements
         initTitle();
         Log.e("theone", "theone Base");
 //        TypefaceHelper.typeface(this);
-      }
+    }
 
     /**
      * 设置Layout布局文件
@@ -102,27 +110,56 @@ public abstract class BaseActivity extends Activity implements
 
 
     protected void onClickListener(View v) {
+        Intent intent;
         int viewId = v.getId();
-        switch (viewId)
-        {
+        switch (viewId) {
             case R.id.tv_main:
-                startActivity(new Intent(this, MainActivity.class));
-                this.finish();
+                intent = new Intent(new Intent(this, MainActivity.class));
+                goIntent(intent);
+//                this.finish();
                 break;
             case R.id.tv_order:
 
-                startActivity(new Intent(this, CurrentOrderActivity.class));
-                this.finish();
+                intent = new Intent(new Intent(this, CurrentOrderActivity.class));
+                goIntent(intent);
+//                this.finish();
                 break;
             case R.id.tv_ucenter:
 
-                startActivity(new Intent(this, UserAccountActivity.class));
-                this.finish();
+                intent = new Intent(new Intent(this, UserAccountActivity.class));
+                goIntent(intent);
+//                this.finish();
                 break;
             case R.id.tv_hotline:
+                AlertDialog.Builder dialog = new AlertDialog.Builder(BaseActivity.this);
+                dialog.setTitle("呼叫客服").setMessage("400-701-0168").setPositiveButton("呼叫", new DialogInterface.OnClickListener() {
 
-                startActivity(new Intent(this, MainActivity.class));
-                this.finish();
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:400-701-0168"));
+
+                        if (ContextCompat.checkSelfPermission(BaseActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                            // TODO: Consider calling
+                            //    public void requestPermissions(@NonNull String[] permissions, int requestCode)
+                            // here to request the missing permissions, and then overriding
+                            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                            //                                          int[] grantResults)
+                            // to handle the case where the user grants the permission. See the documentation
+                            // for Activity#requestPermissions for more details.
+                            return;
+                        }
+                        BaseActivity.this.startActivity(intent);
+                    }
+                }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+
+
+                    public void onClick(DialogInterface dialog, int which) {
+                        // TODO Auto-generated method stub
+                        dialog.cancel();//取消弹出框
+                    }
+                }).create().show();
+//                intent = new Intent(new Intent(this, MainActivity.class));
+//                this.finish();
 
         }
     }
@@ -212,4 +249,14 @@ public abstract class BaseActivity extends Activity implements
         }
 
     }
+    protected void goIntent(Intent intent) {
+        int loginSate = UserUtil.getUseridFromSharepreference();
+        if (loginSate == 0) {
+            intent = new Intent(this, LoginActivity.class);
+        }
+        startActivity(intent);
+
+    }
+
+
 }

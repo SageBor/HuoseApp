@@ -92,7 +92,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/c595757"
-                    android:text="代金券: 5张" />
+                    android:text="未结算: 0元" />
             </LinearLayout>
         </RelativeLayout>
 
@@ -105,6 +105,7 @@
             android:background="@color/white"
             android:orientation="vertical">
             <RelativeLayout
+                android:id="@+id/rl_myAccount"
                 android:layout_width="fill_parent"
                 android:layout_height="30dp"
                 android:paddingRight="25dp"

@@ -16,6 +16,7 @@ public  class  AppConfig {
         public static final String URL_REGISTER = "do=app&view=regist";
         // 用户登陆
         public static final String URL_LOGIN = "do=app&view=login";
+        public static final String URL_URSER_INFO = "do=app&view=get_account_info";
         // 城市列表
         public static final String URL_CITY_LIST = "do=app&view=get_dq_list";
         // 地址列表
@@ -36,6 +37,10 @@ public  class  AppConfig {
         public static final String URL_GET_AUNTDETAIL = "do=app&view=get_ayi_detail";
         // 当前订单
         public static final String URL_GET_CURRENT_ORDER = "do=app&view=get_task_current_list";
+        // 订单详情
+        public static final String URL_GET_ORDERDETAIL = "do=app&view=get_task_detail";
+        // 更新订单状态
+        public static final String URL_GET_ORDERUPDATE = "do=app&view=update_task_status";
         // 预约服务
         public static final String URL_COMMIT_ORDER = "do=app&view=add_task";
 
