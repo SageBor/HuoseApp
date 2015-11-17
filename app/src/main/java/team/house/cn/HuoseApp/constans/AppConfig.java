@@ -43,6 +43,7 @@ public  class  AppConfig {
         public static final String URL_GET_ORDERUPDATE = "do=app&view=update_task_status";
         // 预约服务
         public static final String URL_COMMIT_ORDER = "do=app&view=add_task";
+        public static final String URL_COMMIT_EVALUATE = "do=app&view=update_task_mark";
 
 
     }

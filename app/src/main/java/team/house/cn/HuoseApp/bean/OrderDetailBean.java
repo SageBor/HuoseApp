@@ -249,4 +249,35 @@ public class OrderDetailBean implements Serializable {
     public void setTask_status_content(String task_status_content) {
         this.task_status_content = task_status_content;
     }
+    public int indus_pid() {
+        if (indus_pid.equals("钟点工")) {
+            return 1;
+        }
+        if (indus_pid.equals("长期钟点工")) {
+            return 2;
+        }
+        if (indus_pid.equals("保姆")) {
+            return 3;
+        }
+        if (indus_pid.equals("月嫂")) {
+            return 4;
+        }
+        return 1;
+    }
+
+//    $map[1] = '未付款';
+//    $map[2] = '已付款';
+//    $map[3] = '待审核';
+//    $map[4] = '待抢单';
+//    $map[5] = '已抢单，等待雇主选择';
+//    $map[6] = '雇主已选择阿姨，等待开始';
+//    $map[7] = '工作中';
+//    $map[8] = '工作已结束，等待雇主确认';
+//    $map[9] = '已完成';
+//    $map[10] = '雇主已评价';
+//    $map[14] = '等待系统分配阿姨';
+//    $map[16] = '系统已分配好阿姨，等待开始';
+//    public String getstatusString (){
+//
+//    }
 }

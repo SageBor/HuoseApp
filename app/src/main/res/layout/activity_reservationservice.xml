@@ -112,7 +112,7 @@
                         android:layout_height="fill_parent"
                         android:text="服务内容"
                         android:textColor="@color/caaaaaa"
-                        android:textSize="16sp"></TextView>
+                        android:textSize="12sp"></TextView>
 
                     <team.house.cn.HuoseApp.views.ScrollGridView
                         android:id="@+id/gv_serviceInfo"
@@ -139,7 +139,7 @@
                         android:layout_height="fill_parent"
                         android:text="服务频率 长时工"
                         android:textColor="@color/caaaaaa"
-                        android:textSize="16sp"></TextView>
+                        android:textSize="12sp"></TextView>
 
                     <team.house.cn.HuoseApp.views.ScrollGridView
                         android:id="@+id/gv_serviceweek"
@@ -167,7 +167,7 @@
                         android:layout_height="fill_parent"
                         android:text="服务模式 保姆/月嫂"
                         android:textColor="@color/caaaaaa"
-                        android:textSize="16sp"></TextView>
+                        android:textSize="12sp"></TextView>
 
                     <team.house.cn.HuoseApp.views.ScrollGridView
                         android:id="@+id/gv_serviceModel"
@@ -194,7 +194,7 @@
                         android:layout_height="fill_parent"
                         android:text="服务时间"
                         android:textColor="@color/caaaaaa"
-                        android:textSize="16sp"></TextView>
+                        android:textSize="12sp"></TextView>
 
                     <TextView
                         android:id="@+id/tv_serviceTime"
@@ -236,7 +236,7 @@
                             android:layout_height="fill_parent"
                             android:text="试用时间"
                             android:textColor="@color/caaaaaa"
-                            android:textSize="16sp"></TextView>
+                            android:textSize="12sp"></TextView>
 
                         <TextView
                             android:id="@+id/tv_serviceTryTime"
@@ -274,7 +274,7 @@
                         android:layout_height="fill_parent"
                         android:text="开始时间"
                         android:textColor="@color/caaaaaa"
-                        android:textSize="16sp"></TextView>
+                        android:textSize="12sp"></TextView>
 
                     <TextView
                         android:id="@+id/tv_serviceStarTime"
@@ -316,7 +316,7 @@
                             android:layout_height="fill_parent"
                             android:text="试雇佣时间"
                             android:textColor="@color/caaaaaa"
-                            android:textSize="16sp"></TextView>
+                            android:textSize="12sp"></TextView>
 
                         <TextView
                             android:id="@+id/tv_serviceireTime"
@@ -360,7 +360,7 @@
                             android:layout_height="fill_parent"
                             android:text="结束时间"
                             android:textColor="@color/caaaaaa"
-                            android:textSize="16sp"></TextView>
+                            android:textSize="12sp"></TextView>
 
                         <TextView
                             android:id="@+id/tv_serviceOverTime"
@@ -397,7 +397,7 @@
                         android:layout_height="fill_parent"
                         android:text="自选/心里价格"
                         android:textColor="@color/caaaaaa"
-                        android:textSize="16sp"></TextView>
+                        android:textSize="12sp"></TextView>
                     <team.house.cn.HuoseApp.views.StepsView
                         xmlns:app="http://schemas.android.com/apk/res-auto"
                         android:id="@+id/stepsView"
@@ -433,7 +433,7 @@
                         android:layout_height="fill_parent"
                         android:text="随手带"
                         android:textColor="@color/caaaaaa"
-                        android:textSize="16sp"></TextView>
+                        android:textSize="12sp"></TextView>
 
                     <team.house.cn.HuoseApp.views.ScrollGridView
                         android:id="@+id/gv_servicetools"
@@ -460,7 +460,7 @@
                         android:layout_height="fill_parent"
                         android:text="使用用优惠券"
                         android:textColor="@color/caaaaaa"
-                        android:textSize="16sp"></TextView>
+                        android:textSize="12sp"></TextView>
 
                     <TextView
                         android:id="@+id/tv_serviceoupons"
@@ -494,7 +494,7 @@
                         android:layout_height="fill_parent"
                         android:text="订单金额"
                         android:textColor="@color/caaaaaa"
-                        android:textSize="16sp"></TextView>
+                        android:textSize="12sp"></TextView>
 
                     <TextView
                         android:id="@+id/tv_orderMoney"
@@ -520,7 +520,7 @@
                     android:paddingTop="15dp"
                     android:text="选择阿姨"
                     android:textColor="@color/caaaaaa"
-                    android:textSize="16sp"></TextView>
+                    android:textSize="12sp"></TextView>
                 <View
                     android:layout_width="fill_parent"
                     android:layout_height="1dp"
@@ -541,7 +541,7 @@
                         android:layout_height="fill_parent"
                         android:text="系统推荐"
                         android:textColor="@color/caaaaaa"
-                        android:textSize="16sp"></TextView>
+                        android:textSize="12sp"></TextView>
 
                     <TextView
                         android:id="@+id/tv_systemAunt"
@@ -574,7 +574,7 @@
                         android:layout_height="fill_parent"
                         android:text="自选阿姨"
                         android:textColor="@color/caaaaaa"
-                        android:textSize="16sp"></TextView>
+                        android:textSize="12sp"></TextView>
 
                     <TextView
                         android:id="@+id/tv_choosewAunt"

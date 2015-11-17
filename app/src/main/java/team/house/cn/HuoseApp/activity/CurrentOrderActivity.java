@@ -1,5 +1,6 @@
 package team.house.cn.HuoseApp.activity;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -136,7 +137,13 @@ public class CurrentOrderActivity extends BaseActivity {
         mMarginTextView.setText("保证金:" + orderDetailBean.getPaied_cash());
         mContactTextView.setText("联系人:" + orderDetailBean.getTruename());
         mContactMobileTextView.setText("联系电话:" + orderDetailBean.getContact());
-        mOrderStateTextView.setText("订单状态:" + orderDetailBean.getTask_status());
+        mOrderStateTextView.setText("订单状态:" + orderDetailBean.getTask_status_content());
+        if (orderDetailBean.getTask_status().equals("8")){
+            mPayButton.setVisibility(View.VISIBLE);
+        } else {
+            mPayButton.setVisibility(View.GONE);
+        }
+
     }
 
     private void showList() {
@@ -337,7 +344,7 @@ public class CurrentOrderActivity extends BaseActivity {
     private void updataOrderStates() {
         Map param = new HashMap();
         param.put("task_id", orderDetailBean.getTask_id());
-        param.put("indus_pid", orderDetailBean.getIndus_pid());
+        param.put("indus_pid", orderDetailBean.indus_pid());
         param.put("type", 3);
 
         BaseRequest.instance().doRequest(Tag, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_GET_ORDERUPDATE, param, new BaseResponse() {
@@ -346,9 +353,9 @@ public class CurrentOrderActivity extends BaseActivity {
                 int code = responseBean.getCode();
                 String msg = responseBean.getMsg();
                 if (code == 0) {
-
+                    startActivity(orderDetailBean.getTask_id());
                 } else {
-                Toast.makeText(CurrentOrderActivity.this, msg, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CurrentOrderActivity.this, msg, Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -371,6 +378,11 @@ public class CurrentOrderActivity extends BaseActivity {
         }
     }
 
+    private void startActivity(int orderid) {
+        Intent intent  = new Intent(this, EvaluateActivity.class);
+        intent.putExtra("orderid", orderid);
+        this.startActivity(intent);
+    }
     @Override
     protected void onDestroy() {
         BaseRequest.instance().cancelRequst(Tag);
