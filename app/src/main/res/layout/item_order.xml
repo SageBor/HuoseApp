@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:id="@+id/rl_photo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/user" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_toRightOf="@+id/rl_photo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_ordertime"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="发布时间:" />
+
+        <TextView
+            android:id="@+id/tv_bigType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="雇主需求:钟点工" />
+
+        <TextView
+            android:id="@+id/tv_serviceTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="服务时间:2015-11-16 2小时" />
+
+        <TextView
+            android:id="@id/tv_serviceAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="服务地址" />
+
+        <TextView
+            android:id="@+id/tv_orderstatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="订单状态:" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:text=">" />
+
+</RelativeLayout>

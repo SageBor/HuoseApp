@@ -2,6 +2,8 @@ package team.house.cn.HuoseApp.activity;
 
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +40,7 @@ public class CurrentOrderActivity extends BaseActivity {
     private List<OrderBean> orderBeanList;
     private int mPageNum = 1;
     private int mPageSize = 10;
+    private ScrollView mOrderDetailScrollview;
     private TextView mServiceContentTextView;
     private TextView mServiceWeekTextView;
     private TextView mServiceStartTimeTextView;
@@ -62,6 +65,7 @@ public class CurrentOrderActivity extends BaseActivity {
     private Button mStartServiceButton;
     private Button mEndServiceButton;
     private Button mPayButton;
+    private ListView mOrderListView;
 
     private Users mUser;
     @Override
@@ -70,6 +74,7 @@ public class CurrentOrderActivity extends BaseActivity {
         this.setContentView(R.layout.activity_current_order);
         orderDetailBean = new OrderDetailBean();
         orderBeanList = new ArrayList<OrderBean>();
+        mOrderDetailScrollview = (ScrollView) findViewById(R.id.sv_order_detail);
         mServiceContentTextView = (TextView) findViewById(R.id.tv_serviceContent);
         mServiceWeekTextView = (TextView) findViewById(R.id.tv_serviceWeek);
         mServiceStartTimeTextView = (TextView) findViewById(R.id.tv_startServiceTime);
@@ -95,8 +100,16 @@ public class CurrentOrderActivity extends BaseActivity {
         mEndServiceButton = (Button) findViewById(R.id.bt_end);
         mPayButton = (Button) findViewById(R.id.bt_pay);
 
+        mOrderListView = (ListView) findViewById(R.id.lv_order);
+
     }
-    private void showView() {
+    private void showDetail(boolean show) {
+        mOrderDetailScrollview.setVisibility(show ? View.VISIBLE : View.GONE);
+        mOrderListView.setVisibility(show ? View.GONE : View.VISIBLE);
+
+    }
+    private void showViewDetail() {
+        showDetail(true);
         mServiceContentTextView.setText(orderDetailBean.getIndus_id());
         mServiceWeekTextView.setText(orderDetailBean.getWeek_name());
         mServiceStartTimeTextView.setText(orderDetailBean.getStart_time());
@@ -118,14 +131,11 @@ public class CurrentOrderActivity extends BaseActivity {
         mContactTextView.setText(orderDetailBean.getTruename());
         mContactMobileTextView.setText(orderDetailBean.getContact());
         mOrderStateTextView.setText(orderDetailBean.getTask_status());
-
-
-
-
-
-
     }
 
+    private void showList() {
+        showDetail(false);
+    }
     @Override
     protected void initData() {
         super.initData();
@@ -205,7 +215,7 @@ public class CurrentOrderActivity extends BaseActivity {
                                 orderDetailBean.setEmployment_typ(JSONUtils.getString(jsonObject, "employment_typ", ""));
                                 orderDetailBean.setTry_days(JSONUtils.getString(jsonObject, "try_days", ""));
                                 orderDetailBean.setEmployment_month(JSONUtils.getString(jsonObject, "employment_month", ""));
-                                showView();
+                                showViewDetail();
 
                             } else {
                                 for (int i = 0; i < data.length(); i++) {
@@ -219,6 +229,7 @@ public class CurrentOrderActivity extends BaseActivity {
                                     orderBean.setTask_status(JSONUtils.getString(jsonObject, "task_status", ""));
                                     orderBean.setTask_status_content(JSONUtils.getString(jsonObject, "task_status_content", ""));
                                     orderBeanList.add(orderBean);
+
 
                                 }
                             }

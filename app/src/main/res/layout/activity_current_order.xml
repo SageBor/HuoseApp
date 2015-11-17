@@ -29,6 +29,7 @@
         android:background="@drawable/bg">
 
         <ScrollView
+            android:id="@+id/sv_order_detail"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
 
@@ -277,5 +278,13 @@
 
             </LinearLayout>
         </ScrollView>
+        <team.house.cn.HuoseApp.views.ScrollListView
+            android:id="@+id/lv_order"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:background="@color/white">
+
+        </team.house.cn.HuoseApp.views.ScrollListView>
     </RelativeLayout>
 </RelativeLayout>
