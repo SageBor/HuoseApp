@@ -10,6 +10,7 @@ public class ChoosePriceBean implements Serializable {
     private int price;
     private String price_name;
     private int indus_id;
+    private boolean isSelelct = false;
 
     public ChoosePriceBean() {
 
@@ -33,6 +34,14 @@ public class ChoosePriceBean implements Serializable {
 
     public int getIndus_id() {
         return indus_id;
+    }
+
+    public boolean isSelelct() {
+        return isSelelct;
+    }
+
+    public void setIsSelelct(boolean isSelelct) {
+        this.isSelelct = isSelelct;
     }
 
     public void setIndus_id(int indus_id) {

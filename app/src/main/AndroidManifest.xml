@@ -60,6 +60,8 @@
             android:screenOrientation="portrait"></activity>
         <activity android:name=".activity.EvaluateActivity"
             android:screenOrientation="portrait"></activity>
+        <activity android:name=".activity.HistoryOrderListActivity"
+            android:screenOrientation="portrait"></activity>
 
     </application>
 

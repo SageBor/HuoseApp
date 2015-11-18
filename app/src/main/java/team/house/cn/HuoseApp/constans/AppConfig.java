@@ -43,7 +43,13 @@ public  class  AppConfig {
         public static final String URL_GET_ORDERUPDATE = "do=app&view=update_task_status";
         // 预约服务
         public static final String URL_COMMIT_ORDER = "do=app&view=add_task";
+        // 提交评价
         public static final String URL_COMMIT_EVALUATE = "do=app&view=update_task_mark";
+        // 获取评价内容
+        public static final String URL_GETEVALUATEINFO = "do=app&view=get_task_mark";
+
+        // 历史订单列表
+        public static final String URL_GETHISTORYORDER = "do=app&view=get_task_history_list";
 
 
     }

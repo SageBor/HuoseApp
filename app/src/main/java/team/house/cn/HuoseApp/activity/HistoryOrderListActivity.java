@@ -15,7 +15,6 @@ import com.android.volley.VolleyError;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,7 +27,6 @@ import team.house.cn.HuoseApp.adapter.OrderListAdapter;
 import team.house.cn.HuoseApp.asytask.BaseRequest;
 import team.house.cn.HuoseApp.asytask.BaseResponse;
 import team.house.cn.HuoseApp.asytask.ResponseBean;
-import team.house.cn.HuoseApp.bean.AuntDetailBean;
 import team.house.cn.HuoseApp.bean.OrderBean;
 import team.house.cn.HuoseApp.bean.OrderDetailBean;
 import team.house.cn.HuoseApp.constans.AppConfig;
@@ -36,10 +34,10 @@ import team.house.cn.HuoseApp.utils.JSONUtils;
 import team.house.cn.HuoseApp.utils.UserUtil;
 
 /**
- * Created by kn on 15/11/14.
+ * Created by kenan on 15/11/18.
  */
-public class CurrentOrderActivity extends BaseActivity {
-    private final String Tag = "CurrentOrderActivity";
+public class HistoryOrderListActivity extends BaseActivity {
+    private final String Tag = "HistoryOrderListActivity";
     private OrderDetailBean orderDetailBean;
     private List<OrderBean> orderBeanList;
     private int mPageNum = 1;
@@ -74,6 +72,7 @@ public class CurrentOrderActivity extends BaseActivity {
     private int Status = 0; //0 - 当前订单 1- 订单详情
 
     private Users mUser;
+
     @Override
     protected void initView() {
         super.initView();
@@ -110,11 +109,13 @@ public class CurrentOrderActivity extends BaseActivity {
         mOrderListView.setAdapter(orderListAdapter);
 
     }
+
     private void showDetail(boolean show) {
         mOrderDetailScrollview.setVisibility(show ? View.VISIBLE : View.GONE);
         mOrderListView.setVisibility(show ? View.GONE : View.VISIBLE);
 
     }
+
     private void showViewDetail() {
         showDetail(true);
         mServiceContentTextView.setText("服务信息:" + orderDetailBean.getIndus_id());
@@ -130,7 +131,7 @@ public class CurrentOrderActivity extends BaseActivity {
         mSoreContentTextView.setText("评分内容:" + orderDetailBean.getMark_content());
         mSuggestTextView.setText("意见建议:" + orderDetailBean.getSuggest());
         mServiceModelTextView.setText("服务模式:" + orderDetailBean.getEmployment_typ());
-        mServiceTryDateTextView.setText("试用期限:" +orderDetailBean.getTry_days());
+        mServiceTryDateTextView.setText("试用期限:" + orderDetailBean.getTry_days());
         mServiceEmploymentTextView.setText("雇佣期限:" + orderDetailBean.getEmployment_month());
         mServiceAddressTextView.setText("服务地点:" + orderDetailBean.getAddress());
         mCouponsTextView.setText("优惠券:25元优惠券");
@@ -138,11 +139,11 @@ public class CurrentOrderActivity extends BaseActivity {
         mContactTextView.setText("联系人:" + orderDetailBean.getTruename());
         mContactMobileTextView.setText("联系电话:" + orderDetailBean.getContact());
         mOrderStateTextView.setText("订单状态:" + orderDetailBean.getTask_status_content());
-        if (orderDetailBean.getTask_status().equals("8")){
+        /*if (orderDetailBean.getTask_status().equals("8")) {
             // 已完成服务等到雇主确认并支付
             mPayButton.setText("余额支付");
             mPayButton.setVisibility(View.VISIBLE);
-        } else if (orderDetailBean.getTask_status().equals("9")) {
+        } else */if (orderDetailBean.getTask_status().equals("9")) {
             // 订单完成,用户可评价
             mPayButton.setText("我要评价");
             mPayButton.setVisibility(View.VISIBLE);
@@ -150,7 +151,7 @@ public class CurrentOrderActivity extends BaseActivity {
             // 用户已评价 可修改评价
             mPayButton.setText("修改评价");
             mPayButton.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             mPayButton.setVisibility(View.GONE);
         }
 
@@ -159,6 +160,7 @@ public class CurrentOrderActivity extends BaseActivity {
     private void showList() {
         showDetail(false);
     }
+
     @Override
     protected void initData() {
         super.initData();
@@ -173,7 +175,6 @@ public class CurrentOrderActivity extends BaseActivity {
 
     @Override
     protected void initEvent() {
-        super.initEvent();
         mStartServiceButton.setOnClickListener(this);
         mEndServiceButton.setOnClickListener(this);
         mPayButton.setOnClickListener(this);
@@ -183,7 +184,7 @@ public class CurrentOrderActivity extends BaseActivity {
             }
         });
 
-
+        super.initEvent();
     }
 
     @Override
@@ -191,10 +192,10 @@ public class CurrentOrderActivity extends BaseActivity {
         super.onClickListener(v);
         int id = v.getId();
         if (id == R.id.bt_pay) {
-            if (orderDetailBean.getTask_status().equals("8")) {
+           /* if (orderDetailBean.getTask_status().equals("8")) {
                 // 已完成服务等到雇主确认并支付
                 updataOrderStates();
-            } else if (orderDetailBean.getTask_status().equals("2")) {
+            } else*/ if (orderDetailBean.getTask_status().equals("9")) {
                 // 支付完成,用户可评价
                 startEvaluateActivity(1);
             } else if (orderDetailBean.getTask_status().equals("10")) {
@@ -204,7 +205,7 @@ public class CurrentOrderActivity extends BaseActivity {
             }
         }
         if (id ==R.id.tv_right) {
-            Intent intent = new Intent(this, HistoryOrderListActivity.class);
+            Intent intent = new Intent(this, CurrentOrderActivity.class);
             this.startActivity(intent);
         }
     }
@@ -212,11 +213,11 @@ public class CurrentOrderActivity extends BaseActivity {
     @Override
     protected void initTitle() {
         super.initTitle();
-        mTitleView.setText("当前订单");
+        mTitleView.setText("历史订单");
         mCityView.setVisibility(View.GONE);
         mLeftView.setVisibility(View.VISIBLE);
         mRightView.setVisibility(View.VISIBLE);
-        mRightView.setText("历史订单");
+        mRightView.setText("当前订单");
     }
 
     @Override
@@ -230,7 +231,7 @@ public class CurrentOrderActivity extends BaseActivity {
         param.put("group_id", 4);
         param.put("page_size", mPageSize);
         param.put("page_num", mPageNum);
-        BaseRequest.instance().doRequest(Tag, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_GET_CURRENT_ORDER, param, new BaseResponse() {
+        BaseRequest.instance().doRequest(Tag, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_GETHISTORYORDER, param, new BaseResponse() {
             @Override
             public void successful(ResponseBean responseBean) {
                 int code = responseBean.getCode();
@@ -239,33 +240,28 @@ public class CurrentOrderActivity extends BaseActivity {
                     try {
                         JSONArray data = new JSONArray(responseBean.getData());
                         if (data != null && data.length() > 0) {
-                            if (data.length() == 1) {
-                                JSONObject jsonObject = data.getJSONObject(0);
-                                setOrderDetailInfoAndShow(jsonObject);
-
-                            } else {
-                                showList();
-                                for (int i = 0; i < data.length(); i++) {
-                                    JSONObject jsonObject = data.getJSONObject(i);
-                                    OrderBean orderBean = new OrderBean();
-                                    orderBean.setTask_id(JSONUtils.getInt(jsonObject, "task_id", 0));
-                                    orderBean.setOn_time(JSONUtils.getString(jsonObject, "on_time", ""));
-                                    orderBean.setIndus_pid(JSONUtils.getString(jsonObject, "indus_pid", ""));
-                                    orderBean.setStart_time(JSONUtils.getString(jsonObject, "start_time", ""));
-                                    orderBean.setAddress(JSONUtils.getString(jsonObject, "address", ""));
-                                    orderBean.setTask_status(JSONUtils.getString(jsonObject, "task_status", ""));
-                                    orderBean.setTask_status_content(JSONUtils.getString(jsonObject, "task_status_content", ""));
-                                    orderBeanList.add(orderBean);
-                                }
-                                orderListAdapter.setItems(orderBeanList);
-                                orderListAdapter.notifyDataSetChanged();
+                            showList();
+                            for (int i = 0; i < data.length(); i++) {
+                                JSONObject jsonObject = data.getJSONObject(i);
+                                OrderBean orderBean = new OrderBean();
+                                orderBean.setTask_id(JSONUtils.getInt(jsonObject, "task_id", 0));
+                                orderBean.setOn_time(JSONUtils.getString(jsonObject, "on_time", ""));
+                                orderBean.setIndus_pid(JSONUtils.getString(jsonObject, "indus_pid", ""));
+                                orderBean.setStart_time(JSONUtils.getString(jsonObject, "start_time", ""));
+                                orderBean.setAddress(JSONUtils.getString(jsonObject, "address", ""));
+                                orderBean.setTask_status(JSONUtils.getString(jsonObject, "task_status", ""));
+                                orderBean.setTask_status_content(JSONUtils.getString(jsonObject, "task_status_content", ""));
+                                orderBeanList.add(orderBean);
                             }
-
+                            orderListAdapter.setItems(orderBeanList);
+                            orderListAdapter.notifyDataSetChanged();
                         }
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }
+
             }
 
             @Override
@@ -276,7 +272,7 @@ public class CurrentOrderActivity extends BaseActivity {
     }
 
 
-    public void getDetailFromService (int task_id, int indus_pid) {
+    public void getDetailFromService(int task_id, int indus_pid) {
         Map param = new HashMap();
         param.put("task_id", task_id);
         param.put("indus_pid", indus_pid);
@@ -332,6 +328,7 @@ public class CurrentOrderActivity extends BaseActivity {
         orderDetailBean.setMark_id(JSONUtils.getString(jsonObject, "mark_id", ""));
         showViewDetail();
     }
+
     private void updataOrderStates() {
         Map param = new HashMap();
         param.put("task_id", orderDetailBean.getTask_id());
@@ -346,7 +343,7 @@ public class CurrentOrderActivity extends BaseActivity {
                 if (code == 0) {
                     getDetailFromService(orderDetailBean.getTask_id(), orderDetailBean.indus_pid());
                 } else {
-                    Toast.makeText(CurrentOrderActivity.this, msg, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(HistoryOrderListActivity.this, msg, Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -371,14 +368,15 @@ public class CurrentOrderActivity extends BaseActivity {
 
     /**
      * 评价页面 1 - 新增评价 2 - 修改评价
+     *
      * @param flag
      */
     private void startEvaluateActivity(int flag) {
-        Intent intent  = new Intent(this, EvaluateActivity.class);
+        Intent intent = new Intent(this, EvaluateActivity.class);
         intent.putExtra("orderid", orderDetailBean.getTask_id());
         intent.putExtra("mark_id", orderDetailBean.getMark_id());
         intent.putExtra("flag", flag);
-        this.startActivityForResult(intent, 1);
+        this.startActivityForResult(intent, 2);
     }
 
     @Override
@@ -386,7 +384,7 @@ public class CurrentOrderActivity extends BaseActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             // 评价返回
-            if (requestCode == 1){
+            if (requestCode == 2) {
                 getDetailFromService(orderDetailBean.getTask_id(), orderDetailBean.indus_pid());
 
             }
@@ -399,4 +397,3 @@ public class CurrentOrderActivity extends BaseActivity {
         super.onDestroy();
     }
 }
-

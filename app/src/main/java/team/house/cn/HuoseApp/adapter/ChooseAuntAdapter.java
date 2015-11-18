@@ -21,7 +21,6 @@ import team.house.cn.HuoseApp.bean.ServiceContentBean;
 public class ChooseAuntAdapter extends BaseAdapter {
     private LayoutInflater inflater;
     private List<AuntBean> auntBeanList;
-    private ReservationServiceActivity reservationServiceActivity;
     public ChooseAuntAdapter(Context context, List<AuntBean> auntBeans){
         inflater = LayoutInflater.from(context);
         auntBeanList = auntBeans;

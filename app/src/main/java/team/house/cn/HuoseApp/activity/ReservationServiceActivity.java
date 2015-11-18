@@ -91,7 +91,7 @@ public class ReservationServiceActivity extends BaseActivity {
     private LinearLayout mServiceOverTimeLinearLayout;// 结束时间
     private TextView mServiceOverTimeTextView;
     private List<HourBean> endHourBeanList;// 小时工 长时工
-    private StepsView stepsView;
+//    private StepsView stepsView;
     private List<ChoosePriceBean> mChoosePriceBeanList;// 自选价格集合
 
     private LinearLayout mServiceToolsLinearLayout;// 随手带保洁用品 父容器
@@ -145,7 +145,7 @@ public class ReservationServiceActivity extends BaseActivity {
         mServiceEmploymentTimeTextView = (TextView) findViewById(R.id.tv_serviceireTime);
         mServiceOverTimeLinearLayout = (LinearLayout) findViewById(R.id.ll_serviceOverTime);
         mServiceOverTimeTextView = (TextView) findViewById(R.id.tv_serviceOverTime);
-        stepsView = (StepsView) findViewById(R.id.stepsView);
+//        stepsView = (StepsView) findViewById(R.id.stepsView);
         mChoosePriceBeanList = new ArrayList<ChoosePriceBean>();
 
         mServiceToolsLinearLayout = (LinearLayout) findViewById(R.id.ll_servicetools);
@@ -496,12 +496,12 @@ public class ReservationServiceActivity extends BaseActivity {
         for (int i = 0; i < choosePriceBeanList.size(); i++){
             labels[i] = choosePriceBeanList.get(i).getPrice_name();
         }
-        stepsView.setLabels(labels)
-                .setBarColorIndicator(this.getResources().getColor(R.color.cdededd))
-                .setProgressColorIndicator(this.getResources().getColor(R.color.c07c6ef))
-                .setLabelColorIndicator(this.getResources().getColor(R.color.c07c6ef))
-                .setCompletedPosition(0)
-                .drawView();
+//        stepsView.setLabels(labels)
+//                .setBarColorIndicator(this.getResources().getColor(R.color.cdededd))
+//                .setProgressColorIndicator(this.getResources().getColor(R.color.c07c6ef))
+//                .setLabelColorIndicator(this.getResources().getColor(R.color.c07c6ef))
+//                .setCompletedPosition(0)
+//                .drawView();
     }
 
     @Override

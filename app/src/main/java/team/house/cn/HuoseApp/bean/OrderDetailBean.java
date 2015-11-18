@@ -32,6 +32,16 @@ public class OrderDetailBean implements Serializable {
     private String try_days;
     private String employment_month;
 
+    private String  mark_id;
+
+    public String getMark_id() {
+        return mark_id;
+    }
+
+    public void setMark_id(String mark_id) {
+        this.mark_id = mark_id;
+    }
+
     public OrderDetailBean(int task_id, String indus_pid, String indus_id, String start_time, String address, String supplies_name, String task_cash, String paied_cash, String truename, String contact, String task_status, String task_status_content) {
         this.task_id = task_id;
         this.indus_pid = indus_pid;
