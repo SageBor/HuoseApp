@@ -42,6 +42,7 @@ public class EvaluateActivity extends BaseActivity {
     private int orderid;
     private String  mark_id;
     private int flag = 1;//1 - 新增评价 2 - 修改评价
+    private Intent intent;
 
     @Override
     protected void initView() {
@@ -56,7 +57,7 @@ public class EvaluateActivity extends BaseActivity {
     @Override
     protected void initData() {
         super.initData();
-        Intent intent = getIntent();
+        intent = getIntent();
         orderid = intent.getIntExtra("orderid", 0);
         mark_id = intent.getStringExtra("mark_id");
         flag = intent.getIntExtra("flag", 1);
@@ -200,8 +201,6 @@ public class EvaluateActivity extends BaseActivity {
     }
 
     private void backCurrentActivity() {
-        Intent intent = new Intent();
-        intent.setClass(this, CurrentOrderActivity.class);
         intent.putExtra("orderid", orderid);
         this.setResult(RESULT_OK, intent);
         this.finish();

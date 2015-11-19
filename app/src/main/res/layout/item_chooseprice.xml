@@ -2,24 +2,26 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <ImageView
-        android:id="@+id/iv_aroud"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:src="@drawable/bg_blue_round_shape"/>
     <TextView
         android:id="@+id/tv_aroud_line"
-        android:layout_width="20dp"
+        android:layout_width="40dp"
         android:layout_height="1dp"
-        android:layout_alignBaseline="@id/iv_aroud"
-        android:layout_toLeftOf="@id/iv_aroud"
+        android:layout_centerVertical="true"
         android:background="@color/c07c6ef"/>
+    <ImageView
+        android:id="@+id/iv_aroud"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/tv_aroud_line"
+        android:background="@drawable/bg_blue_round_shape"/>
+
     <TextView
         android:id="@+id/tv_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/iv_aroud"
-        android:layout_alignLeft="@id/iv_aroud"/>
+        android:layout_above="@id/iv_aroud"
+        android:text="hahah"
+        android:layout_alignRight="@id/iv_aroud"/>
 
 </RelativeLayout>

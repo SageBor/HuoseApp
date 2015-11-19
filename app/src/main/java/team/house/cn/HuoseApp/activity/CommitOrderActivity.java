@@ -81,8 +81,7 @@ public class CommitOrderActivity extends BaseActivity {
 
     private void updateView() {
         mServiceContentTextView.setText("服务信息:" + mCommitReservationServiceBean.getServiceContentBean().getIndus_name());
-        mServiceTimeTextView.setText("服务时间:" + mCommitReservationServiceBean.getStart_time() + "  " + mCommitReservationServiceBean.getStartHouBean().getHour_name() + " - "
-                + mCommitReservationServiceBean.getEnd_time() + "  " + mCommitReservationServiceBean.getEndHouBean().getHour_name());
+        mServiceTimeTextView.setText(getTIme());
         mServiceAddressTextView.setText("服务地址:" + mCommitReservationServiceBean.getAddressBean().getmAddressAll());
         mCouponsTextView.setText("优惠券:25元优惠券");
         mMaginTextView.setText("保证金:" + mCommitReservationServiceBean.getPaied_cash());
@@ -92,6 +91,23 @@ public class CommitOrderActivity extends BaseActivity {
 
 
 
+    }
+
+    private String getTIme() {
+        switch (mCommitReservationServiceBean.getIndus_pid()) {
+            case 1:
+
+            case 2:
+                return "服务时间:" + mCommitReservationServiceBean.getStart_time() + "  " + mCommitReservationServiceBean.getStartHouBean().getHour_name() + " - "
+                        + mCommitReservationServiceBean.getEnd_time() + "  " + mCommitReservationServiceBean.getEndHouBean().getHour_name();
+            case 3:
+
+            case 4:
+                return "服务时间:" + mCommitReservationServiceBean.getStart_time() + "  " + mCommitReservationServiceBean.getStartHouBean().getHour_name() + " - 共计"
+                        + mCommitReservationServiceBean.getServiceEmploymentMonth().getEmployment_month_name();
+
+        }
+        return "服务时间:";
     }
 
     @Override
@@ -162,23 +178,23 @@ public class CommitOrderActivity extends BaseActivity {
         params.put("data[username]", mUser.getUsername());
         params.put("data[indus_pid]", mCommitReservationServiceBean.getIndus_pid());
         params.put("data[indus_id]", mCommitReservationServiceBean.getServiceContentBean().getIndus_id());
-        params.put("data[employment_typ]", mCommitReservationServiceBean.getServiceModelBean().getEmployment_typ());
+        params.put("data[employment_typ]", mCommitReservationServiceBean.getServiceModelBean() == null ? "" : mCommitReservationServiceBean.getServiceModelBean().getEmployment_typ());
         params.put("data[week_id]", getWeeksId());
-        params.put("data[try_days]", mCommitReservationServiceBean.getServiceTryDayBean().getTry_days());
+        params.put("data[try_days]", mCommitReservationServiceBean.getServiceTryDayBean() == null ? "" : mCommitReservationServiceBean.getServiceTryDayBean().getTry_days());
         params.put("data[start_time]", mCommitReservationServiceBean.getStart_time());
         params.put("data[end_time]", mCommitReservationServiceBean.getEnd_time());
-        params.put("data[employment_month]", mCommitReservationServiceBean.getServiceEmploymentMonth().getEmployment_month());
+        params.put("data[employment_month]", mCommitReservationServiceBean.getServiceEmploymentMonth() == null ? "" : mCommitReservationServiceBean.getServiceEmploymentMonth().getEmployment_month());
         params.put("data[price]", mCommitReservationServiceBean.getChoosePriceBean().getPrice());// 心里价位
         params.put("data[employment_uid]", mCommitReservationServiceBean.getEmployment_uid()); //阿姨id
         params.put("data[task_desc]", ""); //备注
         params.put("data[pay_typ]", 1); // 支付方式
-        params.put("data[model_id]", 3); // 发单模式
-        params.put("data[task_cash]", mCommitReservationServiceBean.getTask_cash()); //订单金额  暂未获取
-        params.put("data[paied_cash]", mCommitReservationServiceBean.getPaied_cash()); //保证金  暂未获取
+        params.put("data[model_id]", mCommitReservationServiceBean.getEmployment_uid() == 0 ? 2 : 3); // 发单模式
+        params.put("data[task_cash]", mCommitReservationServiceBean.getTask_cash()); //订单金额
+        params.put("data[paied_cash]", mCommitReservationServiceBean.getPaied_cash()); //保证金
         params.put("data[mobile]", mUser.getMobile()); //手机号
         params.put("data[truename]", "张小姐"/*mUser.getTruename()*/);//真实姓名
         params.put("data[supplies_id]", getToolIds()); //保洁用品id
-        params.put("data[address_id]", mCommitReservationServiceBean.getAddressBean().getmAddlesId()); //服务地址id 暂未获取
+        params.put("data[address_id]", mCommitReservationServiceBean.getAddressBean().getmAddlesId()); //服务地址id
         params.put("data[start_hour]", mCommitReservationServiceBean.getStartHouBean().getHour()); // /开始时刻
         params.put("data[end_hour]", mCommitReservationServiceBean.getEndHouBean().getHour()); //结束时刻
         params.put("data[work_days]", ""); //工作天数 只有长期钟点工用

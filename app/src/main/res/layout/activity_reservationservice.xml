@@ -313,7 +313,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="fill_parent"
-                            android:text="试雇佣时间"
+                            android:text="雇佣时间"
                             android:textColor="@color/caaaaaa"
                             android:textSize="12sp"></TextView>
 
@@ -398,12 +398,12 @@
                         android:textColor="@color/caaaaaa"
                         android:textSize="12sp"></TextView>
 
-                    <ListView
+                    <team.house.cn.HuoseApp.views.HorizontalListView
+                        android:id="@+id/hlv_chooseprice"
                         android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:visibility="gone">
+                        android:layout_height="40dp">
 
-                    </ListView>
+                    </team.house.cn.HuoseApp.views.HorizontalListView>
 
                     <TextView
                         android:layout_width="fill_parent"

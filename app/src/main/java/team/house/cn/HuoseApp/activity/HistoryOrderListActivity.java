@@ -329,31 +329,6 @@ public class HistoryOrderListActivity extends BaseActivity {
         showViewDetail();
     }
 
-    private void updataOrderStates() {
-        Map param = new HashMap();
-        param.put("task_id", orderDetailBean.getTask_id());
-        param.put("indus_pid", orderDetailBean.indus_pid());
-        param.put("type", 3);
-
-        BaseRequest.instance().doRequest(Tag, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_GET_ORDERUPDATE, param, new BaseResponse() {
-            @Override
-            public void successful(ResponseBean responseBean) {
-                int code = responseBean.getCode();
-                String msg = responseBean.getMsg();
-                if (code == 0) {
-                    getDetailFromService(orderDetailBean.getTask_id(), orderDetailBean.indus_pid());
-                } else {
-                    Toast.makeText(HistoryOrderListActivity.this, msg, Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void failure(VolleyError error) {
-
-            }
-        });
-    }
-
     @Override
     public void onBackPressed() {
         if (Status == 1) {
