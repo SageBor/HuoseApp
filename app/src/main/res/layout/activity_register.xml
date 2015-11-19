@@ -55,8 +55,8 @@
                     android:id="@+id/et_phone"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:background="@null"
                     android:hint="请输入手机号码/用户名"
+                    android:imeOptions="actionNext"
                     android:textColorHint="@color/c7f7f7f" />
 
             </LinearLayout>
@@ -86,8 +86,7 @@
                         android:id="@+id/et_code"
                         android:layout_width="140dp"
                         android:layout_height="wrap_content"
-                        android:background="@null"
-                        android:hint="请输入登陆密码"
+                        android:hint="请输入四位验证码"
                         android:textColorHint="@color/c7f7f7f" />
 
 
@@ -122,7 +121,8 @@
                     android:id="@+id/et_psw"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:background="@null"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPassword"
                     android:hint="请输入登陆密码"
                     android:textColorHint="@color/c7f7f7f"/>
 
@@ -143,7 +143,8 @@
                     android:id="@+id/et_psw2"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:background="@null"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPassword"
                     android:hint="请重复输入登陆密码"
                     android:textColorHint="@color/c7f7f7f"/>
 
