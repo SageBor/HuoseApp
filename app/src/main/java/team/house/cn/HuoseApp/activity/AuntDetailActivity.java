@@ -1,7 +1,6 @@
 package team.house.cn.HuoseApp.activity;
 
 import android.content.Intent;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -21,7 +20,6 @@ import team.house.cn.HuoseApp.R;
 import team.house.cn.HuoseApp.asytask.BaseRequest;
 import team.house.cn.HuoseApp.asytask.BaseResponse;
 import team.house.cn.HuoseApp.asytask.ResponseBean;
-import team.house.cn.HuoseApp.bean.AuntBean;
 import team.house.cn.HuoseApp.bean.AuntDetailBean;
 import team.house.cn.HuoseApp.constans.AppConfig;
 import team.house.cn.HuoseApp.utils.JSONUtils;
@@ -99,6 +97,8 @@ public class AuntDetailActivity extends BaseActivity{
     protected void onClickListener(View v) {
         super.onClickListener(v);
         Intent intent = new Intent ();
+        mAuntId = getIntent().getIntExtra("auntId" , 0);
+        intent.putExtra("auntId", mAuntId);
         this.setResult(RESULT_OK, intent);
         this.finish();
     }

@@ -80,6 +80,7 @@ public class ChooseAuntActivity extends BaseActivity {
         lv_aunts.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
                 mAuntId = auntBeanList.get(position).getUid();
                 Intent intent = new Intent(ChooseAuntActivity.this, AuntDetailActivity.class);
                 intent.putExtra("auntId", mAuntId);

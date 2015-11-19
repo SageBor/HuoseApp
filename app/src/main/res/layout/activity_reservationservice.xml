@@ -111,6 +111,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="fill_parent"
+                        android:layout_marginTop="5dp"
                         android:text="服务内容"
                         android:textColor="@color/caaaaaa"
                         android:textSize="12sp"></TextView>
@@ -118,6 +119,7 @@
                     <team.house.cn.HuoseApp.views.ScrollGridView
                         android:id="@+id/gv_serviceInfo"
                         android:layout_width="fill_parent"
+                        android:layout_marginTop="5dp"
                         android:layout_height="wrap_content"
                         android:horizontalSpacing="10dp"
                         android:verticalSpacing="10dp"
@@ -138,6 +140,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="fill_parent"
+                        android:layout_marginTop="5dp"
                         android:text="服务频率 长时工"
                         android:textColor="@color/caaaaaa"
                         android:textSize="12sp"></TextView>
@@ -146,6 +149,7 @@
                         android:id="@+id/gv_serviceweek"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent"
+                        android:layout_marginTop="5dp"
                         android:horizontalSpacing="10dp"
                         android:verticalSpacing="10dp"
                         android:numColumns="3" />
@@ -167,10 +171,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="fill_parent"
                         android:text="服务模式 保姆/月嫂"
+                        android:layout_marginTop="5dp"
                         android:textColor="@color/caaaaaa"
                         android:textSize="12sp"></TextView>
 
                     <team.house.cn.HuoseApp.views.ScrollGridView
+                        android:layout_marginTop="5dp"
                         android:id="@+id/gv_serviceModel"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
@@ -193,6 +199,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="fill_parent"
+                        android:layout_marginTop="5dp"
                         android:text="服务时间"
                         android:textColor="@color/caaaaaa"
                         android:textSize="12sp"></TextView>
@@ -224,7 +231,7 @@
 
                     <RelativeLayout
                         android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="35dp"
                         android:paddingBottom="5dp"
                         android:paddingLeft="15dp"
                         android:paddingRight="10dp"
@@ -233,6 +240,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="fill_parent"
+                            android:layout_centerVertical="true"
                             android:text="试用时间"
                             android:textColor="@color/caaaaaa"
                             android:textSize="12sp"></TextView>
@@ -262,7 +270,7 @@
                 <RelativeLayout
                     android:id="@+id/rl_serviceStarTime"
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35dp"
                     android:paddingBottom="5dp"
                     android:paddingLeft="15dp"
                     android:paddingRight="10dp"
@@ -270,8 +278,9 @@
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="fill_parent"
+                        android:layout_height="wrap_content"
                         android:text="开始时间"
+                        android:layout_centerVertical="true"
                         android:textColor="@color/caaaaaa"
                         android:textSize="12sp"></TextView>
 
@@ -298,7 +307,7 @@
                 <LinearLayout
                     android:id="@+id/ll_servicereTime"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35dp"
                     android:orientation="horizontal"
                     android:visibility="gone">
 
@@ -312,8 +321,9 @@
 
                         <TextView
                             android:layout_width="wrap_content"
-                            android:layout_height="fill_parent"
+                            android:layout_height="wrap_content"
                             android:text="雇佣时间"
+                            android:layout_centerVertical="true"
                             android:textColor="@color/caaaaaa"
                             android:textSize="12sp"></TextView>
 
@@ -342,13 +352,13 @@
                 <LinearLayout
                     android:id="@+id/ll_serviceOverTime"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35dp"
                     android:orientation="vertical"
                     android:visibility="gone">
 
                     <RelativeLayout
                         android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="35dp"
                         android:paddingBottom="5dp"
                         android:paddingLeft="15dp"
                         android:paddingRight="10dp"
@@ -356,8 +366,9 @@
 
                         <TextView
                             android:layout_width="wrap_content"
-                            android:layout_height="fill_parent"
+                            android:layout_height="wrap_content"
                             android:text="结束时间"
+                            android:layout_centerVertical="true"
                             android:textColor="@color/caaaaaa"
                             android:textSize="12sp"></TextView>
 
@@ -375,13 +386,11 @@
 
                     </RelativeLayout>
 
-                    <View
-                        android:layout_width="fill_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/ca9a9a9"></View>
-
                 </LinearLayout>
-
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/ca9a9a9"></View>
                 <!-- 自选/心里价位 -->
                 <LinearLayout
                     android:layout_width="fill_parent"
@@ -401,7 +410,8 @@
                     <team.house.cn.HuoseApp.views.HorizontalListView
                         android:id="@+id/hlv_chooseprice"
                         android:layout_width="fill_parent"
-                        android:layout_height="40dp">
+                        android:layout_marginTop="5dp"
+                        android:layout_height="35dp">
 
                     </team.house.cn.HuoseApp.views.HorizontalListView>
 
@@ -413,11 +423,6 @@
                         android:text=""/>
 
                 </LinearLayout>
-                <View
-                    android:layout_marginTop="2dp"
-                    android:layout_width="fill_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/ca9a9a9"></View>
 
                 <!--随手带 小时工/长期工 -->
                 <LinearLayout
@@ -432,6 +437,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="fill_parent"
+                        android:layout_marginTop="5dp"
                         android:text="随手带"
                         android:textColor="@color/caaaaaa"
                         android:textSize="12sp"></TextView>
@@ -442,18 +448,21 @@
                         android:layout_height="wrap_content"
                         android:horizontalSpacing="10dp"
                         android:verticalSpacing="10dp"
+                        android:layout_marginTop="5dp"
                         android:numColumns="3" />
 
                 </LinearLayout>
                 <View
                     android:layout_width="fill_parent"
                     android:layout_height="1dp"
+                    android:layout_marginTop="5dp"
                     android:background="@color/ca9a9a9"></View>
                 <!-- 试用优惠券-->
                 <RelativeLayout
+                    android:layout_marginTop="5dp"
                     android:id="@+id/rl_serviceoupons"
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35dp"
                     android:paddingBottom="5dp"
                     android:paddingLeft="15dp"
                     android:paddingRight="10dp"
@@ -462,6 +471,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="fill_parent"
+                        android:layout_centerVertical="true"
                         android:text="使用用优惠券"
                         android:textColor="@color/caaaaaa"
                         android:textSize="12sp"></TextView>
@@ -484,22 +494,17 @@
                     android:layout_height="1dp"
                     android:background="@color/ca9a9a9"></View>
 
-
-                <View
-                    android:layout_width="fill_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/ca9a9a9"></View>
-
                 <!-- 选择阿姨-->
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35dp"
                     android:paddingBottom="5dp"
                     android:paddingLeft="15dp"
                     android:paddingRight="10dp"
                     android:paddingTop="15dp"
                     android:text="选择阿姨"
+                    android:layout_centerVertical="true"
                     android:textColor="@color/caaaaaa"
                     android:textSize="12sp"></TextView>
                 <View
@@ -511,7 +516,7 @@
                 <RelativeLayout
                     android:id="@+id/rl_systemChooseAunt"
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35dp"
                     android:paddingBottom="5dp"
                     android:paddingLeft="15dp"
                     android:paddingRight="10dp"
@@ -521,13 +526,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="fill_parent"
                         android:text="系统推荐"
+                        android:layout_centerVertical="true"
                         android:textColor="@color/caaaaaa"
                         android:textSize="12sp"></TextView>
 
                     <RadioButton
                         android:id="@+id/rb_systemAunt"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:checked="false" />
@@ -542,7 +548,7 @@
                 <RelativeLayout
                     android:id="@+id/rl_chooseAunt"
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35dp"
                     android:paddingBottom="5dp"
                     android:paddingLeft="15dp"
                     android:paddingRight="10dp"
@@ -552,6 +558,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="fill_parent"
                         android:text="自选阿姨"
+                        android:layout_centerVertical="true"
                         android:textColor="@color/caaaaaa"
                         android:textSize="12sp"></TextView>
 
@@ -579,6 +586,7 @@
                     android:paddingLeft="15dp"
                     android:paddingRight="10dp"
                     android:paddingTop="15dp"
+                    android:layout_centerVertical="true"
                     android:text="支付方式"
                     android:textColor="@color/caaaaaa"
                     android:textSize="12sp"></TextView>
@@ -588,7 +596,7 @@
                     android:background="@color/ca9a9a9"></View>
                 <RelativeLayout
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35dp"
                     android:paddingBottom="5dp"
                     android:paddingLeft="15dp"
                     android:paddingRight="10dp"
@@ -598,12 +606,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="fill_parent"
                         android:text="余额支付"
+                        android:layout_centerVertical="true"
                         android:textColor="@color/caaaaaa"
                         android:textSize="12sp"></TextView>
 
                     <RadioButton
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:checked="true" />
@@ -613,14 +622,10 @@
                     android:layout_width="fill_parent"
                     android:layout_height="1dp"
                     android:background="@color/ca9a9a9"></View>
-                <View
-                    android:layout_width="fill_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/ca9a9a9"></View>
                 <!-- 订单金额-->
                 <RelativeLayout
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35dp"
                     android:paddingBottom="5dp"
                     android:paddingLeft="15dp"
                     android:paddingRight="10dp"
@@ -630,6 +635,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="fill_parent"
                         android:text="订单金额"
+                        android:layout_centerVertical="true"
                         android:textColor="@color/caaaaaa"
                         android:textSize="12sp"></TextView>
 
@@ -646,6 +652,10 @@
                         android:textSize="12sp" />
 
                 </RelativeLayout>
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/ca9a9a9"></View>
 <!--
 
 
