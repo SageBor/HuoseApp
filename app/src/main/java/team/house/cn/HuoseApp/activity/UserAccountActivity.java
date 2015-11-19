@@ -1,7 +1,6 @@
 package team.house.cn.HuoseApp.activity;
 
 import android.content.Intent;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -29,6 +28,7 @@ import team.house.cn.HuoseApp.utils.UserUtil;
 
 /**
  * Created by kn on 15/11/14.
+ * 加个注释试试好不好用
  */
 public class UserAccountActivity extends BaseActivity {
     private final String Tag = "UserAccountActivity";
