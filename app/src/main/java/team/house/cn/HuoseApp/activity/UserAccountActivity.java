@@ -36,6 +36,7 @@ public class UserAccountActivity extends BaseActivity {
     private Users users;
     private TextView tv_balance;
     private TextView tv_coupon;
+    private TextView tv_username;
     private RelativeLayout rlMyAccount;
     @Override
     protected void initView() {
@@ -43,6 +44,7 @@ public class UserAccountActivity extends BaseActivity {
         this.setContentView(R.layout.activity_user_account);
         tv_balance=(TextView) findViewById(R.id.tv_balance);
         tv_coupon=(TextView) findViewById(R.id.tv_coupon);
+        tv_username=(TextView) findViewById(R.id.tv_username);
         rlMyAccount=(RelativeLayout)findViewById(R.id.rl_myAccount);
 
     }
@@ -68,8 +70,9 @@ public class UserAccountActivity extends BaseActivity {
         }
         if (v.getId() == R.id.rl_myAccount) {
             Intent intent=new Intent(this, MyAccountActivity.class);
-            intent.putExtra("myBlance", users.getBalance());
-            intent.putExtra("noPay", "0");
+            intent.putExtra("myBalance", users.getBalance());
+            intent.putExtra("noPay",users.getNopay());
+            intent.putExtra("username",users.getUsername());
             this.startActivity(intent);
         }
     }
@@ -118,13 +121,14 @@ public class UserAccountActivity extends BaseActivity {
                         users.setBalance(JSONUtils.getString(data, "balance", ""));
                         users.setUser_pic(JSONUtils.getString(data, "user_pic", ""));
                         users.setIs_perfec(JSONUtils.getBoolean(data, "is_perfect", false));
-
+                        users.setNopay(JSONUtils.getString(data, "nopay", ""));
                         PreferenceUtil.putString(HouseApplication.getHuoYunApplicationContext(), "userinfo", responseBean.getData());
                         PreferenceUtil.putInt(HouseApplication.getHuoYunApplicationContext(), "userId", JSONUtils.getInt(data, "uid", 0));
                         PreferenceUtil.putString(HouseApplication.getHuoYunApplicationContext(), "addressinfo", JSONUtils.getString(data, "addresses", ""));
 
-                        tv_balance.setText("余额：" + users.getBalance());
-                        tv_coupon.setText("未结算：" + users.getNopay());
+                        tv_balance.setText("余额：" + users.getBalance() + "元");
+                        tv_coupon.setText("未结算：" + users.getNopay() +"元");
+                        tv_username.setText(users.getUsername());
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

@@ -15,13 +15,15 @@ public class MyAccountActivity extends BaseActivity {
         super.initView();
         this.setContentView(R.layout.activity_my_account);
         Intent intent=getIntent();
-        String balance=intent.getStringExtra("mybalance");
+        String balance=intent.getStringExtra("myBalance");
         TextView tv_balance=(TextView) findViewById(R.id.tv_balance);
-        tv_balance.setText(balance);
+        tv_balance.setText("余额："+balance+"元");
         String noPay=intent.getStringExtra("noPay");
         TextView tv_coupon=(TextView) findViewById(R.id.tv_coupon);
-        tv_coupon.setText("未结算："+noPay);
-        tv_balance.setText(balance);
+        tv_coupon.setText("未结算："+noPay+"元");
+        String username=intent.getStringExtra("username");
+        TextView tv_username=(TextView) findViewById(R.id.tv_username);
+        tv_username.setText(username);
     }
 
     @Override

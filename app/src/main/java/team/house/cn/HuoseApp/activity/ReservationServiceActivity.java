@@ -1,9 +1,7 @@
 package team.house.cn.HuoseApp.activity;
 
 import android.content.Intent;
-import android.text.TextUtils;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.LinearLayout;
@@ -23,12 +21,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import team.house.cn.HuoseApp.Dao.Users;
 import team.house.cn.HuoseApp.R;
 import team.house.cn.HuoseApp.adapter.ServiceContentAdaper;
 import team.house.cn.HuoseApp.adapter.ServiceModelAdapter;
 import team.house.cn.HuoseApp.adapter.ServiceToolsAdapter;
 import team.house.cn.HuoseApp.adapter.ServiceWeekAdapter;
-import team.house.cn.HuoseApp.adapter.ToggleButton_ViewHolder;
 import team.house.cn.HuoseApp.asytask.BaseRequest;
 import team.house.cn.HuoseApp.asytask.BaseResponse;
 import team.house.cn.HuoseApp.asytask.ResponseBean;
@@ -37,17 +35,17 @@ import team.house.cn.HuoseApp.bean.ChoosePriceBean;
 import team.house.cn.HuoseApp.bean.CityBean;
 import team.house.cn.HuoseApp.bean.CommitReservationServiceBean;
 import team.house.cn.HuoseApp.bean.HourBean;
+import team.house.cn.HuoseApp.bean.ServiceBseTimeBean;
 import team.house.cn.HuoseApp.bean.ServiceContentBean;
 import team.house.cn.HuoseApp.bean.ServiceEmploymentMonthBean;
 import team.house.cn.HuoseApp.bean.ServiceModelBean;
-import team.house.cn.HuoseApp.bean.ServiceBseTimeBean;
 import team.house.cn.HuoseApp.bean.ServiceToolsBean;
 import team.house.cn.HuoseApp.bean.ServiceTryDayBean;
 import team.house.cn.HuoseApp.bean.ServiceWeekBean;
 import team.house.cn.HuoseApp.constans.AppConfig;
 import team.house.cn.HuoseApp.proviews.DateTimeDialog;
 import team.house.cn.HuoseApp.utils.CityUtil;
-import team.house.cn.HuoseApp.views.StepsView;
+import team.house.cn.HuoseApp.utils.UserUtil;
 
 /**
  * Created by kenan on 15/11/7.
@@ -107,7 +105,8 @@ public class ReservationServiceActivity extends BaseActivity {
     private ServiceContentBean serviceContentBean;
     private Button mCommitButton;
     private ServiceBseTimeBean serviceBaseTimeBean;
-
+    private TextView tv_username;
+    private TextView tv_serviceAddress;
 //    private  ServiceTryDayBean mServiceTryDayBean;
 
 
@@ -157,8 +156,9 @@ public class ReservationServiceActivity extends BaseActivity {
         mOrderMoneyTextView = (TextView) findViewById(R.id.tv_orderMoney);
         mSystemChooseAuntRelativelayout = (RelativeLayout) findViewById(R.id.rl_systemChooseAunt);
         mChooseAuntRelativeLayout = (RelativeLayout) findViewById(R.id.rl_chooseAunt);
-
         mCommitButton = (Button) findViewById(R.id.bt_commit);
+        tv_username = (TextView) findViewById(R.id.tv_username);
+        tv_serviceAddress = (TextView) findViewById(R.id.tv_serviceAddress);
 
 
     }
@@ -175,6 +175,7 @@ public class ReservationServiceActivity extends BaseActivity {
         mCommitReservationServiceBean.setIndus_pid(mPosition);
         showViewBymPosition();
         getConfigInfoFromService();
+        getDefauleAddress();
     }
 
     @Override
@@ -230,7 +231,7 @@ public class ReservationServiceActivity extends BaseActivity {
 
                     @Override
                     public void onDateTimeChange(String date, String time, int dayItem, int hourItem) {
-                        String startTime = date + time + ":00";
+                        String startTime = date +" "+time + ":00";
                         mServiceStartTimeTextView.setText(startTime);
                         mCommitReservationServiceBean.setStart_time(date);
                         for (HourBean hourBean : startHourBeanList) {
@@ -279,7 +280,7 @@ public class ReservationServiceActivity extends BaseActivity {
 
                     @Override
                     public void onDateTimeChange(String date, String time, int dayItem, int hourItem) {
-                        String endTime = date + time + ":00";
+                        String endTime = date +" "+time + ":00";
                         mServiceOverTimeTextView.setText(endTime);
                         mCommitReservationServiceBean.setEnd_time(date);
                         for (HourBean hourBean : endHourBeanList) {
@@ -306,12 +307,12 @@ public class ReservationServiceActivity extends BaseActivity {
             this.startActivity(intent);
 //            Toast.makeText(this, "请完善信息", Toast.LENGTH_LONG).show();
         }
-        if (viewId == R.id.rl_systemChooseAunt) {
-            Intent intent = new Intent (this, ChooseAuntActivity.class);
-            intent.putExtra("type", 1); //系统选择阿姨
-            intent.putExtra("positoin", mPosition); //服务大类
-            this.startActivityForResult(intent, 2);
-        }
+//        if (viewId == R.id.rl_systemChooseAunt) {
+//            Intent intent = new Intent (this, ChooseAuntActivity.class);
+//            intent.putExtra("type", 1); //系统选择阿姨
+//            intent.putExtra("positoin", mPosition); //服务大类
+//            this.startActivityForResult(intent, 2);
+//        }
         if (viewId == R.id.rl_chooseAunt) {
             Intent intent = new Intent (this, ChooseAuntActivity.class);
             intent.putExtra("positoin", mPosition); //服务大类
@@ -719,6 +720,16 @@ public class ReservationServiceActivity extends BaseActivity {
             }
         });
     }
-
+    private void  getDefauleAddress() {
+        Users userInfo=UserUtil.getUserinfoFromSharepreference();
+        tv_username.setText(userInfo.getUsername());
+        List<AddressBean> addressList= UserUtil.getAddressFromSharepreference();
+        for(AddressBean address:addressList){
+            if(address.iSDefault()&&address.getmAddressAll()!=null){
+                tv_serviceAddress.setText(address.getmAddressAll());
+                mCommitReservationServiceBean.setAddressBean(address);
+            }
+        }
+    }
 
 }
