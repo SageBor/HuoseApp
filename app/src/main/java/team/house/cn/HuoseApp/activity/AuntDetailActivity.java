@@ -15,7 +15,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
-
+import android.widget.Toast;
 import team.house.cn.HuoseApp.R;
 import team.house.cn.HuoseApp.asytask.BaseRequest;
 import team.house.cn.HuoseApp.asytask.BaseResponse;
@@ -39,7 +39,7 @@ public class AuntDetailActivity extends BaseActivity{
     private TextView mAuntAgeTextView;
     private TextView mAuntCarNumTextView;
     private TextView mAuntvAlidationTextView;
-
+    private int task_id;
     private Button mCommitBuuton;
     public final String Tag =  "AuntDetailActivity";
     @Override
@@ -77,6 +77,7 @@ public class AuntDetailActivity extends BaseActivity{
     protected void initData() {
         super.initData();
         mAuntId = getIntent().getIntExtra("auntId" , 0);
+        task_id = getIntent().getIntExtra("task_id" , 0);
         if (mAuntId == 0) {
 
         }
@@ -96,11 +97,17 @@ public class AuntDetailActivity extends BaseActivity{
     @Override
     protected void onClickListener(View v) {
         super.onClickListener(v);
-        Intent intent = new Intent ();
-        mAuntId = getIntent().getIntExtra("auntId" , 0);
-        intent.putExtra("auntId", mAuntId);
-        this.setResult(RESULT_OK, intent);
-        this.finish();
+        if(task_id>0&&mAuntId>0){
+
+            subTaskAuntFromService();
+        }else{
+            Intent intent = new Intent ();
+            mAuntId = getIntent().getIntExtra("auntId" , 0);
+            intent.putExtra("auntId", mAuntId);
+            this.setResult(RESULT_OK, intent);
+            this.finish();
+        }
+
     }
 
     @Override
@@ -147,6 +154,9 @@ public class AuntDetailActivity extends BaseActivity{
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
+                } else {
+
+                    Toast.makeText(AuntDetailActivity.this, msg, Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -158,5 +168,30 @@ public class AuntDetailActivity extends BaseActivity{
             }
         });
     }
+    private void subTaskAuntFromService() {
+        Map param = new HashMap<>();
+        param.put("uid", mAuntId);
+        param.put("task_id", task_id);
+        BaseRequest.instance().doRequest(Tag, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_TASKAUNT, param, new BaseResponse() {
+            @Override
+            public void successful(ResponseBean responseBean) {
+                int code = responseBean.getCode();
+                String msg = responseBean.getMsg();
+                if (code == 0) {
+                   Intent intent = new Intent(new Intent(AuntDetailActivity.this, CurrentOrderActivity.class));
+                    startActivity(intent);
+                }else {
 
+                    Toast.makeText(AuntDetailActivity.this, msg, Toast.LENGTH_SHORT).show();
+                }
+
+
+            }
+
+            @Override
+            public void failure(VolleyError error) {
+
+            }
+        });
+    }
 }

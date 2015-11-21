@@ -50,7 +50,10 @@ public  class  AppConfig {
 
         // 历史订单列表
         public static final String URL_GETHISTORYORDER = "do=app&view=get_task_history_list";
-
+        // 抢单阿姨列表
+        public static final String URL_TASKORDER = "do=app&view=get_task_bid_list";
+        // 抢单阿姨列表
+        public static final String URL_TASKAUNT = "do=app&view=ayi_select";
 
     }
     // 本地百度定位城市在Share中存储key
@@ -62,5 +65,6 @@ public  class  AppConfig {
     //
 
     public static final String AppRootDir = "huoseapp";//手机根目录名称
+
 
 }

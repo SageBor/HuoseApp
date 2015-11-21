@@ -112,6 +112,7 @@ public class ReservationServiceActivity extends BaseActivity {
     private RelativeLayout mServiceCouponsRelativeLayout;// 使用优惠券 父容器
 //    private RelativeLayout mSystemChooseAuntRelativelayout;// 系统选择阿姨
     private RadioButton mSystemChooseAuntRaioButton; //系统选择阿姨
+    private RadioButton rb_planAunt;//发布任务招募阿姨
     private RelativeLayout mChooseAuntRelativeLayout; //自选阿姨
     private TextView mOrderMoneyTextView; //订单金额
 
@@ -176,6 +177,7 @@ public class ReservationServiceActivity extends BaseActivity {
         mOrderMoneyTextView = (TextView) findViewById(R.id.tv_orderMoney);
 //        mSystemChooseAuntRelativelayout = (RelativeLayout) findViewById(R.id.rl_systemChooseAunt);
         mSystemChooseAuntRaioButton = (RadioButton) findViewById(R.id.rb_systemAunt);
+        rb_planAunt = (RadioButton) findViewById(R.id.rb_planAunt);
         mChooseAuntRelativeLayout = (RelativeLayout) findViewById(R.id.rl_chooseAunt);
         mCommitButton = (Button) findViewById(R.id.bt_commit);
         tv_username = (TextView) findViewById(R.id.tv_username);
@@ -213,7 +215,21 @@ public class ReservationServiceActivity extends BaseActivity {
         mSystemChooseAuntRaioButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mChooseAuntRelativeLayout.setVisibility(View.GONE);
+                mSystemChooseAuntRaioButton.setChecked(true);
+                rb_planAunt.setChecked(false);
+                mCommitReservationServiceBean.setModel_id(1);
+                mAuntId=0;
+               // mChooseAuntRelativeLayout.setVisibility(View.GONE);
+            }
+        });
+        rb_planAunt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mSystemChooseAuntRaioButton.setChecked(false);
+                rb_planAunt.setChecked(true);
+                mAuntId=0;
+                mCommitReservationServiceBean.setModel_id(2);
+                // mChooseAuntRelativeLayout.setVisibility(View.GONE);
             }
         });
         mChoosePriceListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -410,6 +426,8 @@ public class ReservationServiceActivity extends BaseActivity {
         }
 
         if (viewId == R.id.rl_chooseAunt) {
+            mSystemChooseAuntRaioButton.setChecked(false);
+            rb_planAunt.setChecked(false);
             Intent intent = new Intent(this, ChooseAuntActivity.class);
             intent.putExtra("positoin", mPosition); //服务大类
             intent.putExtra("type", 2); //选择阿姨
@@ -447,6 +465,7 @@ public class ReservationServiceActivity extends BaseActivity {
         //选择阿姨
         if (requestCode == 3 && resultCode == RESULT_OK) {
             mAuntId = data.getIntExtra("auntId", 0);
+            mCommitReservationServiceBean.setModel_id(3);
 //            mCommitReservationServiceBean.setEmployment_uid(data.getIntExtra("auntId", 0));
         }
         //系统选择阿姨
@@ -656,13 +675,13 @@ public class ReservationServiceActivity extends BaseActivity {
                     mServiceToolsAdapter.notifyDataSetChanged();
                 }
 
-//                if (mServiceTimeBeanList != null) {
-//                    for (ServiceBseTimeBean serviceBseTimeBean : mServiceTimeBeanList) {
-//                        if (indus_id == serviceBseTimeBean.getIndus_id())
-//                            serviceBaseTimeBean = serviceBseTimeBean;
-//                        mServiceTimeTextView.setText("基础价格" + serviceBseTimeBean.getBasic_price() + "元/小时," + serviceBseTimeBean.getBasic_hours() + "小时起雇");
-//                    }
-//                }
+                if (mServiceTimeBeanList != null) {
+                    for (ServiceBseTimeBean serviceBseTimeBean : mServiceTimeBeanList) {
+                        if (indus_id == serviceBseTimeBean.getIndus_id())
+                            serviceBaseTimeBean = serviceBseTimeBean;
+                    //    mServiceTimeTextView.setText("基础价格" + serviceBseTimeBean.getBasic_price() + "元/小时," + serviceBseTimeBean.getBasic_hours() + "小时起雇");
+                    }
+                }
                 break;
             // 保姆
             case 3:
@@ -829,6 +848,7 @@ public class ReservationServiceActivity extends BaseActivity {
     }
     private int getMoney() throws  Exception{
         int money = 0;
+        int days=1;
         switch (mPosition) {
 
             // 长期工
@@ -836,9 +856,12 @@ public class ReservationServiceActivity extends BaseActivity {
 
                 // 小时工
             case 1:
+                 if(mStartDate!=null&&!"".equals(mStartDate)&&mEndDate!=null&&!"".equals(mEndDate)){
+                 days=days+Integer.parseInt(mEndDate.replace("-","").substring(0, 8))-Integer.parseInt(mStartDate.replace("-","").substring(0,8));
+                 }
                 int hours = getHours();
                 if (hours != 0 && mChoosePriceBean != null) {
-                    money = hours * mChoosePriceBean.getPrice();
+                    money = hours * mChoosePriceBean.getPrice()*days;
                 }
                 break;
             // 保姆
@@ -865,20 +888,20 @@ public class ReservationServiceActivity extends BaseActivity {
 
     private int getHours() throws  Exception{
 
-//        if (mStartHourBean != null && mEndHourBean != null) {
-//
-//            if (mStartHourBean.getHour() < mEndHourBean.getHour()) {
-//                return mEndHourBean.getHour() - mStartHourBean.getHour();
-//            }
-//        }
-        if(mStartDate!=null&&!"".equals(mStartDate)&&mEndDate!=null&&!"".equals(mEndDate)){
-            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            java.util.Date now = df.parse(mEndDate+":00");
-            java.util.Date date=df.parse(mStartDate+":00");
-            long l=now.getTime()-date.getTime();
-            long hour=l/(60*60*1000);
-            return (int)hour;
+        if (mStartHourBean != null && mEndHourBean != null) {
+
+            if (mStartHourBean.getHour() < mEndHourBean.getHour()) {
+                return mEndHourBean.getHour() - mStartHourBean.getHour();
+            }
         }
+//        if(mStartDate!=null&&!"".equals(mStartDate)&&mEndDate!=null&&!"".equals(mEndDate)){
+//            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//            java.util.Date now = df.parse(mEndDate+":00");
+//            java.util.Date date=df.parse(mStartDate+":00");
+//            long l=now.getTime()-date.getTime();
+//            long hour=l/(60*60*1000);
+//            return (int)hour;
+//        }
 
 
         return 0;
@@ -942,7 +965,7 @@ public class ReservationServiceActivity extends BaseActivity {
                 }
                 break;
         }
-        if (!mSystemChooseAuntRaioButton.isChecked() && mAuntId == 0) {
+        if (!rb_planAunt.isChecked()&&!mSystemChooseAuntRaioButton.isChecked() && mAuntId == 0) {
             Toast.makeText(this, "请选择阿姨", Toast.LENGTH_SHORT).show();
             return false;
         }

@@ -197,6 +197,7 @@
                         android:layout_height="wrap_content"
                         android:paddingTop="5dp"
                         android:text="优惠券:25元优惠券"
+                        android:visibility="gone"
                         android:textSize="14sp" />
 
                     <TextView
@@ -206,7 +207,6 @@
                         android:paddingTop="5dp"
                         android:text="保证金:100元"
                         android:textSize="14sp" />
-
                     <TextView
                         android:id="@+id/tv_contact"
                         android:layout_width="wrap_content"
@@ -222,7 +222,6 @@
                         android:paddingTop="5dp"
                         android:text="联系电话:129127498213740"
                         android:textSize="14sp" />
-
                     <TextView
                         android:id="@+id/tv_ordertate"
                         android:layout_width="wrap_content"
@@ -230,6 +229,8 @@
                         android:paddingTop="5dp"
                         android:text="订单状态:待服务(待确认/待付款)"
                         android:textSize="14sp" />
+
+
                 </LinearLayout>
 
                 <RelativeLayout

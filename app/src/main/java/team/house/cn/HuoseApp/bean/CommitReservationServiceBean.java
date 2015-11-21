@@ -45,7 +45,7 @@ public class  CommitReservationServiceBean implements Serializable{
     private int start_hour; //开始时刻
     private HourBean endHouBean = new HourBean();
     private int end_hour; //结束时刻
-
+    private int workDays;//长期 工作天数
 
 
     public CommitReservationServiceBean() {
@@ -146,7 +146,14 @@ public class  CommitReservationServiceBean implements Serializable{
     public void setEndHouBean(HourBean endHouBean) {
         this.endHouBean = endHouBean;
     }
+    public int getWorkDays() {
 
+        return workDays;
+    }
+
+    public void setWorkDays(int workDays) {
+        this.workDays = workDays;
+    }
     public int getUid() {
 
         return uid;

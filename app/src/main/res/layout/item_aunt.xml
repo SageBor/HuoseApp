@@ -113,15 +113,15 @@
         android:layout_centerVertical="true"
         android:layout_margin="10dp"
         android:background="@drawable/lookrighticon"/>-->
-    <TextView
+    <ImageView
         android:id="@+id/iv_icon"
-        android:layout_alignParentRight="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:layout_margin="10dp"
-        android:textColor="@color/c595757"
-        android:text=">"/>
+        android:gravity="center"
+        android:layout_margin="20dp"
+        android:background="@drawable/lookrighticon"/>
 
 
 

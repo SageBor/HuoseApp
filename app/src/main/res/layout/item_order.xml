@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:layout_marginTop="3dp">
 
     <RelativeLayout
         android:id="@+id/rl_photo"
@@ -28,45 +29,51 @@
             android:id="@+id/tv_ordertime"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="发布时间:" />
+            android:text="发布时间:"
+            android:layout_marginTop="2dp"/>
 
         <TextView
             android:id="@+id/tv_bigType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="雇主需求:钟点工" />
+            android:text="雇主需求:钟点工"
+            android:layout_marginTop="2dp"/>
 
         <TextView
             android:id="@+id/tv_serviceTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="服务时间:2015-11-16 2小时" />
+            android:text="服务时间:2015-11-16 2小时"
+            android:layout_marginTop="2dp"/>
         <TextView
             android:id="@+id/tv_baseneyney"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="薪资:" />
+            android:text="薪资:"
+            android:layout_marginTop="2dp"/>
 
         <TextView
             android:id="@+id/tv_serviceAddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="服务地址" />
+            android:text="服务地址"
+            android:layout_marginTop="2dp"/>
 
         <TextView
             android:id="@+id/tv_orderstatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="订单状态:" />
+            android:text="订单状态:"
+            android:layout_marginTop="2dp"/>
 
     </LinearLayout>
-
-    <TextView
-        android:layout_alignParentRight="true"
+    <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
         android:gravity="center"
         android:layout_margin="20dp"
-        android:text=">" />
+        android:background="@drawable/lookrighticon"/>
 
 </RelativeLayout>

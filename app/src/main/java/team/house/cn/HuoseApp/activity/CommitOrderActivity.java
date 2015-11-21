@@ -173,6 +173,7 @@ public class CommitOrderActivity extends BaseActivity {
     }
 
     private void commitService() {
+        Users user=  UserUtil.getUserinfoFromSharepreference();
         Map params = new HashMap<>();
         params.put("data[uid]", mUser.getUid());
         params.put("data[username]", mUser.getUsername());
@@ -188,16 +189,16 @@ public class CommitOrderActivity extends BaseActivity {
         params.put("data[employment_uid]", mCommitReservationServiceBean.getEmployment_uid()); //阿姨id
         params.put("data[task_desc]", ""); //备注
         params.put("data[pay_typ]", 1); // 支付方式
-        params.put("data[model_id]", mCommitReservationServiceBean.getEmployment_uid() == 0 ? 2 : 3); // 发单模式
+        params.put("data[model_id]", mCommitReservationServiceBean.getModel_id()); // 发单模式
         params.put("data[task_cash]", mCommitReservationServiceBean.getTask_cash()); //订单金额
         params.put("data[paied_cash]", mCommitReservationServiceBean.getPaied_cash()); //保证金
         params.put("data[mobile]", mUser.getMobile()); //手机号
-        params.put("data[truename]", "张小姐"/*mUser.getTruename()*/);//真实姓名
+        params.put("data[truename]", user.getUsername());//真实姓名
         params.put("data[supplies_id]", getToolIds()); //保洁用品id
         params.put("data[address_id]", mCommitReservationServiceBean.getAddressBean().getmAddlesId()); //服务地址id
         params.put("data[start_hour]", mCommitReservationServiceBean.getStartHouBean().getHour()); // /开始时刻
         params.put("data[end_hour]", mCommitReservationServiceBean.getEndHouBean().getHour()); //结束时刻
-        params.put("data[work_days]", ""); //工作天数 只有长期钟点工用
+        params.put("data[work_days]", mCommitReservationServiceBean.getWorkDays()); //工作天数 只有长期钟点工用
         BaseRequest.instance().doRequest(Tag, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_COMMIT_ORDER, params, new BaseResponse() {
             @Override
             public void successful(ResponseBean responseBean) {

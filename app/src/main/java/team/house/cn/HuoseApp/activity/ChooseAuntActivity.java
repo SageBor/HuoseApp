@@ -46,6 +46,7 @@ public class ChooseAuntActivity extends BaseActivity {
     private String mSearchContent = "";
     private CityBean mCityBean;
     private int  mAuntId;
+    private int task_id;
     @Override
     protected void initView() {
         super.initView();
@@ -62,16 +63,21 @@ public class ChooseAuntActivity extends BaseActivity {
     protected void initData() {
         super.initData();
         Intent intent = getIntent();
-        mType = intent.getIntExtra("type", 1); //默认系统选择
-        mPositoin = intent.getIntExtra("positoin", 1);// 默认小时工类别
-        mCityBean = CityUtil.getCity(AppConfig.Preference_RealCityNameFromService);
-        if (mCityBean != null) {
-            getAuntListFromServer();
-        } else
-        {
-            Toast.makeText(this, "当前定位城市失败,请重新选择城市", Toast.LENGTH_SHORT);
+        String source= intent.getStringExtra("source");
+        if(source!=null&&!"".equals(source)){
+            task_id= intent.getIntExtra("task_id", 0);
+            getTaskAuntListFromServer();
+        }else{
+            mType = intent.getIntExtra("type", 1); //默认系统选择
+            mPositoin = intent.getIntExtra("positoin", 1);// 默认小时工类别
+            mCityBean = CityUtil.getCity(AppConfig.Preference_RealCityNameFromService);
+            if (mCityBean != null) {
+                getAuntListFromServer();
+            } else
+            {
+                Toast.makeText(this, "当前定位城市失败,请重新选择城市", Toast.LENGTH_SHORT);
+            }
         }
-
     }
 
     @Override
@@ -84,6 +90,7 @@ public class ChooseAuntActivity extends BaseActivity {
                 mAuntId = auntBeanList.get(position).getUid();
                 Intent intent = new Intent(ChooseAuntActivity.this, AuntDetailActivity.class);
                 intent.putExtra("auntId", mAuntId);
+                intent.putExtra("task_id", task_id);
                 ChooseAuntActivity.this.startActivityForResult(intent, 1);
             }
         });
@@ -121,7 +128,6 @@ public class ChooseAuntActivity extends BaseActivity {
     public void onClick(View v) {
         super.onClick(v);
     }
-
     private void getAuntListFromServer() {
         Map map = new HashMap();
         map.put("indus_pid", mPositoin);
@@ -170,6 +176,58 @@ public class ChooseAuntActivity extends BaseActivity {
 
             }
         });
+
+
+    }
+
+    private void getTaskAuntListFromServer() {
+        Map map = new HashMap();
+        map.put("task_id", task_id);
+//        map.put("province", mCityBean.getProvinceId());
+//        map.put("city",mCityBean.getCityId());
+//        map.put("search_content",mSearchContent);
+//        map.put("page_size", mPageSize);
+//        map.put("page_num", mPageNum);
+        BaseRequest.instance().doRequest(Tag, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_TASKORDER, map, new BaseResponse() {
+            @Override
+            public void successful(ResponseBean responseBean) {
+                int code = responseBean.getCode();
+                String msg = responseBean.getMsg();
+                if (code == 0) {
+                    try {
+                        JSONArray data = new JSONArray(responseBean.getData());
+                        if (data != null && data.length() > 0) {
+                            for (int i = 0; i < data.length(); i++) {
+                                AuntBean auntBean = new AuntBean();
+                                JSONObject jsonObject = data.getJSONObject(i);
+                                auntBean.setUid(JSONUtils.getInt(jsonObject, "uid", 0));
+                                auntBean.setTruename(JSONUtils.getString(jsonObject, "truename", ""));
+                                auntBean.setMobile(JSONUtils.getString(jsonObject, "mobile", ""));
+                                auntBean.setSeller_good_num(JSONUtils.getInt(jsonObject, "seller_good_num", 0));
+                                auntBean.setTake_num(JSONUtils.getInt(jsonObject, "seller_good_num", 0));
+                                auntBean.setSkill_names(JSONUtils.getString(jsonObject, "skill_names", ""));
+                                auntBean.setAge(JSONUtils.getString(jsonObject, "age", ""));
+                                auntBean.setHometown(JSONUtils.getString(jsonObject, "hometown", ""));
+                                auntBean.setUser_pic(JSONUtils.getString(jsonObject, "user_pic", ""));
+                                auntBeanList.add(auntBean);
+                            }
+                            chooseAuntAdapter.addItems(auntBeanList);
+                            chooseAuntAdapter.notifyDataSetChanged();
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+
+            }
+
+            @Override
+            public void failure(VolleyError error) {
+
+            }
+        });
+
 
     }
 }

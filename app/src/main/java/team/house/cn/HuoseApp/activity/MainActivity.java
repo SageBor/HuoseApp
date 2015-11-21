@@ -63,9 +63,15 @@ public class MainActivity extends BaseActivity {
         mGridViewServiceType.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 //                Toast.makeText(MainActivity.this, (position + 1), Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(MainActivity.this, ReservationServiceActivity.class);
-                intent.putExtra("position", position + 1);
-                MainActivity.this.startActivity(intent);
+                Intent intent;
+                int loginSate = UserUtil.getUseridFromSharepreference();
+                if (loginSate == 0) {
+                    intent = new Intent(MainActivity.this, LoginActivity.class);
+                }else{
+                    intent = new Intent(MainActivity.this, ReservationServiceActivity.class);
+                    intent.putExtra("position", position + 1);
+                }
+                startActivity(intent);
             }
         });
     }

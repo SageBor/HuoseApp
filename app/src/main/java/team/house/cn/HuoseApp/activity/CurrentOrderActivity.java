@@ -150,7 +150,11 @@ public class CurrentOrderActivity extends BaseActivity {
             // 用户已评价 可修改评价
             mPayButton.setText("修改评价");
             mPayButton.setVisibility(View.VISIBLE);
-        }else {
+        }else if (orderDetailBean.getTask_status().equals("5")) {
+            // 用户已评价 可修改评价
+            mPayButton.setText("选择阿姨");
+            mPayButton.setVisibility(View.VISIBLE);
+        }else{
             mPayButton.setVisibility(View.GONE);
         }
 
@@ -200,6 +204,11 @@ public class CurrentOrderActivity extends BaseActivity {
             } else if (orderDetailBean.getTask_status().equals("10")) {
                 // 用户已评价 可修改评价
                 startEvaluateActivity(2);
+            } else if (orderDetailBean.getTask_status().equals("5")) {
+                Intent intent = new Intent(this, ChooseAuntActivity.class);
+                intent.putExtra("source", "order");
+                intent.putExtra("task_id", orderDetailBean.getTask_id());
+                this.startActivity(intent);
 
             }
         }

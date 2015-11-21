@@ -536,6 +536,37 @@
                         android:layout_height="25dp"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
+                        android:checked="true" />
+
+                </RelativeLayout>
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/ca9a9a9"></View>
+                <!-- 系统推荐-->
+                <RelativeLayout
+                    android:id="@+id/rl_choosePlanAunt"
+                    android:layout_width="fill_parent"
+                    android:layout_height="35dp"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:text="发布招募"
+                        android:layout_centerVertical="true"
+                        android:textColor="@color/caaaaaa"
+                        android:textSize="12sp"></TextView>
+
+                    <RadioButton
+                        android:id="@+id/rb_planAunt"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
                         android:checked="false" />
 
                 </RelativeLayout>
@@ -543,7 +574,6 @@
                     android:layout_width="fill_parent"
                     android:layout_height="1dp"
                     android:background="@color/ca9a9a9"></View>
-
                 <!-- 自选阿姨-->
                 <RelativeLayout
                     android:id="@+id/rl_chooseAunt"
