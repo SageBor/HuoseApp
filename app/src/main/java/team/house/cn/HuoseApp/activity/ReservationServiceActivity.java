@@ -439,11 +439,14 @@ public class ReservationServiceActivity extends BaseActivity {
         Users userInfo = UserUtil.getUserinfoFromSharepreference();
         tv_username.setText(userInfo.getUsername());
         List<AddressBean> addressList = UserUtil.getAddressFromSharepreference();
-        for (AddressBean address : addressList) {
-            if (address.iSDefault() && address.getmAddressAll() != null) {
-                tv_serviceAddress.setText(address.getmAddressAll());
-                mChooseAddress = address;
+        if(addressList!=null&&addressList.size()>0){
+            for (AddressBean address : addressList) {
+                if (address.iSDefault() && address.getmAddressAll() != null) {
+                    tv_serviceAddress.setText(address.getmAddressAll());
+                    mChooseAddress = address;
+                    break;
 //                mCommitReservationServiceBean.setAddressBean(address);
+                }
             }
         }
     }
