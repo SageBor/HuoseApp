@@ -30,8 +30,8 @@ public class ServiceToolsAdapter extends BaseAdapter {
         mchooseServiceToolsBeans = new ArrayList<ServiceToolsBean>();
 
     }
-    public void addItems(List<ServiceToolsBean> mServiceToolsBeans) {
-        mServiceToolsBeans = mServiceToolsBeans;
+    public void addItems(List<ServiceToolsBean> _mServiceToolsBeans) {
+        mServiceToolsBeans = _mServiceToolsBeans;
     }
     @Override
     public int getCount() {
