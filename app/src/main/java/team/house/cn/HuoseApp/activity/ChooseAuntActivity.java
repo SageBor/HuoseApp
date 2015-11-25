@@ -28,6 +28,7 @@ import team.house.cn.HuoseApp.bean.CityBean;
 import team.house.cn.HuoseApp.constans.AppConfig;
 import team.house.cn.HuoseApp.utils.CityUtil;
 import team.house.cn.HuoseApp.utils.JSONUtils;
+import team.house.cn.HuoseApp.views.RequestLoadingWeb;
 
 /**
  * Created by kn on 15/11/13.
@@ -47,6 +48,9 @@ public class ChooseAuntActivity extends BaseActivity {
     private CityBean mCityBean;
     private int  mAuntId;
     private int task_id;
+
+    private RequestLoadingWeb mRequestLoadingWeb;
+
     @Override
     protected void initView() {
         super.initView();
@@ -55,7 +59,15 @@ public class ChooseAuntActivity extends BaseActivity {
         auntBeanList = new ArrayList<AuntBean>();
         chooseAuntAdapter = new ChooseAuntAdapter(this, auntBeanList);
         lv_aunts.setAdapter(chooseAuntAdapter);
-
+        mRequestLoadingWeb = new RequestLoadingWeb(getWindow());
+        mRequestLoadingWeb.setAgainListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mRequestLoadingWeb.getStatus() == RequestLoadingWeb.STATUS_ERROR) {
+                    initData();
+                }
+            }
+        });
 
     }
 
@@ -64,7 +76,7 @@ public class ChooseAuntActivity extends BaseActivity {
         super.initData();
         Intent intent = getIntent();
         String source= intent.getStringExtra("source");
-        if(source!=null&&!"".equals(source)){
+        if(source!=null && !"".equals(source)){
             task_id= intent.getIntExtra("task_id", 0);
             getTaskAuntListFromServer();
         }else{
@@ -79,6 +91,7 @@ public class ChooseAuntActivity extends BaseActivity {
             }
         }
     }
+
 
     @Override
     protected void initEvent() {
@@ -128,6 +141,8 @@ public class ChooseAuntActivity extends BaseActivity {
     public void onClick(View v) {
         super.onClick(v);
     }
+
+
     private void getAuntListFromServer() {
         Map map = new HashMap();
         map.put("indus_pid", mPositoin);
@@ -137,11 +152,13 @@ public class ChooseAuntActivity extends BaseActivity {
 //        map.put("search_content",mSearchContent);
 //        map.put("page_size", mPageSize);
 //        map.put("page_num", mPageNum);
-        BaseRequest.instance().doRequest(Tag, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_GET_AUNTLIST, map, new BaseResponse() {
+        mRequestLoadingWeb.statuesToInLoading();
+        BaseRequest.instance(this).doRequest(Tag, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_GET_AUNTLIST, map, new BaseResponse() {
             @Override
             public void successful(ResponseBean responseBean) {
                 int code = responseBean.getCode();
                 String msg = responseBean.getMsg();
+                mRequestLoadingWeb.statuesToNormal();
                 if (code == 0) {
                     try {
                         JSONArray data = new JSONArray(responseBean.getData());
@@ -165,22 +182,23 @@ public class ChooseAuntActivity extends BaseActivity {
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
+                        mRequestLoadingWeb.statuesToError();
                     }
+                } else {
+                    mRequestLoadingWeb.statuesToError();
                 }
-
-
             }
 
             @Override
             public void failure(VolleyError error) {
+                mRequestLoadingWeb.statuesToError();
 
             }
         });
-
-
     }
 
     private void getTaskAuntListFromServer() {
+        mRequestLoadingWeb.statuesToInLoading();
         Map map = new HashMap();
         map.put("task_id", task_id);
 //        map.put("province", mCityBean.getProvinceId());
@@ -188,11 +206,12 @@ public class ChooseAuntActivity extends BaseActivity {
 //        map.put("search_content",mSearchContent);
 //        map.put("page_size", mPageSize);
 //        map.put("page_num", mPageNum);
-        BaseRequest.instance().doRequest(Tag, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_TASKORDER, map, new BaseResponse() {
+        BaseRequest.instance(this).doRequest(Tag, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_TASKORDER, map, new BaseResponse() {
             @Override
             public void successful(ResponseBean responseBean) {
                 int code = responseBean.getCode();
                 String msg = responseBean.getMsg();
+                mRequestLoadingWeb.statuesToNormal();
                 if (code == 0) {
                     try {
                         JSONArray data = new JSONArray(responseBean.getData());
@@ -215,8 +234,11 @@ public class ChooseAuntActivity extends BaseActivity {
                             chooseAuntAdapter.notifyDataSetChanged();
                         }
                     } catch (JSONException e) {
+                        mRequestLoadingWeb.statuesToError();
                         e.printStackTrace();
                     }
+                } else {
+                    mRequestLoadingWeb.statuesToError();
                 }
 
 
@@ -224,7 +246,7 @@ public class ChooseAuntActivity extends BaseActivity {
 
             @Override
             public void failure(VolleyError error) {
-
+                mRequestLoadingWeb.statuesToError();
             }
         });
 

@@ -53,6 +53,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import team.house.cn.HuoseApp.views.RequestLoadingDialog;
+
 /**
  * 帮助类，一些常用的函数可写在此处
  *
@@ -62,7 +64,7 @@ import java.util.Map;
  */
 public class CommonTools {
   private static Toast mToast;
-//  private static RequestLoadingDialog mLoadingDialog;
+  private static RequestLoadingDialog mLoadingDialog;
   private static String mDeviceImei;
   private static String imei_config = "imei";
 
@@ -803,21 +805,21 @@ public class CommonTools {
 //    return style;
 //  }
 //
-//  public static RequestLoadingDialog createRequestLoadingDialog(Context context) {
-//    return createRequestLoadingDialog(context, "");
-//  }
-//
-//  public static RequestLoadingDialog createRequestLoadingDialog(Context context, String loadingtext) {
-//    // 创建之前先dismiss之前可能未dismiss的dialog
-//    dissmissLoadingDialog();
-//    mLoadingDialog = new RequestLoadingDialog(context);
-//    try {
-//      mLoadingDialog.stateToLoading(loadingtext);
-//    } catch (Exception e) {
-//      e.printStackTrace();
-//    }
-//    return mLoadingDialog;
-//  }
+  public static RequestLoadingDialog createRequestLoadingDialog(Context context) {
+    return createRequestLoadingDialog(context, "");
+  }
+
+  public static RequestLoadingDialog createRequestLoadingDialog(Context context, String loadingtext) {
+    // 创建之前先dismiss之前可能未dismiss的dialog
+    dissmissLoadingDialog();
+    mLoadingDialog = new RequestLoadingDialog(context);
+    try {
+      mLoadingDialog.stateToLoading(loadingtext);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return mLoadingDialog;
+  }
 //
 //  /**
 //   * 充值页面dialog 只有文字 没有车轮
@@ -838,11 +840,11 @@ public class CommonTools {
 //    }
 //    return mLoadingDialog;
 //  }
-//  public static void dissmissLoadingDialog() {
-//    if (mLoadingDialog != null) {
-//      mLoadingDialog.stateToNormal();
-//    }
-//  }
+  public static void dissmissLoadingDialog() {
+    if (mLoadingDialog != null) {
+      mLoadingDialog.stateToNormal();
+    }
+  }
 //
 //  /**
 //   * 截取字符串的函数

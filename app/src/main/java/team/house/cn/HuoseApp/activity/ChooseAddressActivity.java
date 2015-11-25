@@ -38,6 +38,7 @@ import team.house.cn.HuoseApp.bean.CityBean;
 import team.house.cn.HuoseApp.bean.ProvinceBean;
 import team.house.cn.HuoseApp.constans.AppConfig;
 import team.house.cn.HuoseApp.utils.JSONUtils;
+import team.house.cn.HuoseApp.views.RequestLoadingWeb;
 
 /**
  * Created by kenan on 15/11/8.
@@ -62,6 +63,8 @@ public class ChooseAddressActivity extends BaseActivity {
     private ProvinceBean mProvinceBean;
     private CityBean mCityBean;
 
+    private RequestLoadingWeb mRequestLoadingWeb;
+
 
 
     @Override
@@ -85,6 +88,15 @@ public class ChooseAddressActivity extends BaseActivity {
         mCityAdapter = new CityAdapter(cityBeanArrayList, this);
         mProvinceSpinner.setAdapter(mProvinceAdapter);
         mCityceSpinner.setAdapter(mCityAdapter);
+        mRequestLoadingWeb = new RequestLoadingWeb(getWindow());
+        mRequestLoadingWeb.setAgainListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mRequestLoadingWeb.getStatus() == RequestLoadingWeb.STATUS_ERROR) {
+                    getListAddressFromService();
+                }
+            }
+        });
     }
 
     @Override
@@ -191,13 +203,15 @@ public class ChooseAddressActivity extends BaseActivity {
     }
 
     private void getListAddressFromService(){
+        mRequestLoadingWeb.statuesToInLoading();
         Map paramMap = new HashMap<>();
         paramMap.put("uid" , mUserBean.getUid());
-        BaseRequest.instance().doRequest(Tag,Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_GET_ADDRESS, paramMap, new BaseResponse() {
+        BaseRequest.instance(this).doRequest(Tag,Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_GET_ADDRESS, paramMap, new BaseResponse() {
             @Override
             public void successful(ResponseBean responseBean) {
                 int code = responseBean.getCode();
                 String codemsg = responseBean.getMsg();
+                mRequestLoadingWeb.statuesToNormal();
                 if(code == 0){
                     String datajson = responseBean.getData();
                     try {
@@ -222,10 +236,11 @@ public class ChooseAddressActivity extends BaseActivity {
                         }
 
                     } catch (JSONException e) {
+                        mRequestLoadingWeb.statuesToError();
                         e.printStackTrace();
                     }
                 } else {
-
+                    mRequestLoadingWeb.statuesToError();
                 }
 
             }
@@ -233,6 +248,7 @@ public class ChooseAddressActivity extends BaseActivity {
             @Override
             public void failure(VolleyError error) {
 
+                mRequestLoadingWeb.statuesToError();
             }
         });
     }
@@ -244,7 +260,7 @@ public class ChooseAddressActivity extends BaseActivity {
         paramMap.put("data[city]" , mCityBean.getCityId());
         paramMap.put("data[address]" , addressinfo);
         paramMap.put("data[is_default]" , 0);
-        BaseRequest.instance().doRequest(Tag, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_GET_ADDADDRESS, paramMap, new BaseResponse() {
+        BaseRequest.instance(this).doRequest(Tag, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_GET_ADDADDRESS, paramMap, new BaseResponse() {
             @Override
             public void successful(ResponseBean responseBean) {
                 int code = responseBean.getCode();
@@ -288,7 +304,7 @@ public class ChooseAddressActivity extends BaseActivity {
 
     private void getCityList () {
 
-        BaseRequest.instance().doRequest(Tag, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_CITY_LIST, null, new BaseResponse() {
+        BaseRequest.instance(this).doRequest(Tag, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_CITY_LIST, null, new BaseResponse() {
             @Override
             public void successful(ResponseBean responseBean) {
                 int code = responseBean.getCode();

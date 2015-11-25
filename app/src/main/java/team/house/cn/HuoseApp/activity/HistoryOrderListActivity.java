@@ -231,7 +231,7 @@ public class HistoryOrderListActivity extends BaseActivity {
         param.put("group_id", 4);
         param.put("page_size", mPageSize);
         param.put("page_num", mPageNum);
-        BaseRequest.instance().doRequest(Tag, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_GETHISTORYORDER, param, new BaseResponse() {
+        BaseRequest.instance(this).doRequest(Tag, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_GETHISTORYORDER, param, new BaseResponse() {
             @Override
             public void successful(ResponseBean responseBean) {
                 int code = responseBean.getCode();
@@ -276,7 +276,7 @@ public class HistoryOrderListActivity extends BaseActivity {
         Map param = new HashMap();
         param.put("task_id", task_id);
         param.put("indus_pid", indus_pid);
-        BaseRequest.instance().doRequest(Tag, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_GET_ORDERDETAIL, param, new BaseResponse() {
+        BaseRequest.instance(this).doRequest(Tag, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_GET_ORDERDETAIL, param, new BaseResponse() {
             @Override
             public void successful(ResponseBean responseBean) {
                 int code = responseBean.getCode();

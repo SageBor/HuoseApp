@@ -23,4 +23,33 @@
         <item name="android:windowEnterAnimation">@anim/popup_anim_in</item>
         <item name="android:windowExitAnimation">@anim/popup_anim_out</item>
     </style>
+
+    <!-- loading progress的 -->
+    <style name="publicloadingProgressStyle">
+        <item name="android:indeterminateDrawable">@anim/wb_loading_frame</item>
+        <item name="android:minWidth">@dimen/public_loadingweb_icon_width</item>
+        <item name="android:maxWidth">@dimen/public_loadingweb_icon_width</item>
+        <item name="android:minHeight">@dimen/public_loadingweb_icon_width</item>
+        <item name="android:maxHeight">@dimen/public_loadingweb_icon_width</item>
+    </style>
+
+    <style name="shadwonutton">
+        <item name="android:textColor">@drawable/bg_redbtntxt_selector</item>
+        <item name="android:background">@drawable/bg_redbtn_selector</item>
+    </style>
+    <!-- Request页面的Dialog -->
+    <style name="RequestDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+    <style name="customloadingProgressStyle">
+        <item name="android:indeterminateDrawable">@anim/wb_loading_frame_translate</item>
+        <item name="android:minWidth">@dimen/public_loading_icon_width</item>
+        <item name="android:maxWidth">@dimen/public_loading_icon_width</item>
+        <item name="android:minHeight">@dimen/public_loading_icon_height</item>
+        <item name="android:maxHeight">@dimen/public_loading_icon_height</item>
+    </style>
 </resources>

@@ -20,14 +20,27 @@
 
         <include layout="@layout/public_bottom"></include>
     </LinearLayout>
-    <ListView
-        android:id="@+id/lv_aunts"
+    <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:background="@drawable/bg"
         android:layout_below="@+id/layout_head"
-        android:layout_above="@+id/bottom"
-    android:background="@drawable/bg">
-    </ListView>
+        android:layout_above="@+id/bottom">
+        <ListView
+            android:id="@+id/lv_aunts"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+        </ListView>
+
+        <include
+            android:id="@+id/loading_view"
+            layout="@layout/public_requestloading_web"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_centerHorizontal="true" />
+
+    </RelativeLayout>
 
 
 >

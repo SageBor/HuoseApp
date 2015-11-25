@@ -154,7 +154,7 @@ public class ResgisterAvtivity extends BaseActivity {
         param.put("code",mPSWEditText.getText().toString());
         param.put("group_id","4");
         param.put("password",pwdEdite.getText().toString().toString());
-        BaseRequest.instance().doRequest(Tag, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_REGISTER, param, new BaseResponse() {
+        BaseRequest.instance(this).doRequest(Tag, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_REGISTER, param, new BaseResponse() {
             @Override
             public void successful(ResponseBean responseBean) {
                 int code = responseBean.getCode();
@@ -189,7 +189,7 @@ public class ResgisterAvtivity extends BaseActivity {
     private void getCodeFromSerice() {
         Map param = new HashMap();
         param.put("mobile", "");
-        BaseRequest.instance().doRequest(Tag, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_GET_CODE, param, new BaseResponse() {
+        BaseRequest.instance(this).doRequest(Tag, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_GET_CODE, param, new BaseResponse() {
             @Override
             public void successful(ResponseBean responseBean) {
                 int code = responseBean.getCode();

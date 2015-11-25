@@ -114,7 +114,7 @@ public class LoginActivity extends BaseActivity {
         Map params = new HashMap();
         params.put("username", mPhoneEditText.getText());
         params.put("password", mPSWEditText.getText());
-        BaseRequest.instance().doRequest(Tag, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_LOGIN, params, new BaseResponse() {
+        BaseRequest.instance(this).doRequest(Tag, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_LOGIN, params, new BaseResponse() {
             @Override
             public void successful(ResponseBean responseBean) {
                 int code = responseBean.getCode();

@@ -170,6 +170,7 @@
                         android:text="修改订单"
                         android:textSize="17sp"
                         android:id="@+id/bt_update" />
+
                 </LinearLayout>
 
             </RelativeLayout>

@@ -123,7 +123,7 @@ public class AuntDetailActivity extends BaseActivity{
     private void getDetailFromService() {
         Map param = new HashMap<>();
         param.put("uid", mAuntId);
-        BaseRequest.instance().doRequest(Tag, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_GET_AUNTDETAIL, param, new BaseResponse() {
+        BaseRequest.instance(this).doRequest(Tag, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_GET_AUNTDETAIL, param, new BaseResponse() {
             @Override
             public void successful(ResponseBean responseBean) {
                 int code = responseBean.getCode();
@@ -172,7 +172,7 @@ public class AuntDetailActivity extends BaseActivity{
         Map param = new HashMap<>();
         param.put("uid", mAuntId);
         param.put("task_id", task_id);
-        BaseRequest.instance().doRequest(Tag, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_TASKAUNT, param, new BaseResponse() {
+        BaseRequest.instance(this).doRequest(Tag, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_TASKAUNT, param, new BaseResponse() {
             @Override
             public void successful(ResponseBean responseBean) {
                 int code = responseBean.getCode();

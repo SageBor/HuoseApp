@@ -125,7 +125,7 @@ public class EvaluateActivity extends BaseActivity {
     private void getEvaluateInfo () {
         Map map = new HashMap<>();
         map.put("mark_id", mark_id);
-        BaseRequest.instance().doRequest(Tag, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_COMMIT_EVALUATE, map, new BaseResponse() {
+        BaseRequest.instance(this).doRequest(Tag, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_COMMIT_EVALUATE, map, new BaseResponse() {
             @Override
             public void successful(ResponseBean responseBean) {
                 int code = responseBean.getCode();
@@ -166,7 +166,7 @@ public class EvaluateActivity extends BaseActivity {
         map.put("data[aid_star]", ratingbar.getRating());
         map.put("data[mark_content]", et_auntEvaluate.getText());
         map.put("data[suggest]", et_sugusstEditeText.getText());
-        BaseRequest.instance().doRequest(Tag, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_COMMIT_EVALUATE, map, new BaseResponse() {
+        BaseRequest.instance(this).doRequest(Tag, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_COMMIT_EVALUATE, map, new BaseResponse() {
             @Override
             public void successful(ResponseBean responseBean) {
                 int code = responseBean.getCode();

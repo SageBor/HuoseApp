@@ -516,7 +516,7 @@ public class ReservationServiceActivity extends BaseActivity {
         paraments.put("dis_upid", mProvinceId);
         paraments.put("dis_id", mCityId);
         paraments.put("indus_pid", mPosition);
-        BaseRequest.instance().doRequest(Tag, Request.Method.GET, AppConfig.WebHost + AppConfig.Urls.URL_GET_CONFIG, paraments, new BaseResponse() {
+        BaseRequest.instance(this).doRequest(Tag, Request.Method.GET, AppConfig.WebHost + AppConfig.Urls.URL_GET_CONFIG, paraments, new BaseResponse() {
             @Override
             public void successful(ResponseBean responseBean) {
                 if (responseBean != null) {
@@ -727,7 +727,7 @@ public class ReservationServiceActivity extends BaseActivity {
         paramMap.put("indus_pid", mPosition);// 服务大类Id
         paramMap.put("indus_id", indus_id);// 服务小类Id
         paramMap.put("hour_typ", typ);//1:开始  2:结束       非必要选项，默认返回开始时间列表
-        BaseRequest.instance().doRequest(Tag, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_GET_HOURE, paramMap, new BaseResponse() {
+        BaseRequest.instance(this).doRequest(Tag, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_GET_HOURE, paramMap, new BaseResponse() {
 
             @Override
             public void successful(ResponseBean responseBean) {
@@ -775,7 +775,7 @@ public class ReservationServiceActivity extends BaseActivity {
         paramMap.put("dis_id", mCityId);
         paramMap.put("indus_pid", mPosition);// 服务大类Id
         paramMap.put("indus_id", indus_id);// 服务小类Id
-        BaseRequest.instance().doRequest(Tag, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_GET_TRYDAYS, paramMap, new BaseResponse() {
+        BaseRequest.instance(this).doRequest(Tag, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_GET_TRYDAYS, paramMap, new BaseResponse() {
 
             @Override
             public void successful(ResponseBean responseBean) {
@@ -815,7 +815,7 @@ public class ReservationServiceActivity extends BaseActivity {
         paramMap.put("dis_id", mCityId);
         paramMap.put("indus_pid", mPosition);// 服务大类Id
         paramMap.put("indus_id", indus_id);// 服务小类Id
-        BaseRequest.instance().doRequest(Tag, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_GET_MONTH, paramMap, new BaseResponse() {
+        BaseRequest.instance(this).doRequest(Tag, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_GET_MONTH, paramMap, new BaseResponse() {
 
             @Override
             public void successful(ResponseBean responseBean) {

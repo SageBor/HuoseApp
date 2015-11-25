@@ -1,5 +1,6 @@
 package team.house.cn.HuoseApp.asytask;
 
+import android.app.Activity;
 import android.os.SystemClock;
 import android.text.TextUtils;
 import android.widget.Toast;
@@ -25,6 +26,7 @@ import java.util.Map;
 
 import team.house.cn.HuoseApp.application.HouseApplication;
 import team.house.cn.HuoseApp.constans.AppConfig;
+import team.house.cn.HuoseApp.utils.CommonTools;
 import team.house.cn.HuoseApp.utils.PreferenceUtil;
 
 //import im.amomo.volley.OkRequest;
@@ -36,8 +38,19 @@ public class BaseRequest {
     private long mRequestBeginTime = 0;
     private static BaseRequest mBaseRequest = null;
     private JsonObjectRequest jsonRequet;
-    public static BaseRequest  instance () {
-        if (mBaseRequest == null ) {
+    private static Activity mActivity;
+
+    public static BaseRequest instance(Activity _activity) {
+
+        mActivity= _activity;
+        if (mBaseRequest == null) {
+            mBaseRequest = new BaseRequest();
+        }
+        return mBaseRequest;
+    }
+    public static BaseRequest instance() {
+
+        if (mBaseRequest == null) {
             mBaseRequest = new BaseRequest();
         }
         return mBaseRequest;
@@ -47,11 +60,16 @@ public class BaseRequest {
 
         String params = getParames(param);
         if (!TextUtils.isEmpty(params)) {
-                url = url + params;
+            url = url + params;
         }
 
+        if (mActivity != null) {
+            CommonTools.createRequestLoadingDialog(mActivity);
+        }
         jsonRequet = new JsonObjectRequest(method, url, new Response.Listener<JSONObject>() {
+
             public void onResponse(JSONObject jsonObject) {
+                CommonTools.dissmissLoadingDialog();
                 try {
 
                     int code = jsonObject.getInt("rst_code");
@@ -67,11 +85,12 @@ public class BaseRequest {
         },
                 new Response.ErrorListener() {
                     public void onErrorResponse(VolleyError error) {
+                        CommonTools.dissmissLoadingDialog();
                         baseResponse.failure(error);
                     }
                 });
         jsonRequet.setTag(tag);
-        jsonRequet.setRetryPolicy(new DefaultRetryPolicy(10 * 1000, 2,1));
+        jsonRequet.setRetryPolicy(new DefaultRetryPolicy(10 * 1000, 2, 1));
         HouseApplication.mQueue.add(jsonRequet);
 
 
@@ -97,17 +116,17 @@ public class BaseRequest {
         }
     }
 
-    private String getParames(Map<Object, Object> paramMap){
+    private String getParames(Map<Object, Object> paramMap) {
         StringBuffer paramsb = null;
         if (paramMap != null && paramMap.size() > 0) {
             paramsb = new StringBuffer();
-                for (Map.Entry<Object, Object> entry : paramMap.entrySet()) {
-                    try {
-                        paramsb.append( "&" + entry.getKey().toString() + "=" + URLEncoder.encode(entry.getValue().toString(), "UTF-8"));
-                    } catch (UnsupportedEncodingException e) {
-                        e.printStackTrace();
-                    }
+            for (Map.Entry<Object, Object> entry : paramMap.entrySet()) {
+                try {
+                    paramsb.append("&" + entry.getKey().toString() + "=" + URLEncoder.encode(entry.getValue().toString(), "UTF-8"));
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
                 }
+            }
             return paramsb.toString();
 
 

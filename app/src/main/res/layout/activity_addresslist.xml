@@ -98,6 +98,13 @@
                 android:background="@color/white"
                 android:divider="@null"></team.house.cn.HuoseApp.views.ScrollListView>
 
+            <include
+                android:id="@+id/loading_view"
+                layout="@layout/public_requestloading_web"
+                android:visibility="gone"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_centerHorizontal="true" />
 
         </LinearLayout>
     </ScrollView>

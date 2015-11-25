@@ -94,7 +94,7 @@ public class UserAccountActivity extends BaseActivity {
         final Users usersInfo= UserUtil.getUserinfoFromSharepreference();
         Map params = new HashMap();
         params.put("uid", usersInfo.getUid());
-        BaseRequest.instance().doRequest(Tag,Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_URSER_INFO, params, new BaseResponse() {
+        BaseRequest.instance(this).doRequest(Tag,Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_URSER_INFO, params, new BaseResponse() {
             @Override
             public void successful(ResponseBean responseBean) {
                 int code = responseBean.getCode();

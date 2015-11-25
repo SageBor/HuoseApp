@@ -5,4 +5,10 @@
     <string name="np_now">现在</string>
 
     <string name="action_settings">Settings</string>
+    <string name="requestloading_loading"><![CDATA[信息获取中，请稍等&#8230;]]></string>
+    <string name="request_loading_info"><![CDATA[努力加载中&#8230;]]></string>
+    <string name="request_loading_fail">数据加载失败</string>
+    <string name="requestloading_retry">重　试</string>
+    <string name="requestloading_success">请求成功</string>
+    <string name="requestloading_continue">继　续</string>
 </resources>

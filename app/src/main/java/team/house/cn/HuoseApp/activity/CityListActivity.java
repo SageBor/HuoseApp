@@ -26,6 +26,7 @@ import team.house.cn.HuoseApp.constans.AppConfig;
 import team.house.cn.HuoseApp.utils.CityUtil;
 import team.house.cn.HuoseApp.utils.JSONUtils;
 import team.house.cn.HuoseApp.views.ExpandableLayoutListView.ExpandableLayoutListView;
+import team.house.cn.HuoseApp.views.RequestLoadingWeb;
 
 /**
  * Created by kn on 15/11/25.
@@ -37,6 +38,9 @@ public class CityListActivity extends BaseActivity {
     private TextView currentTextView;
     private ProvinceListAdapter provinceListAdapter ;
     private ExpandableLayoutListView expandableLayoutListView;
+
+    private RequestLoadingWeb mRequestLoadingWeb;
+
     @Override
     protected void initView() {
         super.initView();
@@ -45,6 +49,15 @@ public class CityListActivity extends BaseActivity {
         provinceListAdapter = new ProvinceListAdapter(provineList,allCityList, this);
         expandableLayoutListView = (ExpandableLayoutListView) findViewById(R.id.listview);
         expandableLayoutListView.setAdapter(provinceListAdapter);
+        mRequestLoadingWeb = new RequestLoadingWeb(getWindow());
+        mRequestLoadingWeb.setAgainListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mRequestLoadingWeb.getStatus() == RequestLoadingWeb.STATUS_ERROR) {
+                    getCityListFromService();
+                }
+            }
+        });
     }
 
     @Override
@@ -75,9 +88,13 @@ public class CityListActivity extends BaseActivity {
 
     private void getCityListFromService () {
         Map param = new HashMap<>();
-        BaseRequest.instance().doRequest(Tag, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_GET_CITYLIST, param, new BaseResponse() {
+
+        mRequestLoadingWeb.statuesToInLoading();
+        BaseRequest.instance(this).doRequest(Tag, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_GET_CITYLIST, param, new BaseResponse() {
             @Override
             public void successful(ResponseBean responseBean) {
+
+                mRequestLoadingWeb.statuesToNormal();
                 int code = responseBean.getCode();
                 String codeMsg = responseBean.getMsg();
                 if (code == 0) {
@@ -111,11 +128,14 @@ public class CityListActivity extends BaseActivity {
                             }
                         }
                     } catch (JSONException e) {
+
+                        mRequestLoadingWeb.statuesToError();
                         e.printStackTrace();
                     }
 
-
                 } else {
+
+                    mRequestLoadingWeb.statuesToError();
                     Toast.makeText(CityListActivity.this, codeMsg, Toast.LENGTH_SHORT).show();
                 }
 
@@ -124,28 +144,10 @@ public class CityListActivity extends BaseActivity {
             @Override
             public void failure(VolleyError error) {
 
+                mRequestLoadingWeb.statuesToError();
                 Toast.makeText(CityListActivity.this, "网络请求失败,请稍后重试", Toast.LENGTH_SHORT).show();
 
             }
         });
     }
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.main, menu);
-//        return true;
-//    }
-
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
 }
