@@ -281,13 +281,13 @@
 
             </LinearLayout>
         </ScrollView>
-        <ListView
+        <team.house.cn.HuoseApp.views.XListView
             android:id="@+id/lv_order"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:scrollbars="none"
             android:background="@color/white">
 
-        </ListView>
+        </team.house.cn.HuoseApp.views.XListView>
     </RelativeLayout>
 </RelativeLayout>

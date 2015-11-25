@@ -32,11 +32,12 @@ import team.house.cn.HuoseApp.bean.OrderDetailBean;
 import team.house.cn.HuoseApp.constans.AppConfig;
 import team.house.cn.HuoseApp.utils.JSONUtils;
 import team.house.cn.HuoseApp.utils.UserUtil;
+import team.house.cn.HuoseApp.views.XListView;
 
 /**
  * Created by kenan on 15/11/18.
  */
-public class HistoryOrderListActivity extends BaseActivity {
+public class HistoryOrderListActivity extends BaseActivity implements XListView.IXListViewListener {
     private final String Tag = "HistoryOrderListActivity";
     private OrderDetailBean orderDetailBean;
     private List<OrderBean> orderBeanList;
@@ -67,7 +68,7 @@ public class HistoryOrderListActivity extends BaseActivity {
     private Button mStartServiceButton;
     private Button mEndServiceButton;
     private Button mPayButton;
-    private ListView mOrderListView;
+    private XListView mOrderListView;
     private OrderListAdapter orderListAdapter;
     private int Status = 0; //0 - 当前订单 1- 订单详情
 
@@ -104,7 +105,7 @@ public class HistoryOrderListActivity extends BaseActivity {
         mStartServiceButton = (Button) findViewById(R.id.bt_start);
         mEndServiceButton = (Button) findViewById(R.id.bt_end);
         mPayButton = (Button) findViewById(R.id.bt_pay);
-        mOrderListView = (ListView) findViewById(R.id.lv_order);
+        mOrderListView = (XListView) findViewById(R.id.lv_order);
         orderListAdapter = new OrderListAdapter(orderBeanList, this);
         mOrderListView.setAdapter(orderListAdapter);
 
@@ -168,7 +169,8 @@ public class HistoryOrderListActivity extends BaseActivity {
         if (mUser == null) {
             Toast.makeText(this, "用户退出,请重新登录", Toast.LENGTH_SHORT).show();
         } else {
-            getInfoFromService();
+            mOrderListView.startRefresh();
+//            getInfoFromService();
 
         }
     }
@@ -178,9 +180,11 @@ public class HistoryOrderListActivity extends BaseActivity {
         mStartServiceButton.setOnClickListener(this);
         mEndServiceButton.setOnClickListener(this);
         mPayButton.setOnClickListener(this);
+        mOrderListView.setXListViewListener(this);
+        mOrderListView.setPullLoadEnable(true);
         mOrderListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                getDetailFromService(orderBeanList.get(i).getTask_id(), orderBeanList.get(i).indus_pid());
+                getDetailFromService(orderBeanList.get(i - mOrderListView.getHeaderViewsCount()).getTask_id(), orderBeanList.get(i - mOrderListView.getHeaderViewsCount()).indus_pid());
             }
         });
 
@@ -234,6 +238,7 @@ public class HistoryOrderListActivity extends BaseActivity {
         BaseRequest.instance(this).doRequest(Tag, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_GETHISTORYORDER, param, new BaseResponse() {
             @Override
             public void successful(ResponseBean responseBean) {
+                stopLoadMore();
                 int code = responseBean.getCode();
                 String msg = responseBean.getMsg();
                 if (code == 0) {
@@ -266,7 +271,7 @@ public class HistoryOrderListActivity extends BaseActivity {
 
             @Override
             public void failure(VolleyError error) {
-
+                stopLoadMore();
             }
         });
     }
@@ -370,5 +375,34 @@ public class HistoryOrderListActivity extends BaseActivity {
     protected void onDestroy() {
         BaseRequest.instance().cancelRequst(Tag);
         super.onDestroy();
+    }
+
+    @Override
+    public void onRefresh() {
+        mPageNum = 1;
+        getInfoFromService();
+    }
+
+    @Override
+    public void onLoadMore() {
+
+        int viewCount = orderListAdapter.getCount() / mPageSize;
+        if (orderListAdapter.getCount() % mPageSize > 0) {
+            viewCount++;
+        }
+        mPageNum = viewCount + 1;
+        getInfoFromService();
+
+    }
+
+    /**
+     * 停止加载数据
+     */
+    private void stopLoadMore() {
+        if (mOrderListView != null) {
+            mOrderListView.stopLoadMore();
+            mOrderListView.stopRefresh();
+            mOrderListView.setRefreshTime("刚刚");
+        }
     }
 }
