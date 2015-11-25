@@ -158,8 +158,6 @@ public abstract class BaseActivity extends Activity implements
                         dialog.cancel();//取消弹出框
                     }
                 }).create().show();
-//                intent = new Intent(new Intent(this, MainActivity.class));
-//                this.finish();
 
         }
     }

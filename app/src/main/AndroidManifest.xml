@@ -30,10 +30,11 @@
                 </action>
             </intent-filter>
         </service>
-        <!-- kenan mac : ya5wyV3uby73vG0hW789BlaG -->
+        <!-- kenan mac : ya5wyV3uby73vG0hW789BlaG
+             kenan mac pro :i43iKDH8BNTUWZHOTYUywlOy-->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="ya5wyV3uby73vG0hW789BlaG" />
+            android:value="i43iKDH8BNTUWZHOTYUywlOy" />
         <activity android:name=".activity.LoginActivity"
             android:screenOrientation="portrait"></activity>
         <activity android:name=".activity.ResgisterAvtivity"
@@ -62,6 +63,7 @@
             android:screenOrientation="portrait"></activity>
         <activity android:name=".activity.HistoryOrderListActivity"
             android:screenOrientation="portrait"></activity>
+        <activity android:name=".activity.CityListActivity" android:screenOrientation="portrait"></activity>
 
     </application>
 

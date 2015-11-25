@@ -3,4 +3,6 @@
     <string name="np_format_date">MM月dd日 EE</string>
     <string name="cancel">取消</string>
     <string name="np_now">现在</string>
+
+    <string name="action_settings">Settings</string>
 </resources>

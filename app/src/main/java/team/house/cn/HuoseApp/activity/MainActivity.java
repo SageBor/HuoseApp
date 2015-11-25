@@ -23,6 +23,7 @@ import team.house.cn.HuoseApp.utils.UserUtil;
 public class MainActivity extends BaseActivity {
     private GridView mGridViewServiceType;
     private static final Object TAG = new Object();
+    private final int mChooseCityRequestCode = 1;
 
     @Override
     protected void initView() {
@@ -39,6 +40,7 @@ public class MainActivity extends BaseActivity {
         } else {
             mRightView.setText("退出");
         }
+        showCitynfo();
     }
 
     @Override
@@ -74,6 +76,7 @@ public class MainActivity extends BaseActivity {
                 startActivity(intent);
             }
         });
+        mCityView.setOnClickListener(this);
     }
 
 
@@ -101,6 +104,19 @@ public class MainActivity extends BaseActivity {
 
             }
         }
+        if (v.getId() == R.id.tv_city){
+            this.startActivityForResult(new Intent(this, CityListActivity.class), mChooseCityRequestCode);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            if (requestCode == mChooseCityRequestCode) {
+
+            }
+        }
     }
 
     @Override
@@ -108,7 +124,4 @@ public class MainActivity extends BaseActivity {
         super.initTitle();
         showRightText();
     }
-
-
-
 }

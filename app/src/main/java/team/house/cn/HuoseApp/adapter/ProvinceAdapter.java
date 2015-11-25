@@ -15,6 +15,7 @@ import team.house.cn.HuoseApp.bean.ProvinceBean;
 
 /**
  * Created by kenan on 15/11/16.
+ * 添加目的地省级adapter
  */
 public class ProvinceAdapter extends BaseAdapter implements SpinnerAdapter {
     private Context mContext;

@@ -16,6 +16,8 @@ import team.house.cn.HuoseApp.bean.ProvinceBean;
 
 /**
  * Created by kenan on 15/11/16.
+ * 添加目的地市级adapter
+ *
  */
 public class CityAdapter extends BaseAdapter implements SpinnerAdapter {
     private Context mContext;

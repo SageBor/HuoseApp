@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/tv_name"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/c666666"
+        android:textSize="18dp"
+        android:text="北京市" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:background="#d9d0d0" />
+</LinearLayout>
