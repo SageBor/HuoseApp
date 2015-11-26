@@ -9,6 +9,7 @@ import java.io.Serializable;
 public class ServiceModelBean implements Serializable {
     private  int employment_typ;
     private String employment_typ_name;
+    private int indus_id;
     private boolean isChecked = false;
 
     public ServiceModelBean() {
@@ -23,9 +24,18 @@ public class ServiceModelBean implements Serializable {
         this.isChecked = isChecked;
     }
 
-    public ServiceModelBean(int employment_typ, String employment_typ_name) {
+    public ServiceModelBean(int employment_typ, String employment_typ_name, int indus_id ) {
         this.employment_typ = employment_typ;
         this.employment_typ_name = employment_typ_name;
+        this.indus_id = indus_id;
+    }
+
+    public int getIndus_id() {
+        return indus_id;
+    }
+
+    public void setIndus_id(int indus_id) {
+        this.indus_id = indus_id;
     }
 
     public int getEmployment_typ() {

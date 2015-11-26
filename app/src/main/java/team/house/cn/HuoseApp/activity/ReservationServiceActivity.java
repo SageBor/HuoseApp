@@ -49,6 +49,7 @@ import team.house.cn.HuoseApp.bean.ServiceWeekBean;
 import team.house.cn.HuoseApp.constans.AppConfig;
 import team.house.cn.HuoseApp.proviews.DateTimeDialog;
 import team.house.cn.HuoseApp.utils.CityUtil;
+import team.house.cn.HuoseApp.utils.JSONUtils;
 import team.house.cn.HuoseApp.utils.UserUtil;
 import team.house.cn.HuoseApp.views.HorizontalListView;
 
@@ -218,8 +219,8 @@ public class ReservationServiceActivity extends BaseActivity {
                 mSystemChooseAuntRaioButton.setChecked(true);
                 rb_planAunt.setChecked(false);
                 mCommitReservationServiceBean.setModel_id(1);
-                mAuntId=0;
-               // mChooseAuntRelativeLayout.setVisibility(View.GONE);
+                mAuntId = 0;
+                // mChooseAuntRelativeLayout.setVisibility(View.GONE);
             }
         });
         rb_planAunt.setOnClickListener(new View.OnClickListener() {
@@ -227,7 +228,7 @@ public class ReservationServiceActivity extends BaseActivity {
             public void onClick(View view) {
                 mSystemChooseAuntRaioButton.setChecked(false);
                 rb_planAunt.setChecked(true);
-                mAuntId=0;
+                mAuntId = 0;
                 mCommitReservationServiceBean.setModel_id(2);
                 // mChooseAuntRelativeLayout.setVisibility(View.GONE);
             }
@@ -246,27 +247,23 @@ public class ReservationServiceActivity extends BaseActivity {
                                 ChoosePriceBean choosePriceBean1 = choosePriceBeans.get(j);
                                 if (j < i) {
                                     choosePriceBean1.setIsSelelct(true);
-                                }
-                                else {
+                                } else {
                                     if (j != 0) {
                                         choosePriceBean1.setIsSelelct(false);
                                     }
                                 }
                                 choosePriceBeanList.add(choosePriceBean1);
                             }
-                        }
-                        else {
+                        } else {
                             return;
                         }
-                    }
-                    else {
+                    } else {
 
                         for (int j = 0; j < choosePriceBeans.size(); j++) {
                             ChoosePriceBean choosePriceBean1 = choosePriceBeans.get(j);
                             if (j <= i) {
                                 choosePriceBean1.setIsSelelct(true);
-                            }
-                            else {
+                            } else {
                                 choosePriceBean1.setIsSelelct(false);
                             }
                             choosePriceBeanList.add(choosePriceBean1);
@@ -585,13 +582,13 @@ public class ReservationServiceActivity extends BaseActivity {
                             if (employment_typ != null && employment_typ.length() > 0) {
                                 for (int i = 0; i < employment_typ.length(); i++) {
                                     JSONObject modelJson = employment_typ.getJSONObject(i);
-                                    ServiceModelBean serviceModelBean = new ServiceModelBean(modelJson.getInt("employment_typ"), modelJson.getString("employment_typ_name"));
+                                    ServiceModelBean serviceModelBean = new ServiceModelBean(modelJson.getInt("employment_typ"), modelJson.getString("employment_typ_name"), JSONUtils.getInt(modelJson, "indus_id" , 0));
                                     mServiceModelBeanList.add(serviceModelBean);
                                 }
-                                if (mServiceModelBeanList.size() > 0) {
-                                    mServiceModelAdapter.addItems(mServiceModelBeanList);
-                                    mServiceModelAdapter.notifyDataSetChanged();
-                                }
+//                                if (mServiceModelBeanList.size() > 0) {
+//                                    mServiceModelAdapter.addItems(mServiceModelBeanList);
+//                                    mServiceModelAdapter.notifyDataSetChanged();
+//                                }
                             }
 
                         } catch (JSONException e) {
@@ -635,6 +632,22 @@ public class ReservationServiceActivity extends BaseActivity {
         }
     }
 
+    private void updateServiceMOdelList () {
+        List<ServiceModelBean> serviceModelBeans = new ArrayList<ServiceModelBean>();
+        if (mServiceModelBeanList != null && mServiceModelBeanList.size() > 0) {
+            for (ServiceModelBean serviceModelBean : mServiceModelBeanList) {
+                if (indus_id == serviceModelBean.getIndus_id()) {
+                    serviceModelBeans.add(serviceModelBean);
+                }
+
+            }
+            if (serviceModelBeans.size() > 0) {
+                mServiceModelAdapter.addItems(serviceModelBeans);
+                mServiceModelAdapter.notifyDataSetChanged();
+            }
+
+        }
+    }
     @Override
     public void onClick(View v) {
         super.onClick(v);
@@ -647,6 +660,7 @@ public class ReservationServiceActivity extends BaseActivity {
         indus_id = serviceContentBean.getIndus_id();
         getTimeFromServiceAndUpdateView(1);
         updateChoosePriceLIst();
+        updateServiceMOdelList();
         switch (mPosition) {
             // 长期工
             case 2:
