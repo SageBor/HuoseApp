@@ -43,6 +43,11 @@ public class OrderListAdapter extends BaseAdapter {
     public void setItems (List<OrderBean> orderBeans) {
         orderBeanList = orderBeans;
     }
+    public void addItem (OrderBean orderBean) {
+        if (orderBeanList != null) {
+            orderBeanList.add(orderBean);
+        }
+    }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {

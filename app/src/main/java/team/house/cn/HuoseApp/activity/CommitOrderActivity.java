@@ -175,15 +175,16 @@ public class CommitOrderActivity extends BaseActivity {
     private void commitService() {
         Users user=  UserUtil.getUserinfoFromSharepreference();
         Map params = new HashMap<>();
+        int indus_pid = mCommitReservationServiceBean.getIndus_pid();
         params.put("data[uid]", mUser.getUid());
         params.put("data[username]", mUser.getUsername());
-        params.put("data[indus_pid]", mCommitReservationServiceBean.getIndus_pid());
+        params.put("data[indus_pid]", indus_pid);
         params.put("data[indus_id]", mCommitReservationServiceBean.getServiceContentBean().getIndus_id());
         params.put("data[employment_typ]", mCommitReservationServiceBean.getServiceModelBean() == null ? "" : mCommitReservationServiceBean.getServiceModelBean().getEmployment_typ());
         params.put("data[week_id]", getWeeksId());
         params.put("data[try_days]", mCommitReservationServiceBean.getServiceTryDayBean() == null ? "" : mCommitReservationServiceBean.getServiceTryDayBean().getTry_days());
-        params.put("data[start_time]", mCommitReservationServiceBean.getStart_time());
-        params.put("data[end_time]", mCommitReservationServiceBean.getEnd_time());
+        params.put("data[start_time]", mCommitReservationServiceBean.getStart_time() == null ? "" : mCommitReservationServiceBean.getStart_time());
+        params.put("data[end_time]", mCommitReservationServiceBean.getEnd_time() ==  null ? "" : mCommitReservationServiceBean.getEnd_time());
         params.put("data[employment_month]", mCommitReservationServiceBean.getServiceEmploymentMonth() == null ? "" : mCommitReservationServiceBean.getServiceEmploymentMonth().getEmployment_month());
         params.put("data[price]", mCommitReservationServiceBean.getChoosePriceBean().getPrice());// 心里价位
         params.put("data[employment_uid]", mCommitReservationServiceBean.getEmployment_uid()); //阿姨id

@@ -31,7 +31,7 @@ public class  CommitReservationServiceBean implements Serializable{
     private int employment_uid; //阿姨Id
     private String task_desc; //备注
     private int pay_typ; // 支付方式 1:账户余额支付,  2:支付宝,  3:微信支付    *现在只支持余额支付，其他两个先屏蔽
-    private int model_id; //发单模式 "1:平台自动匹配阿姨,  2:发布任务招募,  3:自选阿姨
+    private int model_id = 1; //发单模式 "1:平台自动匹配阿姨,  2:发布任务招募,  3:自选阿姨
     //*app和网页端发单模式对应不上，app请全按“自选阿姨”传值，如果没有选择阿姨，后台会自动设置为“发布任务招募”"
     private float task_cash; //订单总价
     private float paied_cash; // 保证金 暂时和订单总价保持一致

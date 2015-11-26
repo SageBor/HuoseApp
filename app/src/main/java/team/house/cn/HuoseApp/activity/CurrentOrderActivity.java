@@ -268,9 +268,13 @@ public class CurrentOrderActivity extends BaseActivity implements XListView.IXLi
                                     orderBean.setAddress(JSONUtils.getString(jsonObject, "address", ""));
                                     orderBean.setTask_status(JSONUtils.getString(jsonObject, "task_status", ""));
                                     orderBean.setTask_status_content(JSONUtils.getString(jsonObject, "task_status_content", ""));
+                                    orderListAdapter.addItem(orderBean);
                                     orderBeanList.add(orderBean);
                                 }
-                                orderListAdapter.setItems(orderBeanList);
+                                if (mPageNum == 1) {
+                                    orderListAdapter.setItems(orderBeanList);
+                                }
+
                                 orderListAdapter.notifyDataSetChanged();
                             }
 
