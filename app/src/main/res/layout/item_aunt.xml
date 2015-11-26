@@ -8,10 +8,10 @@
 
         <ImageView
             android:layout_margin="10dp"
-            android:id="@+id/img_driver"
+            android:id="@+id/iv_photo"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@drawable/bjtx"
+            android:src="@drawable/user"
             android:layout_centerVertical="true"></ImageView>
 
 
@@ -19,7 +19,7 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/img_driver"
+        android:layout_toRightOf="@id/iv_photo"
         android:layout_toLeftOf="@+id/iv_icon"
         android:gravity="center_vertical"
         android:orientation="vertical"

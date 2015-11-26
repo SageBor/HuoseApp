@@ -1,6 +1,7 @@
 package team.house.cn.HuoseApp.activity;
 
 import android.content.Intent;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -8,6 +9,7 @@ import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.VolleyError;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -68,7 +70,7 @@ public class AuntDetailActivity extends BaseActivity{
         mAuntAgeTextView.setText("年龄:" + auntBean.getAge() + "    " + auntBean.getHometown() + "人");
         mAuntCarNumTextView.setText("身份证:" + auntBean.getIdcard());
         mAuntvAlidationTextView.setText(auntBean.getAuth_info() == 1 ? " 已通过身份验证": "未通过身份验证");
-
+        loadDriverImg(auntBean.getUser_pic());
 
 
 
@@ -193,5 +195,18 @@ public class AuntDetailActivity extends BaseActivity{
 
             }
         });
+    }
+
+    private void loadDriverImg(String src) {
+        if (TextUtils.isEmpty(src) || src.indexOf("none.gif") > 0) {
+            mAnuntImageView.setImageResource(R.drawable.user);
+            return;
+        }
+        Picasso.with(this)
+                .load(src)
+                .placeholder(R.drawable.user)
+                .error(R.drawable.user)
+                .tag(this)
+                .into(mAnuntImageView);
     }
 }
