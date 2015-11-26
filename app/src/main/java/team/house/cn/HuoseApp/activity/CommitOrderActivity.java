@@ -197,7 +197,9 @@ public class CommitOrderActivity extends BaseActivity {
         params.put("data[supplies_id]", getToolIds()); //保洁用品id
         params.put("data[address_id]", mCommitReservationServiceBean.getAddressBean().getmAddlesId()); //服务地址id
         params.put("data[start_hour]", mCommitReservationServiceBean.getStartHouBean().getHour()); // /开始时刻
-        params.put("data[end_hour]", mCommitReservationServiceBean.getEndHouBean().getHour()); //结束时刻
+        if(mCommitReservationServiceBean.getEndHouBean()!=null){
+            params.put("data[end_hour]", mCommitReservationServiceBean.getEndHouBean().getHour()); //结束时刻
+        }
         params.put("data[work_days]", mCommitReservationServiceBean.getWorkDays()); //工作天数 只有长期钟点工用
         BaseRequest.instance(this).doRequest(Tag, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_COMMIT_ORDER, params, new BaseResponse() {
             @Override
