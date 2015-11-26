@@ -24,10 +24,9 @@
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:layout_centerVertical="true"
-        android:drawableLeft="@drawable/head_city_btn"
-        android:drawablePadding="3dp"
         android:padding="15dp"
-        android:textColor="@color/cf3f5f7"
+        android:text=""
+        android:textColor="@color/white"
         android:textSize="@dimen/wb_dialog_button_size"
         android:visibility="gone" />
     <!--android:drawableLeft="@drawable/jz_title_back_btn"-->
@@ -41,7 +40,7 @@
         android:gravity="center_vertical"
         android:padding="15dp"
         android:text="服务说明"
-        android:textColor="@color/cf3f5f7"
+        android:textColor="@color/white"
         android:textSize="@dimen/template_frame_item_secondtextsize" />
 
     <TextView

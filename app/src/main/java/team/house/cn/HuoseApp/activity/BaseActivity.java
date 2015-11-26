@@ -177,6 +177,7 @@ public abstract class BaseActivity extends Activity implements
         mOrder = (TextView) findViewById(R.id.tv_order);
         mUcenter = (TextView) findViewById(R.id.tv_ucenter);
         mHotLine = (TextView) findViewById(R.id.tv_hotline);
+        mLeftView.setText("<");
     }
 
 

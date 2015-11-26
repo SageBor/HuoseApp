@@ -2,12 +2,14 @@ package team.house.cn.HuoseApp.activity;
 
 import android.content.Intent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.VolleyError;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,6 +40,7 @@ public class UserAccountActivity extends BaseActivity {
     private TextView tv_coupon;
     private TextView tv_username;
     private RelativeLayout rlMyAccount;
+    private ImageView iv_aunt;
     @Override
     protected void initView() {
         super.initView();
@@ -46,6 +49,7 @@ public class UserAccountActivity extends BaseActivity {
         tv_coupon=(TextView) findViewById(R.id.tv_coupon);
         tv_username=(TextView) findViewById(R.id.tv_username);
         rlMyAccount=(RelativeLayout)findViewById(R.id.rl_myAccount);
+        iv_aunt = (ImageView) findViewById(R.id.iv_aunt);
 
     }
 
@@ -94,7 +98,7 @@ public class UserAccountActivity extends BaseActivity {
         final Users usersInfo= UserUtil.getUserinfoFromSharepreference();
         Map params = new HashMap();
         params.put("uid", usersInfo.getUid());
-        BaseRequest.instance(this).doRequest(Tag,Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_URSER_INFO, params, new BaseResponse() {
+        BaseRequest.instance(this).doRequest(Tag, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_URSER_INFO, params, new BaseResponse() {
             @Override
             public void successful(ResponseBean responseBean) {
                 int code = responseBean.getCode();
@@ -126,15 +130,13 @@ public class UserAccountActivity extends BaseActivity {
                         PreferenceUtil.putInt(HouseApplication.getHuoYunApplicationContext(), "userId", JSONUtils.getInt(data, "uid", 0));
                         PreferenceUtil.putString(HouseApplication.getHuoYunApplicationContext(), "addressinfo", JSONUtils.getString(data, "addresses", ""));
 
-                        tv_balance.setText("余额：" + users.getBalance() + "元");
-                        tv_coupon.setText("未结算：" + users.getNopay() +"元");
-                        tv_username.setText(users.getUsername());
+                        setView();
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
 
 
-                }else {
+                } else {
                     Toast.makeText(UserAccountActivity.this, codeMsg, Toast.LENGTH_LONG).show();
                 }
 
@@ -147,4 +149,18 @@ public class UserAccountActivity extends BaseActivity {
             }
         });
     }
+
+    private void setView () {
+        Picasso.with(this)
+                .load(users.getUser_pic())
+                .placeholder(R.drawable.user)
+                .error(R.drawable.user)
+                .tag(this)
+                .into(iv_aunt);
+
+        tv_balance.setText("余额：" + users.getBalance() + "元");
+        tv_coupon.setText("未结算：" + users.getNopay() + "元");
+        tv_username.setText(users.getUsername());
+    }
+
 }

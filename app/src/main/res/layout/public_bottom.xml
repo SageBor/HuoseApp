@@ -12,6 +12,8 @@
         android:layout_weight="1"
         android:drawableTop="@drawable/main"
         android:gravity="center_horizontal"
+
+        android:background="@drawable/bg_head_left_text_selector"
         android:text="首页" />
 
     <TextView
