@@ -14,6 +14,7 @@ import team.house.cn.HuoseApp.R;
 import team.house.cn.HuoseApp.adapter.ServiceTypeAdapter;
 import team.house.cn.HuoseApp.constans.AppConfig;
 import team.house.cn.HuoseApp.utils.CityUtil;
+import team.house.cn.HuoseApp.utils.DialogUtil;
 import team.house.cn.HuoseApp.utils.UserUtil;
 
 
@@ -40,7 +41,9 @@ public class MainActivity extends BaseActivity {
         } else {
             mRightView.setText("退出");
         }
-        showCitynfo();
+
+        String chooseCityName = CityUtil.getCityName(AppConfig.Preference_ChooseCityNameFromService);
+        mCityView.setText(chooseCityName);
     }
 
     @Override
@@ -64,12 +67,11 @@ public class MainActivity extends BaseActivity {
         super.initEvent();
         mGridViewServiceType.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-//                Toast.makeText(MainActivity.this, (position + 1), Toast.LENGTH_SHORT).show();
                 Intent intent;
                 int loginSate = UserUtil.getUseridFromSharepreference();
                 if (loginSate == 0) {
                     intent = new Intent(MainActivity.this, LoginActivity.class);
-                }else{
+                } else {
                     intent = new Intent(MainActivity.this, ReservationServiceActivity.class);
                     intent.putExtra("position", position + 1);
                 }
@@ -81,13 +83,23 @@ public class MainActivity extends BaseActivity {
 
 
     private void showCitynfo(){
+        String realCityName = CityUtil.getCityName(AppConfig.Preference_RealCityNameFromService);
         String chooseCityName = CityUtil.getCityName(AppConfig.Preference_ChooseCityNameFromService);
-        if (!TextUtils.isEmpty(chooseCityName)){
+        if (!TextUtils.isEmpty(realCityName)){
             mCityView.setText(chooseCityName);
+            // 选择定位不一致 弹出对话框提示用户选择城市
+            if (!realCityName.equals(chooseCityName)) {
+                showCityDialog();
+            }
+
         } else {
-            // 处理没有定位到城市且用户没有自选城市的情况 需要用户开启定位  重新定位
+            // 当前定位城市没有开通 自动跳转到选择城市页面
+            this.startActivityForResult(new Intent(this, CityListActivity.class), mChooseCityRequestCode);
         }
 
+    }
+    private void showCityDialog() {
+        DialogUtil.getInstance().createAlertDialog(this, "定位城市与选择城市不一致", "是否切换城市?", "切换", null, "取消", null);
     }
     private void showRightText() {
         mRightView.setText("登陆");

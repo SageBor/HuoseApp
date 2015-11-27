@@ -37,6 +37,12 @@
         <item name="android:textColor">@drawable/bg_redbtntxt_selector</item>
         <item name="android:background">@drawable/bg_redbtn_selector</item>
     </style>
+
+    <!-- 不带阴影效果的按钮 -->
+    <style name="grayButton">
+        <item name="android:textColor">@drawable/jz_text_phonenum</item>
+        <item name="android:background">@drawable/btn_adddetination_selector</item>
+    </style>
     <!-- Request页面的Dialog -->
     <style name="RequestDialog" parent="@android:style/Theme.Dialog">
         <item name="android:windowBackground">@android:color/transparent</item>
@@ -52,4 +58,9 @@
         <item name="android:minHeight">@dimen/public_loading_icon_height</item>
         <item name="android:maxHeight">@dimen/public_loading_icon_height</item>
     </style>
+    <style name="mystyle" parent="android:Animation">
+        <item name="@android:windowEnterAnimation">@anim/view_fade_in</item>
+        <item name="@android:windowExitAnimation">@anim/view_fade_out</item>
+    </style>
+
 </resources>

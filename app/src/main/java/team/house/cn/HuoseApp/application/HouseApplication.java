@@ -20,6 +20,7 @@ import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
+import com.baidu.mapapi.SDKInitializer;
 import com.baidu.mapapi.model.LatLng;
 
 import com.baidu.mapapi.search.core.PoiInfo;
@@ -67,9 +68,10 @@ public class HouseApplication extends Application {
 //                .setUserAgent(OkVolley.generateUserAgent(this))
 //                .trustAllCerts();
 //        VolleyLog.DEBUG = BuildConfig.DEBUG;
-//        InitLocation();
+        SDKInitializer.initialize(this);
+        InitLocation();
 //        initGeoCoder();
-//        startlocation();
+        startlocation();
 
 
     }
@@ -115,6 +117,7 @@ public class HouseApplication extends Application {
         option.setCoorType("bd09ll");// 返回的定位结果是百度经纬度
         option.setScanSpan(1000 * 60 * 2); //设置发起定位请求的时间间隔为2分钟
         option.setOpenGps(true); // 设置是否打开gps，默认是不打开gps
+        option.setAddrType("all");
         mLocationClient.setLocOption(option);
         mLocationListener = new BDLocationListener() {
 
@@ -127,6 +130,7 @@ public class HouseApplication extends Application {
                     lat = location.getLatitude();
                     lon = location.getLongitude();
 
+
      /*     lat = 23.024;
           lon = 113.134;*/
                     // 网络异常，没有成功向服务器发起请求
@@ -134,28 +138,16 @@ public class HouseApplication extends Application {
                             || (location.getLocType() >= 162 && location.getLocType() <= 167)) {
                     } else {
 
+                        PreferenceUtil.putString(getHuoYunApplicationContext(), AppConfig.Preference_LocaCityName, location.getCity());
+                        CityUtil.getLocationFromService(Tag);
 
+/*
                         Map<String, String> latLng = new HashMap<String, String>();
-                     /*   latLng.put(PreferenceHelper.KEY_LAT, lat + "");
-                        latLng.put(PreferenceHelper.KEY_LON, lon + "");
-                        PreferenceUtil.putStringArray(HuoYunApplication.this, latLng);*/
 
                         LatLng point = new LatLng(lat, lon);
                         ReverseGeoCodeOption rgco = new ReverseGeoCodeOption();
-                        geoCoder.reverseGeoCode(rgco.location(point));
+                        geoCoder.reverseGeoCode(rgco.location(point));*/
 
-            /*
-             * if (StringUtils.isEmpty(location.getAddrStr())) {
-             *
-             * LatLng point = new LatLng(location.getLatitude(), location.getLongitude());
-             *
-             * ReverseGeoCodeOption rgco = new ReverseGeoCodeOption();
-             * geoCoder.reverseGeoCode(rgco.location(point));
-             *
-             * } else {
-             *
-             * setAddressInfo(location); }
-             */
                     }
                 } catch (Exception e) {
                     Log.e("local", e.getMessage());
