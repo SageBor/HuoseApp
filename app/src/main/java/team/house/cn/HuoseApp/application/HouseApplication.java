@@ -62,7 +62,7 @@ public class HouseApplication extends Application {
         super.onCreate();
         mContext = getApplicationContext();
         mQueue = Volley.newRequestQueue(this.getApplicationContext());
-        CityUtil.getLocationFromService(Tag);
+//        CityUtil.getLocationFromService(Tag);
 
 //        OkVolley.getInstance().init(this)
 //                .setUserAgent(OkVolley.generateUserAgent(this))
@@ -93,7 +93,7 @@ public class HouseApplication extends Application {
                 if (poiInfo != null && poiInfo.size() > 0) {
                     String cityName = poiInfo.get(0).city;
                     PreferenceUtil.putString(getHuoYunApplicationContext(), AppConfig.Preference_LocaCityName, cityName);
-                    CityUtil.getLocationFromService(Tag);
+//                    CityUtil.getLocationFromService(Tag);
 //                    saveAddress(poiInfo.get(0).address, poiInfo.get(0).name);
                     return;
                 }
@@ -138,9 +138,9 @@ public class HouseApplication extends Application {
                             || (location.getLocType() >= 162 && location.getLocType() <= 167)) {
                     } else {
 
-                        PreferenceUtil.putString(getHuoYunApplicationContext(), AppConfig.Preference_LocaCityName, location.getCity());
-                        CityUtil.getLocationFromService(Tag);
-
+                        PreferenceUtil.putString(getHuoYunApplicationContext(), AppConfig.Preference_LocaCityName, location.getCity()
+                        );
+//                        CityUtil.getLocationFromService(Tag);
 /*
                         Map<String, String> latLng = new HashMap<String, String>();
 
