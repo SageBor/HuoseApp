@@ -38,15 +38,21 @@
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:padding="10dp">
+                <ImageView
+                    android:id="@+id/iv_userphoto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/user"
+                    android:paddingLeft="15dp"
+                    android:layout_centerVertical="true"
+                    android:paddingRight="15dp"/>
 
                 <TextView
                     android:id="@+id/tv_username"
+                    android:layout_toRightOf="@id/iv_userphoto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/user"
-                    android:drawablePadding="15dp"
-                    android:gravity="center"
-                    android:paddingLeft="15dp"
+                    android:layout_centerVertical="true"
                     android:text="18612310824"
                     android:textColor="@color/c595757"
                     android:textSize="16sp" />

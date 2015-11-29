@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.VolleyError;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -121,6 +123,7 @@ public class ReservationServiceActivity extends BaseActivity {
     private ServiceContentBean serviceContentBean;
     private Button mCommitButton;
     private ServiceBseTimeBean serviceBaseTimeBean;
+    private ImageView iv_userphoto;
     private TextView tv_username;
     private TextView tv_serviceAddress;
     private ServiceTryDayBean mServiceTryDayBean; // 用户选择的试用时间
@@ -181,6 +184,7 @@ public class ReservationServiceActivity extends BaseActivity {
         rb_planAunt = (RadioButton) findViewById(R.id.rb_planAunt);
         mChooseAuntRelativeLayout = (RelativeLayout) findViewById(R.id.rl_chooseAunt);
         mCommitButton = (Button) findViewById(R.id.bt_commit);
+        iv_userphoto = (ImageView) findViewById(R.id.iv_userphoto);
         tv_username = (TextView) findViewById(R.id.tv_username);
         tv_serviceAddress = (TextView) findViewById(R.id.tv_serviceAddress);
 
@@ -434,6 +438,12 @@ public class ReservationServiceActivity extends BaseActivity {
 
     private void getDefauleAddress() {
         Users userInfo = UserUtil.getUserinfoFromSharepreference();
+        Picasso.with(this)
+                .load(userInfo.getUser_pic())
+                .placeholder(R.drawable.user)
+                .error(R.drawable.user)
+                .tag(this)
+                .into(iv_userphoto);
         tv_username.setText(userInfo.getUsername());
         List<AddressBean> addressList = UserUtil.getAddressFromSharepreference();
         if(addressList!=null&&addressList.size()>0){

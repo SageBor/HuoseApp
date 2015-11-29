@@ -34,6 +34,7 @@ import team.house.cn.HuoseApp.asytask.ResponseBean;
 import team.house.cn.HuoseApp.constans.AppConfig;
 import team.house.cn.HuoseApp.utils.CityUtil;
 import team.house.cn.HuoseApp.utils.DialogUtil;
+import team.house.cn.HuoseApp.utils.DialogUtil.INegativeButtonDialogListener;
 import team.house.cn.HuoseApp.utils.PreferenceUtil;
 import team.house.cn.HuoseApp.utils.UserUtil;
 
@@ -68,7 +69,7 @@ public class MainActivity extends BaseActivity {
         } else {
             mRightView.setText("退出");
         }
-
+//        showCityDialog();
         chooseCityName = CityUtil.getCityName(AppConfig.Preference_ChooseCityNameFromService);
         mCityView.setText(chooseCityName);
     }
@@ -130,7 +131,17 @@ public class MainActivity extends BaseActivity {
 
     }
     private void showCityDialog() {
-        DialogUtil.getInstance().createAlertDialog(this, "定位城市与选择城市不一致", "是否切换城市?", "切换", null, "取消", null);
+        DialogUtil.getInstance().createAlertDialog(this, "定位城市与选择城市不一致", "是否切换城市?", "切换", new DialogUtil.IPositiveButtonDialogListener(){
+            @Override
+            public void onPositiveButtonClicked(int requestCode) {
+                startCityListActivity();
+            }
+        }, "取消", new INegativeButtonDialogListener(){
+            @Override
+            public void onNegativeButtonClicked(int requestCode) {
+
+            }
+        });
     }
 
     private void showRightText() {
@@ -266,6 +277,13 @@ public class MainActivity extends BaseActivity {
             }
         };
         mLocationClient.registerLocationListener(mLocationListener);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        stopLocation();
+        BaseRequest.instance().cancelRequst(TAG);
     }
 
     public void startlocation() {
