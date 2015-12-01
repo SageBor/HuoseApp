@@ -116,7 +116,7 @@ public abstract class BaseActivity extends Activity implements
             case R.id.tv_main:
                 intent = new Intent(new Intent(this, MainActivity.class));
                 goIntent(intent);
-//                this.finish();
+                this.finish();
                 break;
             case R.id.tv_order:
 

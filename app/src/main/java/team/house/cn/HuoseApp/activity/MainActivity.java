@@ -32,6 +32,7 @@ import team.house.cn.HuoseApp.asytask.BaseRequest;
 import team.house.cn.HuoseApp.asytask.BaseResponse;
 import team.house.cn.HuoseApp.asytask.ResponseBean;
 import team.house.cn.HuoseApp.constans.AppConfig;
+import team.house.cn.HuoseApp.utils.ActivityManager;
 import team.house.cn.HuoseApp.utils.CityUtil;
 import team.house.cn.HuoseApp.utils.DialogUtil;
 import team.house.cn.HuoseApp.utils.DialogUtil.INegativeButtonDialogListener;
@@ -247,7 +248,7 @@ public class MainActivity extends BaseActivity {
         mLocationClient = new LocationClient(this.getApplicationContext());
         LocationClientOption option = new LocationClientOption();
         option.setCoorType("bd09ll");// 返回的定位结果是百度经纬度
-        option.setScanSpan(1000 * 60 * 2); //设置发起定位请求的时间间隔为2分钟
+//        option.setScanSpan(1000 * 60 * 2); //设置发起定位请求的时间间隔为2分钟
         option.setOpenGps(true); // 设置是否打开gps，默认是不打开gps
         option.setAddrType("all");
         mLocationClient.setLocOption(option);
@@ -284,6 +285,18 @@ public class MainActivity extends BaseActivity {
         super.onPause();
         stopLocation();
         BaseRequest.instance().cancelRequst(TAG);
+    }
+
+    @Override
+    public void onBackPressed() {
+        DialogUtil.getInstance().createAlertDiaog(this, "是否退出" + getString(R.string.app_name), "确定",
+                new DialogUtil.IPositiveButtonDialogListener() {
+
+                    @Override
+                    public void onPositiveButtonClicked(int requestCode) {
+                        ActivityManager.getInstance().exist();
+                    }
+                }, "取消");
     }
 
     public void startlocation() {
