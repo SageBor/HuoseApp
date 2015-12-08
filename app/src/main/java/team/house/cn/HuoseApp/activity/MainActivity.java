@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 
+import android.view.KeyEvent;
 
 import com.android.volley.Request;
 import com.android.volley.VolleyError;
@@ -93,6 +94,7 @@ public class MainActivity extends BaseActivity {
         };
         ServiceTypeAdapter adapter = new ServiceTypeAdapter(titles, images, this);
         mGridViewServiceType.setAdapter(adapter);
+//        ifmain=1;
     }
 
     @Override
@@ -156,6 +158,7 @@ public class MainActivity extends BaseActivity {
                 this.startActivity(new Intent(this, LoginActivity.class));
             } else {
                 UserUtil.exitLogin();
+                Toast.makeText(MainActivity.this, "您已退出", Toast.LENGTH_SHORT).show();
                 onResume();
 
             }
@@ -213,11 +216,11 @@ public class MainActivity extends BaseActivity {
                             showCitynfo();
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            startCityListActivity();
+                          //  startCityListActivity();
                         }
                     } else {
                         Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
-                        startCityListActivity();
+                     //   startCityListActivity();
 
                     }
                 }
@@ -228,7 +231,7 @@ public class MainActivity extends BaseActivity {
             public void failure(VolleyError error) {
 
                 Toast.makeText(MainActivity.this, "定位失败,请手动选择城市信息!", Toast.LENGTH_SHORT).show();
-                startCityListActivity();
+              //  startCityListActivity();
             }
 
         });
@@ -311,5 +314,28 @@ public class MainActivity extends BaseActivity {
             mLocationClient.stop();
         }
 
+    }
+    private long exitTime = 0;
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (KeyEvent.KEYCODE_BACK == keyCode) {
+            // 判断是否在两秒之内连续点击返回键，是则退出，否则不退出
+            if (System.currentTimeMillis() - exitTime > 2000) {
+                Toast.makeText(getApplicationContext(), "再按一次退出程序",
+                        Toast.LENGTH_SHORT).show();
+                // 将系统当前的时间赋值给exitTime
+                exitTime = System.currentTimeMillis();
+            } else {
+                exitApp();
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    private void exitApp() {
+        this.finish();
+        System.exit(0);
     }
 }

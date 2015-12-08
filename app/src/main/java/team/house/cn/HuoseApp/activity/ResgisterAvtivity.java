@@ -167,7 +167,6 @@ public class ResgisterAvtivity extends BaseActivity {
                         PreferenceUtil.putString(HouseApplication.getHuoYunApplicationContext(), "addressinfo", JSONUtils.getString(data, "addresses", ""));
                     } catch (JSONException e) {
                         e.printStackTrace();
-
                         Toast.makeText(ResgisterAvtivity.this, "系统异常,请稍后重试", Toast.LENGTH_SHORT).show();
 
                     }

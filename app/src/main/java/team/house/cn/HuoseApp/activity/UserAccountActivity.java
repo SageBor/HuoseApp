@@ -41,6 +41,8 @@ public class UserAccountActivity extends BaseActivity {
     private TextView tv_username;
     private RelativeLayout rlMyAccount;
     private ImageView iv_aunt;
+    private RelativeLayout rlHelp;
+    private RelativeLayout rlAbout;
     @Override
     protected void initView() {
         super.initView();
@@ -50,6 +52,8 @@ public class UserAccountActivity extends BaseActivity {
         tv_username=(TextView) findViewById(R.id.tv_username);
         rlMyAccount=(RelativeLayout)findViewById(R.id.rl_myAccount);
         iv_aunt = (ImageView) findViewById(R.id.iv_aunt);
+        rlHelp=(RelativeLayout)findViewById(R.id.rl_help);
+        rlAbout=(RelativeLayout)findViewById(R.id.rl_about);
 
     }
 
@@ -63,6 +67,8 @@ public class UserAccountActivity extends BaseActivity {
     protected void initEvent() {
         super.initEvent();
         rlMyAccount.setOnClickListener(this);
+        rlHelp.setOnClickListener(this);
+        rlAbout.setOnClickListener(this);
     }
 
     @Override
@@ -72,11 +78,20 @@ public class UserAccountActivity extends BaseActivity {
             Toast.makeText(this, "用户获取中请稍后....", Toast.LENGTH_SHORT).show();
             return;
         }
+        if (v.getId() == R.id.rl_about) {
+            Intent intent=new Intent(this,AboutActivity.class);
+            this.startActivity(intent);
+        }
+        if (v.getId() == R.id.rl_help) {
+            Intent intent=new Intent(this,HelpActivity.class);
+            this.startActivity(intent);
+        }
         if (v.getId() == R.id.rl_myAccount) {
             Intent intent=new Intent(this, MyAccountActivity.class);
             intent.putExtra("myBalance", users.getBalance());
             intent.putExtra("noPay",users.getNopay());
             intent.putExtra("username",users.getUsername());
+            intent.putExtra("pic", users.getUser_pic());
             this.startActivity(intent);
         }
     }

@@ -82,6 +82,10 @@
             android:screenOrientation="portrait"></activity>
         <activity android:name=".activity.HistoryOrderListActivity"
             android:screenOrientation="portrait"></activity>
+        <activity android:name=".activity.HelpActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".activity.AboutActivity"
+            android:screenOrientation="portrait"></activity>
         <activity android:name=".activity.CityListActivity" android:screenOrientation="portrait"></activity>
 
     </application>

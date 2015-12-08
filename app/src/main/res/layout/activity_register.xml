@@ -3,23 +3,28 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/bg"
-    android:orientation="vertical">
-    <!--title-->
+    android:orientation="vertical" >
+
+    <!-- title -->
+
     <LinearLayout
         android:id="@+id/layout_head"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content" >
 
-        <include layout="@layout/public_title"></include>
+        <include layout="@layout/public_title" >
+        </include>
     </LinearLayout>
-    <!--bottom-->
+    <!-- bottom -->
+
     <LinearLayout
         android:id="@+id/bottom"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true" >
 
-        <include layout="@layout/public_bottom"></include>
+        <include layout="@layout/public_bottom" >
+        </include>
     </LinearLayout>
 
     <RelativeLayout
@@ -27,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/bottom"
         android:layout_below="@+id/layout_head"
-        android:gravity="center">
+        android:gravity="center" >
 
         <LinearLayout
             android:id="@+id/ll_logininfo"
@@ -36,13 +41,13 @@
             android:layout_centerInParent="true"
             android:orientation="vertical"
             android:paddingLeft="20dp"
-            android:paddingRight="20dp">
+            android:paddingRight="20dp" >
 
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_login_et_shape"
-                android:orientation="horizontal">
+                android:orientation="horizontal" >
 
                 <ImageView
                     android:layout_width="50dp"
@@ -57,23 +62,22 @@
                     android:layout_height="wrap_content"
                     android:hint="请输入手机号码/用户名"
                     android:imeOptions="actionNext"
+                     android:singleLine="true"
                     android:textColorHint="@color/c7f7f7f" />
-
             </LinearLayout>
-
 
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal" >
 
                 <LinearLayout
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/bg_login_et_shape"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal" >
 
                     <ImageView
                         android:layout_width="50dp"
@@ -86,20 +90,19 @@
                         android:id="@+id/et_code"
                         android:layout_width="140dp"
                         android:layout_height="wrap_content"
-                        android:hint="请输入四位验证码"
+                        android:hint="请输入验证码"
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"
                         android:textColorHint="@color/c7f7f7f" />
-
-
                 </LinearLayout>
 
-
                 <Button
-                    android:layout_marginLeft="10dp"
                     android:id="@+id/bt_getcode"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:background="@color/c07c6ef"
+                    android:layout_marginLeft="10dp"
                     android:layout_weight="2"
+                    android:background="@color/c07c6ef"
                     android:scaleType="center"
                     android:text="点击获取"
                     android:textColor="@color/white" />
@@ -108,46 +111,50 @@
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_login_et_shape"
                 android:layout_marginTop="10dp"
-                android:orientation="horizontal">
+                android:background="@drawable/bg_login_et_shape"
+                android:orientation="horizontal" >
+
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="fill_parent"
                     android:background="@color/c07c6ef"
                     android:scaleType="center"
-                    android:src="@drawable/lock"/>
+                    android:src="@drawable/lock" />
+
                 <EditText
                     android:id="@+id/et_psw"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:hint="请输入登陆密码"
                     android:imeOptions="actionNext"
                     android:inputType="textPassword"
-                    android:hint="请输入登陆密码"
-                    android:textColorHint="@color/c7f7f7f"/>
-
+                    android:singleLine="true"
+                    android:textColorHint="@color/c7f7f7f" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_login_et_shape"
                 android:layout_marginTop="10dp"
-                android:orientation="horizontal">
+                android:background="@drawable/bg_login_et_shape"
+                android:orientation="horizontal" >
+
                 <ImageView
                     android:layout_width="50dp"
                     android:layout_height="fill_parent"
                     android:background="@color/c07c6ef"
                     android:scaleType="center"
-                    android:src="@drawable/lock"/>
+                    android:src="@drawable/lock" />
+
                 <EditText
                     android:id="@+id/et_psw2"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:hint="请重复输入登陆密码"
                     android:imeOptions="actionDone"
                     android:inputType="textPassword"
-                    android:hint="请重复输入登陆密码"
-                    android:textColorHint="@color/c7f7f7f"/>
-
+                    android:textColorHint="@color/c7f7f7f" />
             </LinearLayout>
         </LinearLayout>
 
@@ -167,7 +174,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/bt_sure"
-            android:layout_centerHorizontal="true">
+            android:layout_centerHorizontal="true" >
 
             <TextView
                 android:id="@+id/tv_registered"
@@ -192,6 +199,5 @@
                 android:textColor="@color/c727171" />
         </LinearLayout>
     </RelativeLayout>
-
 
 </RelativeLayout>

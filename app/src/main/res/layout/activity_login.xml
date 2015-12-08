@@ -52,7 +52,8 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:hint="请输入手机号码/用户名"
-                    android:imeOptions="actionNext"
+                     android:imeOptions="actionNext"
+                    android:singleLine="true"
                     android:textColorHint="@color/c7f7f7f"/>
 
             </LinearLayout>

@@ -85,6 +85,11 @@ public class CityListActivity extends BaseActivity {
         super.finish();
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        this.finish();
+    }
 
     private void getCityListFromService () {
         Map param = new HashMap<>();
