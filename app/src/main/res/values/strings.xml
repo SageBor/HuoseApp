@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">三个阿姨</string>
+    <string name="app_name">雇主端测试版本</string>
     <string name="np_format_date">MM月dd日 EE</string>
     <string name="cancel">取消</string>
     <string name="np_now">现在</string>
