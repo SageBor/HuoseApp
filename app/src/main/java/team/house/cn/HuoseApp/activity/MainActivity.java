@@ -64,6 +64,12 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        mMain.setSelected(true);
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
         if (UserUtil.getUseridFromSharepreference() == 0){
@@ -79,6 +85,8 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void initData() {
         super.initData();
+        mMain.setSelected(true);
+//        mMain.set
         SDKInitializer.initialize(this);
         InitLocation();
         startlocation();
@@ -271,7 +279,7 @@ public class MainActivity extends BaseActivity {
                         getLocationFromService(location.getCity());
                     }
                 } catch (Exception e) {
-                    Log.e("local", e.getMessage());
+//                    Log.e("local", e.getMessage());
                 }
             }
 

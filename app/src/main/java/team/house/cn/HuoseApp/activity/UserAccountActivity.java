@@ -60,6 +60,7 @@ public class UserAccountActivity extends BaseActivity {
     @Override
     protected void initData() {
         super.initData();
+        mUcenter.setSelected(true);
         getUsersInfo();
     }
 

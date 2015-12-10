@@ -167,6 +167,7 @@ public class CurrentOrderActivity extends BaseActivity implements XListView.IXLi
     @Override
     protected void initData() {
         super.initData();
+        mOrder.setSelected(true);
         mUser = UserUtil.getUserinfoFromSharepreference();
         if (mUser == null) {
             Toast.makeText(this, "用户退出,请重新登录", Toast.LENGTH_SHORT).show();

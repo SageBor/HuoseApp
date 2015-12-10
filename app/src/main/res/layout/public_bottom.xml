@@ -10,7 +10,8 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_weight="1"
-        android:drawableTop="@drawable/main"
+        android:drawableTop="@drawable/bg_main_drawable_selector"
+        android:textColor="@drawable/bg_bottom_text_selector"
         android:gravity="center_horizontal"
 
         android:background="@drawable/bg_head_left_text_selector"
@@ -21,7 +22,8 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_weight="1"
-        android:drawableTop="@drawable/order"
+        android:drawableTop="@drawable/bg_order_drawable_selector"
+        android:textColor="@drawable/bg_bottom_text_selector"
         android:gravity="center_horizontal"
         android:text="我的订单" />
 
@@ -30,7 +32,8 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_weight="1"
-        android:drawableTop="@drawable/ucenter"
+        android:drawableTop="@drawable/bg_ucenter_drawable_selector"
+        android:textColor="@drawable/bg_bottom_text_selector"
         android:gravity="center_horizontal"
         android:text="用户中心" />
 
@@ -39,7 +42,8 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_weight="1"
-        android:drawableTop="@drawable/hotline"
+        android:drawableTop="@drawable/bg_hotline_drawable_selector"
+        android:textColor="@drawable/bg_bottom_text_selector"
         android:gravity="center_horizontal"
         android:text="客服中心" />
 

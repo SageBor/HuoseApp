@@ -20,9 +20,10 @@ public class ServiceTypeAdapter extends BaseAdapter {
 
     private LayoutInflater inflater;
     private List<Picture> pictures;
-
+    Context mContext;
     public ServiceTypeAdapter(String[] titles, int[] images, Context context) {
         super();
+        mContext = context;
         pictures = new ArrayList<Picture>();
         inflater = LayoutInflater.from(context);
         for (int i = 0; i < images.length; i++) {
@@ -63,6 +64,22 @@ public class ServiceTypeAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         viewHolder.title.setText(pictures.get(position).getTitle());
+        switch (position) {
+            case 0:
+                viewHolder.title.setTextColor(mContext.getResources().getColor(R.color.c55c4fd));
+                break;
+            case 1:
+                viewHolder.title.setTextColor(mContext.getResources().getColor(R.color.cfdd000));
+                break;
+            case 2:
+                viewHolder.title.setTextColor(mContext.getResources().getColor(R.color.c34c06f));
+                break;
+            case 3:
+                viewHolder.title.setTextColor(mContext.getResources().getColor(R.color.cff7e00));
+                break;
+
+
+        }
         viewHolder.image.setImageResource(pictures.get(position).getImageId());
         return convertView;
     }

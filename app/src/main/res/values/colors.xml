@@ -144,6 +144,9 @@
     <color name="yellow">#ffff981e</color>
     <color name="primary">#03A9F4</color>
     <color name="orange">#fffaaa00</color>
+    <color name="c55c4fd">#55c4fd</color>
+    <color name="cfdd000">#fdd000</color>
+    <color name="cff7e00">#ff7e00</color>
 
 
     <drawable name="white">#FFFFFF</drawable>
