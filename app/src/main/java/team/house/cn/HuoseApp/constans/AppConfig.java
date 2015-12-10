@@ -6,8 +6,8 @@ package team.house.cn.HuoseApp.constans;
 public  class  AppConfig {
 
     // 域名
-//    public static final String WebHost = "http://housekeepingo2o.cloudapp.net/index.php?";
-    public static final String WebHost = "http://101.201.146.61/index.php?";
+    public static final String WebHost = "http://housekeepingo2o.cloudapp.net/index.php?";
+//    public static final String WebHost = "http://101.201.146.61/index.php?";
     public class  Urls {
         // 定位城市信息
         public static final String URL_GET_POSSTION = "do=app&view=get_position";
