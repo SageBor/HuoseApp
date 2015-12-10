@@ -64,7 +64,6 @@ public abstract class BaseActivity extends Activity implements
         mUserBean = UserUtil.getUserinfoFromSharepreference();
         initView();
         initPublicView();
-//        setSelectTab();
         initEvent();
         initData();
         initTitle();
@@ -120,11 +119,13 @@ public abstract class BaseActivity extends Activity implements
 //                this.finish();
                 break;
             case R.id.tv_order:
+
                 intent = new Intent(new Intent(this, CurrentOrderActivity.class));
                 goIntent(intent);
 //                this.finish();
                 break;
             case R.id.tv_ucenter:
+
                 intent = new Intent(new Intent(this, UserAccountActivity.class));
                 goIntent(intent);
 //                this.finish();
@@ -161,13 +162,6 @@ public abstract class BaseActivity extends Activity implements
         }
     }
 
-    private void setSelectTab() {
-
-        mMain.setSelected(false);
-        mOrder.setSelected(false);
-        mUcenter.setSelected(false);
-        mHotLine.setSelected(false);
-    }
 
     /**
      * 初始化title栏，如果默认只需要设置文字就可以mTitleTextView.setText
