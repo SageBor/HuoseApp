@@ -85,7 +85,7 @@ public class ResgisterAvtivity extends BaseActivity {
             if (TextUtils.isEmpty(phoneNum)) {
                 Toast.makeText(this, "手机号必须为11位", Toast.LENGTH_SHORT).show();
             } else {
-                getCodeFromSerice();
+                getCodeFromSerice(phoneNum);
             }
 
         }
@@ -185,9 +185,9 @@ public class ResgisterAvtivity extends BaseActivity {
         });
     }
 
-    private void getCodeFromSerice() {
+    private void getCodeFromSerice(String mobile) {
         Map param = new HashMap();
-        param.put("mobile", "");
+        param.put("mobile", mobile);
         BaseRequest.instance(this).doRequest(Tag, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_GET_CODE, param, new BaseResponse() {
             @Override
             public void successful(ResponseBean responseBean) {
