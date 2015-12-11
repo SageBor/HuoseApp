@@ -1,16 +1,13 @@
 package team.house.cn.HuoseApp.activity;
 
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.text.TextUtils;
-import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
-
-import android.view.KeyEvent;
 
 import com.android.volley.Request;
 import com.android.volley.VolleyError;
@@ -32,6 +29,7 @@ import team.house.cn.HuoseApp.application.HouseApplication;
 import team.house.cn.HuoseApp.asytask.BaseRequest;
 import team.house.cn.HuoseApp.asytask.BaseResponse;
 import team.house.cn.HuoseApp.asytask.ResponseBean;
+import team.house.cn.HuoseApp.bean.CityBean;
 import team.house.cn.HuoseApp.constans.AppConfig;
 import team.house.cn.HuoseApp.utils.ActivityManager;
 import team.house.cn.HuoseApp.utils.CityUtil;
@@ -114,11 +112,29 @@ public class MainActivity extends BaseActivity {
                 int loginSate = UserUtil.getUseridFromSharepreference();
                 if (loginSate == 0) {
                     intent = new Intent(MainActivity.this, LoginActivity.class);
+                    startActivity(intent);
                 } else {
-                    intent = new Intent(MainActivity.this, ReservationServiceActivity.class);
-                    intent.putExtra("position", position + 1);
+                    CityBean mCityBean = CityUtil.getCity(AppConfig.Preference_ChooseCityNameFromService);
+                    if(mCityBean==null||mCityBean!=null&&mCityBean.getCityName()==null||"".equals(mCityBean!=null&&mCityBean.getCityName()==null)){
+                        DialogUtil.getInstance().createAlertDialog(MainActivity.this, "您还没有选择服务城市", "是否选择城市?", "确定", new DialogUtil.IPositiveButtonDialogListener() {
+                            @Override
+                            public void onPositiveButtonClicked(int requestCode) {
+                                startCityListActivity();
+                            }
+                        }, "取消", new INegativeButtonDialogListener() {
+                            @Override
+                            public void onNegativeButtonClicked(int requestCode) {
+
+                            }
+                        });
+                    }else{
+                        intent = new Intent(MainActivity.this, ReservationServiceActivity.class);
+                        intent.putExtra("position", position + 1);
+                        startActivity(intent);
+                    }
+
                 }
-                startActivity(intent);
+
             }
         });
         mCityView.setOnClickListener(this);
