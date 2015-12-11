@@ -1,7 +1,6 @@
 package team.house.cn.HuoseApp.activity;
 
 import android.Manifest;
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -16,8 +15,6 @@ import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-
-import java.lang.annotation.Target;
 
 import team.house.cn.HuoseApp.Dao.Users;
 import team.house.cn.HuoseApp.R;
@@ -115,8 +112,8 @@ public abstract class BaseActivity extends Activity implements
         switch (viewId) {
             case R.id.tv_main:
                 intent = new Intent(new Intent(this, MainActivity.class));
-                goIntent(intent);
-//                this.finish();
+                startActivity(intent);
+                this.finish();
                 break;
             case R.id.tv_order:
 
@@ -177,7 +174,7 @@ public abstract class BaseActivity extends Activity implements
         mOrder = (TextView) findViewById(R.id.tv_order);
         mUcenter = (TextView) findViewById(R.id.tv_ucenter);
         mHotLine = (TextView) findViewById(R.id.tv_hotline);
-        mLeftView.setText("<");
+        mLeftView.setText("返回");
     }
 
 

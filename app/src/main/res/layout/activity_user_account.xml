@@ -119,7 +119,7 @@
                     android:text="我的账户"
                     android:drawableLeft="@drawable/account"
                     android:drawablePadding="5dp"
-                    android:textSize="19sp"
+                    android:textSize="16sp"
                     />
                 <ImageView
                     android:layout_width="wrap_content"
@@ -148,7 +148,7 @@
                     android:drawableLeft="@drawable/cash_coupon"
                     android:drawablePadding="5dp"
                     android:text="我的代金券"
-                    android:textSize="19sp"
+                    android:textSize="16sp"
                     />
                 <ImageView
                     android:layout_width="wrap_content"
@@ -177,7 +177,7 @@
                     android:drawableLeft="@drawable/supplementary_information"
                     android:drawablePadding="5dp"
                     android:text="完善资料"
-                    android:textSize="19sp"
+                    android:textSize="16sp"
                     />
                 <ImageView
                     android:layout_width="wrap_content"
@@ -208,7 +208,7 @@
                     android:drawableLeft="@drawable/help"
                     android:drawablePadding="5dp"
                     android:text="需要帮助"
-                    android:textSize="19sp"
+                    android:textSize="16sp"
                     />
                 <ImageView
                     android:layout_width="wrap_content"
@@ -237,7 +237,7 @@
                     android:drawableLeft="@drawable/share_friend"
                     android:drawablePadding="5dp"
                     android:text="推荐给朋友"
-                    android:textSize="19sp"
+                    android:textSize="16sp"
                     />
                 <ImageView
                     android:layout_width="wrap_content"
@@ -266,7 +266,7 @@
                     android:drawableLeft="@drawable/message"
                     android:drawablePadding="5dp"
                     android:text="意见反馈"
-                    android:textSize="19sp"
+                    android:textSize="16sp"
                     />
                 <ImageView
                     android:layout_width="wrap_content"
@@ -296,7 +296,7 @@
                     android:drawableLeft="@drawable/aboutus"
                     android:drawablePadding="5dp"
                     android:text="关于我们"
-                    android:textSize="19sp"
+                    android:textSize="16sp"
                     />
                 <ImageView
                     android:layout_width="wrap_content"
