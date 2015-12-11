@@ -1,9 +1,11 @@
 package team.house.cn.HuoseApp.Dao;
 
+import java.io.Serializable;
+
 /**
  * Created by kn on 15/11/13.
  */
-public class Users {
+public class Users implements Serializable {
 
     private int uid;
     private String username;
@@ -24,6 +26,34 @@ public class Users {
     private boolean is_perfec;
     private String addresses;
     private String nopay = "0";
+
+    private String idcard;
+    private String work_exp;
+    private String education;
+
+    public String getEducation() {
+        return education;
+    }
+
+    public void setEducation(String education) {
+        this.education = education;
+    }
+
+    public String getWork_exp() {
+        return work_exp;
+    }
+
+    public void setWork_exp(String work_exp) {
+        this.work_exp = work_exp;
+    }
+
+    public String getIdcard() {
+        return idcard;
+    }
+
+    public void setIdcard(String idcard) {
+        this.idcard = idcard;
+    }
 
     public String getNopay() {
         return nopay;

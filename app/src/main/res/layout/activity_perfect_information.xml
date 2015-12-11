@@ -21,143 +21,505 @@
         <include layout="@layout/public_bottom"></include>
     </LinearLayout>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/bottom"
-        android:layout_below="@+id/layout_head"
-        android:orientation="vertical"
-        android:background="@drawable/bg">
+        android:layout_below="@+id/layout_head">
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="143dp"
-            android:layout_above="@+id/bottom"
-            android:layout_below="@+id/layout_head"
-            android:background="@drawable/bg">
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg"
+            android:orientation="vertical">
 
             <RelativeLayout
-                android:id="@+id/rl_mobile"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="30dp"
-                android:orientation="horizontal">
+                android:layout_height="143dp"
+                android:layout_above="@+id/bottom"
+                android:layout_below="@+id/layout_head"
+                android:background="@drawable/bg">
 
-                <ImageView
-                    android:id="@+id/iv_aunt"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/user" />
+                <RelativeLayout
+                    android:id="@+id/rl_mobile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="30dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/iv_aunt"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/user" />
+
+                    <TextView
+                        android:id="@+id/tv_usermoble"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/iv_aunt"
+                        android:paddingLeft="15dp"
+                        android:text="1223143543262456"
+                        android:textColor="@color/c595757"
+                        android:textSize="17sp" />
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rl_mobile"
+                    android:layout_centerHorizontal="true"
+                    android:orientation="horizontal"
+                    android:paddingTop="10dp">
+
+                    <TextView
+                        android:id="@+id/tv_balance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:text="余额: 300元"
+                        android:textColor="@color/c595757" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+                        android:padding="5dp"
+                        android:text="|"
+                        android:textColor="@color/c595757" />
+
+                    <TextView
+                        android:id="@+id/tv_coupon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="代金券: 5张"
+                        android:textColor="@color/c595757" />
+                </LinearLayout>
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:background="@color/white"
+                android:paddingLeft="15dp"
+                android:paddingRight="25dp">
 
                 <TextView
+                    android:id="@+id/tv_username"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/iv_aunt"
-                    android:paddingLeft="15dp"
-                    android:text="1223143543262456"
-                    android:textColor="@color/c595757"
-                    android:textSize="17sp" />
+                    android:text="用户昵称:"
+                    android:textColor="@color/c7f7f7f"
+                    android:textSize="19sp" />
+
+                <EditText
+                    android:id="@+id/et_username"
+                    android:layout_toRightOf="@id/tv_username"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="请输入手机号码/用户名"
+                    android:imeOptions="actionNext"
+                    android:singleLine="true"
+                    android:textColorHint="@color/c7f7f7f"/>
 
             </RelativeLayout>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/rl_mobile"
-                android:layout_centerHorizontal="true"
-                android:orientation="horizontal"
-                android:paddingTop="10dp">
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1px"
+                android:background="@color/c7f7f7f"></View>
+
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:background="@color/white"
+                android:paddingLeft="15dp"
+                android:paddingRight="25dp">
 
                 <TextView
-                    android:id="@+id/tv_balance"
+                    android:id="@+id/tv_truename"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="真是姓名:"
+                    android:textColor="@color/c7f7f7f"
+                    android:textSize="19sp" />
 
-                    android:textColor="@color/c595757"
-                    android:text="余额: 300元" />
+                <EditText
+                    android:id="@+id/et_truename"
+                    android:layout_toRightOf="@id/tv_truename"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="请输入手机号码/用户名"
+                    android:imeOptions="actionNext"
+                    android:singleLine="true"
+                    android:textColorHint="@color/c7f7f7f"/>
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1px"
+                android:background="@color/c7f7f7f"></View>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:background="@color/white"
+                android:paddingLeft="15dp"
+                android:paddingRight="25dp">
 
                 <TextView
+                    android:id="@+id/tv_sex"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="性      别 :"
+                    android:textColor="@color/c7f7f7f"
+                    android:textSize="19sp" />
 
-                    android:textColor="@color/c595757"
-                    android:padding="5dp"
-                    android:text="|" />
+                <Spinner
+                    android:id="@+id/spinner_sex"
+                    android:layout_toRightOf="@id/tv_sex"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1px"
+                android:background="@color/c7f7f7f"></View>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:background="@color/white"
+                android:paddingLeft="15dp"
+                android:paddingRight="25dp">
 
                 <TextView
-                    android:id="@+id/tv_coupon"
+                    android:id="@+id/tv_marry"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/c595757"
-                    android:text="代金券: 5张" />
-            </LinearLayout>
-        </RelativeLayout>
+                    android:layout_centerVertical="true"
+                    android:text="婚      否 :"
+                    android:textColor="@color/c7f7f7f"
+                    android:textSize="19sp" />
 
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="30dp"
-            android:background="@color/white"
-            android:paddingRight="25dp"
-            android:paddingLeft="15dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/c7f7f7f"
-                android:layout_centerVertical="true"
-                android:text="详细地址"
-                android:textSize="19sp"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="更改 >"
-                android:textSize="14sp"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:textColor="@color/c595757"/>
+                <Spinner
+                    android:id="@+id/spinner_marry"
+                    android:layout_toRightOf="@id/tv_marry"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    />
+            </RelativeLayout>
 
-        </RelativeLayout>
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1px"
-            android:background="@color/c7f7f7f"></View>
-        <TextView
-            android:padding="15dp"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/c595757"
-            android:background="@color/white"
-            android:text="吉林省长春市红旗街万达广场公寓1019市撒放大声的功法是德国是的噶"
-            android:textSize="17sp"/>
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1px"
+                android:background="@color/c7f7f7f"></View>
 
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:padding="10dp"
-            android:background="@color/white">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:src="@drawable/add"/>
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:background="@color/white"
+                android:paddingLeft="15dp"
+                android:paddingRight="25dp">
 
-        </RelativeLayout>
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1px"
-            android:background="@color/c7f7f7f"></View>
-        <TextView
-            android:padding="10dp"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:textColor="@color/c7f7f7f"
-            android:gravity="center_horizontal"
-            android:textSize="19sp"
-            android:text="添加地址"/>
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_birth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="出生日期:"
+                    android:textColor="@color/c7f7f7f"
+                    android:textSize="19sp" />
+
+                <TextView
+                    android:id="@+id/tv_btbirth"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="1987-08-21"
+                    android:textColor="@color/c7f7f7f"
+                    android:textSize="19sp"
+                    android:layout_alignTop="@+id/tv_birth"
+                    android:layout_toRightOf="@+id/tv_birth"
+                    android:layout_toEndOf="@+id/tv_birth" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1px"
+                android:background="@color/c7f7f7f"></View>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:background="@color/white"
+                android:paddingLeft="15dp"
+                android:paddingRight="25dp">
+
+                <TextView
+                    android:id="@+id/tv_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="所 在 地:"
+                    android:textColor="@color/c7f7f7f"
+                    android:textSize="19sp" />
+                <Spinner
+                    android:id="@+id/province"
+                    android:layout_width="140dp"
+                    android:layout_toRightOf="@id/tv_address"
+                    android:layout_height="wrap_content"
+                    />
+
+                <Spinner
+                    android:id="@+id/city"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/province" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1px"
+                android:background="@color/c7f7f7f"></View>
+
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:background="@color/white"
+                android:paddingLeft="15dp"
+                android:paddingRight="25dp">
+
+                <TextView
+                    android:id="@+id/tv_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="邮      箱:"
+                    android:textColor="@color/c7f7f7f"
+                    android:textSize="19sp" />
+
+                <EditText
+                    android:id="@+id/et_email"
+                    android:layout_toRightOf="@id/tv_email"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="请输入手机号码/用户名"
+                    android:imeOptions="actionNext"
+                    android:singleLine="true"
+                    android:textColorHint="@color/c7f7f7f"/>
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1px"
+                android:background="@color/c7f7f7f"></View>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:background="@color/white"
+                android:paddingLeft="15dp"
+                android:paddingRight="25dp">
+
+                <TextView
+                    android:id="@+id/tv_carNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="身份证号:"
+                    android:textColor="@color/c7f7f7f"
+                    android:textSize="19sp" />
+
+                <EditText
+                    android:id="@+id/et_carNum"
+                    android:layout_toRightOf="@id/tv_carNum"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="请输入手机号码/用户名"
+                    android:imeOptions="actionNext"
+                    android:singleLine="true"
+                    android:textColorHint="@color/c7f7f7f"/>
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1px"
+                android:background="@color/c7f7f7f"></View>
+
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:background="@color/white"
+                android:paddingLeft="15dp"
+                android:paddingRight="25dp">
+
+                <TextView
+                    android:id="@+id/tv_workYears"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="工作年限:"
+                    android:textColor="@color/c7f7f7f"
+                    android:textSize="19sp" />
+
+                <EditText
+                    android:id="@+id/et_workYears"
+                    android:layout_toRightOf="@id/tv_workYears"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="请输入手机号码/用户名"
+                    android:imeOptions="actionNext"
+                    android:singleLine="true"
+                    android:textColorHint="@color/c7f7f7f"/>
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1px"
+                android:background="@color/c7f7f7f"></View>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:background="@color/white"
+                android:paddingLeft="15dp"
+                android:paddingRight="25dp">
+
+                <TextView
+                    android:id="@+id/tv_education"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="教育程度:"
+                    android:textColor="@color/c7f7f7f"
+                    android:textSize="19sp" />
+
+                <Spinner
+                    android:id="@+id/spinner_education"
+                    android:layout_toRightOf="@id/tv_education"
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1px"
+                android:background="@color/c7f7f7f"></View>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:background="@color/white"
+                android:paddingLeft="15dp"
+                android:paddingRight="25dp">
+
+                <Button
+                    android:id="@+id/bt_commit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:background="@drawable/bg_btn_selector"
+                    android:textColor="@color/white"
+                    android:text="修改"
+                    android:layout_below="@+id/ll_logininfo"
+                    android:layout_centerInParent="true"
+                    android:layout_centerHorizontal="true"/>
+
+
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1px"
+                android:background="@color/c7f7f7f"></View>
+            <!--<RelativeLayout-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="30dp"-->
+            <!--android:background="@color/white"-->
+            <!--android:paddingLeft="15dp"-->
+            <!--android:paddingRight="25dp">-->
+
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:text="详细地址"-->
+            <!--android:textColor="@color/c7f7f7f"-->
+            <!--android:textSize="19sp" />-->
+
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:text="更改 >"-->
+            <!--android:textColor="@color/c595757"-->
+            <!--android:textSize="14sp" />-->
+
+            <!--</RelativeLayout>-->
+
+            <!--<View-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="1px"-->
+            <!--android:background="@color/c7f7f7f"></View>-->
+
+            <!--<TextView-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@color/white"-->
+            <!--android:padding="15dp"-->
+            <!--android:text="吉林省长春市红旗街万达广场公寓1019市撒放大声的功法是德国是的噶"-->
+            <!--android:textColor="@color/c595757"-->
+            <!--android:textSize="17sp" />-->
+
+            <!--<RelativeLayout-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:background="@color/white"-->
+            <!--android:padding="10dp">-->
+
+            <!--<ImageView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:src="@drawable/add" />-->
+
+            <!--</RelativeLayout>-->
+
+            <!--<View-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="1px"-->
+            <!--android:background="@color/c7f7f7f"></View>-->
+
+            <!--<TextView-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@color/white"-->
+            <!--android:gravity="center_horizontal"-->
+            <!--android:padding="10dp"-->
+            <!--android:text="添加地址"-->
+            <!--android:textColor="@color/c7f7f7f"-->
+            <!--android:textSize="19sp" />-->
+        </LinearLayout>
+    </ScrollView>
 </RelativeLayout>

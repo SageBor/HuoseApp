@@ -83,10 +83,6 @@ public class DateTimeDialog {
 
         Calendar calendar = Calendar.getInstance();
 
-    /*
-     * if (days <= 0) days = 5;
-     */
-
         for (int i = 0; i < DEFAULT_COUNT; i++) {
             String day =
                     (String) DateFormat.format(mContext.getResources().getString(R.string.np_format_date),
@@ -94,41 +90,28 @@ public class DateTimeDialog {
             day = day.replace("星期", "周");
             wheelDays.put(day, calendar.getTime());
             calendar.add(Calendar.DAY_OF_YEAR, 1);
-//      }
         }
 
         switch (mType) {
             case 0:
                 for (int i = 0; i < mHourContent.size(); i++) {
                     HourBean hourBean = (HourBean) mHourContent.get(i);
-//          String hour = String.format("%02d", i);
                     wheelHours.put(hourBean.getHour_name(), hourBean.getHour() + "");
                 }
                 break;
             case 1:
                 for (int i = 0; i < mTryDayContent.size(); i++) {
                     ServiceTryDayBean hourBean = (ServiceTryDayBean) mTryDayContent.get(i);
-//          String hour = String.format("%02d", i);
                     wheelHours.put(hourBean.getTry_days_name(), hourBean.getTry_days() + "");
                 }
                 break;
             case 2:
                 for (int i = 0; i < mMonthContent.size(); i++) {
                     ServiceEmploymentMonthBean monthBean = (ServiceEmploymentMonthBean) mMonthContent.get(i);
-//          String hour = String.format("%02d", i);
                     wheelHours.put(monthBean.getEmployment_month_name(), monthBean.getEmployment_month() + "");
                 }
                 break;
         }
-//    for (int i = 0; i < mContent.size(); i++) {
-//      String hour = String.format("%02d", i);
-//      wheelHours.put(hour + "时", hour);
-//    }
-//
-//    for (int i = 0; i < MINUTES_COUNT; i++) {
-//      String min = String.format("%02d", i * 15);
-//      wheelMinutes.put(min + "分", min);
-//    }
 
     }
 
@@ -164,8 +147,6 @@ public class DateTimeDialog {
         wv_day.TEXT_SIZE = CommonTools.dip2px(mContext, 20f);
         wv_day.setCurrentItem(0);// 默认选择：立即用车
 
-        // wv_hour.setVisibility(View.GONE);
-        // wv_Minute.setVisibility(View.GONE);
         wv_day.addChangingListener(new OnWheelChangedListener() {
 
             @Override

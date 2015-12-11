@@ -57,6 +57,7 @@ public  class  AppConfig {
         public static final String URL_TASKAUNT = "do=app&view=ayi_select";
 
         public static final String URL_GET_CITYLIST = "do=app&view=get_dq_list";
+        public static final String URL_UPDATE_USERINFO = "do=app&view=update_account_info";
     }
     // 本地百度定位城市在Share中存储key
     public static final String Preference_LocaCityName = "locationCtityName";

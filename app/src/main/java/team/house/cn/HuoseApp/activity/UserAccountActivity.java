@@ -45,6 +45,7 @@ public class UserAccountActivity extends BaseActivity {
     private RelativeLayout rlAbout;
     private RelativeLayout rlToOther;
     private RelativeLayout rlAdvice;
+    private RelativeLayout rl_perfect;
     @Override
     protected void initView() {
         super.initView();
@@ -58,6 +59,7 @@ public class UserAccountActivity extends BaseActivity {
         rlAbout=(RelativeLayout)findViewById(R.id.rl_about);
         rlToOther=(RelativeLayout)findViewById(R.id.rl_to_other);
         rlAdvice=(RelativeLayout)findViewById(R.id.rl_advice);
+        rl_perfect = (RelativeLayout) findViewById(R.id.rl_perfect);
     }
 
     @Override
@@ -75,6 +77,7 @@ public class UserAccountActivity extends BaseActivity {
         rlAbout.setOnClickListener(this);
         rlToOther.setOnClickListener(this);
         rlAdvice.setOnClickListener(this);
+        rl_perfect.setOnClickListener(this);
     }
 
     @Override
@@ -105,6 +108,11 @@ public class UserAccountActivity extends BaseActivity {
             intent.putExtra("username",users.getUsername());
             intent.putExtra("pic", users.getUser_pic());
             this.startActivity(intent);
+        }
+        if (v.getId() == R.id.rl_perfect) {
+            if (users != null) {
+                startPerfectInformationActivity();
+            }
         }
     }
 
@@ -153,6 +161,9 @@ public class UserAccountActivity extends BaseActivity {
                         users.setUser_pic(JSONUtils.getString(data, "user_pic", ""));
                         users.setIs_perfec(JSONUtils.getBoolean(data, "is_perfect", false));
                         users.setNopay(JSONUtils.getString(data, "nopay", ""));
+                        users.setIdcard(JSONUtils.getString(data, "idcard", ""));
+                        users.setEducation(JSONUtils.getString(data, "educational", ""));
+
                         PreferenceUtil.putString(HouseApplication.getHuoYunApplicationContext(), "userinfo", responseBean.getData());
                         PreferenceUtil.putInt(HouseApplication.getHuoYunApplicationContext(), "userId", JSONUtils.getInt(data, "uid", 0));
                         PreferenceUtil.putString(HouseApplication.getHuoYunApplicationContext(), "addressinfo", JSONUtils.getString(data, "addresses", ""));
@@ -177,6 +188,12 @@ public class UserAccountActivity extends BaseActivity {
         });
     }
 
+    private void startPerfectInformationActivity() {
+        Intent intent = new Intent (this, PerfectInformationActivity.class);
+        intent.putExtra("user", users);
+        this.startActivity(intent);
+
+    }
     private void setView () {
         Picasso.with(this)
                 .load(users.getUser_pic())
