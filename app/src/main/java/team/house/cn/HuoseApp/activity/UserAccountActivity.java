@@ -43,6 +43,8 @@ public class UserAccountActivity extends BaseActivity {
     private ImageView iv_aunt;
     private RelativeLayout rlHelp;
     private RelativeLayout rlAbout;
+    private RelativeLayout rlToOther;
+    private RelativeLayout rlAdvice;
     @Override
     protected void initView() {
         super.initView();
@@ -54,7 +56,8 @@ public class UserAccountActivity extends BaseActivity {
         iv_aunt = (ImageView) findViewById(R.id.iv_aunt);
         rlHelp=(RelativeLayout)findViewById(R.id.rl_help);
         rlAbout=(RelativeLayout)findViewById(R.id.rl_about);
-
+        rlToOther=(RelativeLayout)findViewById(R.id.rl_to_other);
+        rlAdvice=(RelativeLayout)findViewById(R.id.rl_advice);
     }
 
     @Override
@@ -70,6 +73,8 @@ public class UserAccountActivity extends BaseActivity {
         rlMyAccount.setOnClickListener(this);
         rlHelp.setOnClickListener(this);
         rlAbout.setOnClickListener(this);
+        rlToOther.setOnClickListener(this);
+        rlAdvice.setOnClickListener(this);
     }
 
     @Override
@@ -86,6 +91,12 @@ public class UserAccountActivity extends BaseActivity {
         if (v.getId() == R.id.rl_help) {
             Intent intent=new Intent(this,HelpActivity.class);
             this.startActivity(intent);
+        }
+        if (v.getId() == R.id.rl_to_other) {
+            Toast.makeText(this, "该功能正在建设中，敬请期待！", Toast.LENGTH_SHORT).show();
+        }
+        if (v.getId() == R.id.rl_advice) {
+            Toast.makeText(this, "该功能正在建设中，敬请期待！", Toast.LENGTH_SHORT).show();
         }
         if (v.getId() == R.id.rl_myAccount) {
             Intent intent=new Intent(this, MyAccountActivity.class);
