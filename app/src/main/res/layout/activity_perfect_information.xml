@@ -157,7 +157,7 @@
                     android:layout_toRightOf="@id/tv_truename"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:hint="请输入手机号码/用户名"
+                    android:hint="请输入真实姓名"
                     android:imeOptions="actionNext"
                     android:singleLine="true"
                     android:textColorHint="@color/c7f7f7f"/>
@@ -316,7 +316,7 @@
                     android:layout_toRightOf="@id/tv_email"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:hint="请输入手机号码/用户名"
+                    android:hint="请输入邮箱地址"
                     android:imeOptions="actionNext"
                     android:singleLine="true"
                     android:textColorHint="@color/c7f7f7f"/>
@@ -349,7 +349,7 @@
                     android:layout_toRightOf="@id/tv_carNum"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:hint="请输入手机号码/用户名"
+                    android:hint="请输入身份证号"
                     android:imeOptions="actionNext"
                     android:singleLine="true"
                     android:textColorHint="@color/c7f7f7f"/>
@@ -383,7 +383,7 @@
                     android:layout_toRightOf="@id/tv_workYears"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:hint="请输入手机号码/用户名"
+                    android:hint="请输入工作年限"
                     android:imeOptions="actionNext"
                     android:singleLine="true"
                     android:textColorHint="@color/c7f7f7f"/>

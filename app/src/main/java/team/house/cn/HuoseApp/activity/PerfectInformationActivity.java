@@ -85,7 +85,9 @@ public class PerfectInformationActivity extends BaseActivity {
     private String marry = "已婚";
     private int provinceid;
     private int cityId;
-
+    private String[] educationArray;
+    private String[] sexArray;
+    private String[] marryArray;
     @Override
     protected void initView() {
         super.initView();
@@ -109,19 +111,18 @@ public class PerfectInformationActivity extends BaseActivity {
         mProvinceSpinner.setAdapter(mProvinceAdapter);
         mCityceSpinner.setAdapter(mCityAdapter);
 
-        spinner_education.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, new String[]{"小学", "初中", "高中", "中专/大专", "本科及以上"}));
+        educationArray = new String[]{"小学", "初中", "高中", "中专/大专", "本科及以上"};
+        sexArray = new String[]{"男", "女"};
+        marryArray= new String[]{"是", "否"};
+        spinner_education.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, educationArray));
+        spinner_sex.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, sexArray));
+        spinner_marry.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, marryArray));
 
-        spinner_sex.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, new String[]{"男", "女"}));
-
-        spinner_marry.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, new String[]{"已婚", "未婚", "保密"}));
         bt_commit = (Button) findViewById(R.id.bt_commit);
-
         tv_balance=(TextView) findViewById(R.id.tv_balance);
         tv_coupon=(TextView) findViewById(R.id.tv_coupon);
         tv_username=(TextView) findViewById(R.id.tv_usermoble);
         iv_aunt = (ImageView) findViewById(R.id.iv_aunt);
-
-
     }
 
     @Override
@@ -155,6 +156,23 @@ public class PerfectInformationActivity extends BaseActivity {
         tv_username.setText(mUsers.getUsername());
         et_username.setText(mUsers.getUsername());
         et_truename.setText(mUsers.getTruename());
+        for (int i = 0; i < educationArray.length; i++) {
+            if (mUsers.getEducation() == i + 1) {
+                spinner_education.setSelection(i, true);
+            }
+        }
+
+        for (int i = 0; i < sexArray.length; i++) {
+            if (mUsers.getSex().equals(sexArray[i])) {
+                spinner_sex.setSelection(i, true);
+            }
+        }
+
+        for (int i = 0; i < marryArray.length; i++) {
+            if (mUsers.getMarry().equals(marryArray[i])) {
+                spinner_marry.setSelection(i, true);
+            }
+        }
 
         tv_btbirth.setText(mUsers.getBirthday());
         et_email.setText(mUsers.getEmail());
@@ -174,12 +192,18 @@ public class PerfectInformationActivity extends BaseActivity {
                 mProvinceBean = provinceBeanArrayList.get(i);
                 provinceid = mProvinceBean.getPro_id();
                 cityBeanArrayList.clear();
+                int defaultcity = 0;
                 for (int j = 0; j < allcityBeanArrayList.size(); j++) {
                     if (allcityBeanArrayList.get(j).getProvinceId() == provinceid) {
                         cityBeanArrayList.add(allcityBeanArrayList.get(j));
+                        if (mUsers.getCity() == allcityBeanArrayList.get(j).getCityId()) {
+                            defaultcity = j;
+                        }
                     }
                 }
+
                 mCityAdapter.notifyDataSetChanged();
+                mCityceSpinner.setSelection(defaultcity, true);
             }
 
             @Override
@@ -256,14 +280,12 @@ public class PerfectInformationActivity extends BaseActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 switch (i) {
                     case 0:
-                        marry = "已婚";
+                        marry = "是";
                         break;
                     case 1:
-                        marry = "未婚";
+                        marry = "否";
                         break;
-                    case 2:
-                        marry = "保密";
-                        break;
+
                 }
 
             }
@@ -316,6 +338,7 @@ public class PerfectInformationActivity extends BaseActivity {
                         if (data != null) {
                             JSONArray provinceJSONArray = JSONUtils.getJSONArray(data, "provinces", null);
                             JSONArray cityJSONArray = JSONUtils.getJSONArray(data, "cities", null);
+                            int defaultpro = 0;
                             if (provinceJSONArray != null && provinceJSONArray.length() > 0) {
                                 for (int i = 0; i < provinceJSONArray.length(); i++) {
                                     ProvinceBean provinceBean = new ProvinceBean();
@@ -323,8 +346,12 @@ public class PerfectInformationActivity extends BaseActivity {
                                     provinceBean.setPro_id(JSONUtils.getInt(provinceJSONObject, "pro_id", 0));
                                     provinceBean.setPro_name(JSONUtils.getString(provinceJSONObject, "pro_name", ""));
                                     provinceBeanArrayList.add(provinceBean);
+                                    if (mUsers.getProvince() == provinceBean.getPro_id()){
+                                        defaultpro = i;
+                                    }
                                 }
                                 mProvinceAdapter.notifyDataSetChanged();
+                                mProvinceSpinner.setSelection(defaultpro, true);
                             }
 
                             if (cityJSONArray != null && cityJSONArray.length() > 0) {

@@ -29,13 +29,13 @@ public class Users implements Serializable {
 
     private String idcard;
     private String work_exp;
-    private String education;
+    private int education;
 
-    public String getEducation() {
+    public int getEducation() {
         return education;
     }
 
-    public void setEducation(String education) {
+    public void setEducation(int education) {
         this.education = education;
     }
 

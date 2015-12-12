@@ -146,8 +146,8 @@ public class UserAccountActivity extends BaseActivity {
                         users.setUid(JSONUtils.getInt(data, "uid", 0));
                         users.setUsername(JSONUtils.getString(data, "username", ""));
                         users.setTruename(JSONUtils.getString(data, "truename", ""));
-                        users.setSex(JSONUtils.getString(data, "sex", ""));
-                        users.setMarry(JSONUtils.getString(data, "marry", ""));
+                        users.setSex(JSONUtils.getString(data, "sex", "男"));
+                        users.setMarry(JSONUtils.getString(data, "marry", "是"));
                         users.setMobile(JSONUtils.getString(data, "mobile", ""));
                         users.setBirthday(JSONUtils.getString(data, "birthday", ""));
                         users.setProvince(JSONUtils.getInt(data, "province", 0));
@@ -162,7 +162,8 @@ public class UserAccountActivity extends BaseActivity {
                         users.setIs_perfec(JSONUtils.getBoolean(data, "is_perfect", false));
                         users.setNopay(JSONUtils.getString(data, "nopay", ""));
                         users.setIdcard(JSONUtils.getString(data, "idcard", ""));
-                        users.setEducation(JSONUtils.getString(data, "educational", ""));
+                        users.setEducation(JSONUtils.getInt(data, "educational", 1));
+                        users.setWork_exp(JSONUtils.getString(data, "work_exp", ""));
 
                         PreferenceUtil.putString(HouseApplication.getHuoYunApplicationContext(), "userinfo", responseBean.getData());
                         PreferenceUtil.putInt(HouseApplication.getHuoYunApplicationContext(), "userId", JSONUtils.getInt(data, "uid", 0));
