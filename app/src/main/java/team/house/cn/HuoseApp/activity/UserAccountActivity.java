@@ -126,6 +126,12 @@ public class UserAccountActivity extends BaseActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+//        getUsersInfo();
+    }
+
+    @Override
     public void onClick(View v) {
         super.onClick(v);
     }

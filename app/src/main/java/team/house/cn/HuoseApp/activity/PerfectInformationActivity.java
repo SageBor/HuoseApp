@@ -192,16 +192,19 @@ public class PerfectInformationActivity extends BaseActivity {
                 mProvinceBean = provinceBeanArrayList.get(i);
                 provinceid = mProvinceBean.getPro_id();
                 cityBeanArrayList.clear();
-                int defaultcity = 0;
                 for (int j = 0; j < allcityBeanArrayList.size(); j++) {
                     if (allcityBeanArrayList.get(j).getProvinceId() == provinceid) {
                         cityBeanArrayList.add(allcityBeanArrayList.get(j));
-                        if (mUsers.getCity() == allcityBeanArrayList.get(j).getCityId()) {
-                            defaultcity = j;
-                        }
+
                     }
                 }
 
+                int defaultcity = 0;
+                for (int m = 0; m < cityBeanArrayList.size(); m++) {
+                    if (mUsers.getCity() == cityBeanArrayList.get(m).getCityId()) {
+                        defaultcity = m;
+                    }
+                }
                 mCityAdapter.notifyDataSetChanged();
                 mCityceSpinner.setSelection(defaultcity, true);
             }
