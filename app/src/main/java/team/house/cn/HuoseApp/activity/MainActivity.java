@@ -2,6 +2,7 @@ package team.house.cn.HuoseApp.activity;
 
 
 import android.content.Intent;
+import android.os.Message;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
@@ -17,26 +18,34 @@ import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.baidu.mapapi.SDKInitializer;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import team.house.cn.HuoseApp.R;
 import team.house.cn.HuoseApp.adapter.ServiceTypeAdapter;
+import team.house.cn.HuoseApp.adapter.VerticalViewPageAdapter;
 import team.house.cn.HuoseApp.application.HouseApplication;
 import team.house.cn.HuoseApp.asytask.BaseRequest;
 import team.house.cn.HuoseApp.asytask.BaseResponse;
 import team.house.cn.HuoseApp.asytask.ResponseBean;
 import team.house.cn.HuoseApp.bean.CityBean;
+import team.house.cn.HuoseApp.bean.NoticeBean;
 import team.house.cn.HuoseApp.constans.AppConfig;
 import team.house.cn.HuoseApp.utils.ActivityManager;
 import team.house.cn.HuoseApp.utils.CityUtil;
 import team.house.cn.HuoseApp.utils.DialogUtil;
 import team.house.cn.HuoseApp.utils.DialogUtil.INegativeButtonDialogListener;
+import team.house.cn.HuoseApp.utils.JSONUtils;
 import team.house.cn.HuoseApp.utils.PreferenceUtil;
 import team.house.cn.HuoseApp.utils.UserUtil;
+import team.house.cn.HuoseApp.views.VerticalViewPager.CycleViewPageHandler;
+import team.house.cn.HuoseApp.views.VerticalViewPager.VerticalViewPager;
 
 
 /**
@@ -44,6 +53,13 @@ import team.house.cn.HuoseApp.utils.UserUtil;
  */
 public class MainActivity extends BaseActivity {
     private GridView mGridViewServiceType;
+    private VerticalViewPager verticalViewPager;
+    private VerticalViewPageAdapter verticalViewPageAdapter;
+    private List<NoticeBean> noticeBeanList;
+    private int WHEEL_SIGNAL = 100; // 转动信号
+    private int time = 5000; // 轮播时间
+    private int currentPosition = 0; // 轮播当前位置
+    private boolean isWheel = false; // 是否轮播
     private static final String TAG = "MainActivity";
     private final int mChooseCityRequestCode = 1;
     private String realCityName;
@@ -53,18 +69,27 @@ public class MainActivity extends BaseActivity {
 
     public LocationClient mLocationClient;
     private BDLocationListener mLocationListener;
+    private CycleViewPageHandler.UnleakHandler handler;
+
 
     @Override
     protected void initView() {
         super.initView();
         this.setContentView(R.layout.activity_mian);
         mGridViewServiceType = (GridView) findViewById(R.id.gv_servicetype);
+        verticalViewPager = (VerticalViewPager) findViewById(R.id.vp_notice);
+        verticalViewPageAdapter = new VerticalViewPageAdapter(this);
+        verticalViewPager.setAdapter(verticalViewPageAdapter);
+        verticalViewPager.setOverScrollMode(View.OVER_SCROLL_NEVER);
     }
 
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         mMain.setSelected(true);
+        if (noticeBeanList.size() == 0) {
+            getNoticeFromService();
+        }
     }
 
     @Override
@@ -100,6 +125,32 @@ public class MainActivity extends BaseActivity {
         };
         ServiceTypeAdapter adapter = new ServiceTypeAdapter(titles, images, this);
         mGridViewServiceType.setAdapter(adapter);
+        noticeBeanList = new ArrayList<NoticeBean>();
+        handler = new CycleViewPageHandler.UnleakHandler(this) {
+
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                int count = noticeBeanList.size();
+                if (msg.what == WHEEL_SIGNAL && count != 0) {
+                    currentPosition = verticalViewPager.getCurrentItem();
+//                    if (!viewPager.getScrollX()) {
+                    int max = count + 1;
+                    int position = (currentPosition + 1) % count;
+                    verticalViewPager.setCurrentItem(position, true);
+                    if (position == max) { // 最后一页时回到第一页
+                        verticalViewPager.setCurrentItem(1, false);
+                    }
+//                    }
+                    handler.removeCallbacks(runnable);
+                    handler.postDelayed(runnable, time);
+                }
+
+
+            }
+        };
+
+        getNoticeFromService();
 //        ifmain=1;
     }
 
@@ -158,12 +209,12 @@ public class MainActivity extends BaseActivity {
 
     }
     private void showCityDialog() {
-        DialogUtil.getInstance().createAlertDialog(this, "定位城市与选择城市不一致", "是否切换城市?", "切换", new DialogUtil.IPositiveButtonDialogListener(){
+        DialogUtil.getInstance().createAlertDialog(this, "定位城市与选择城市不一致", "是否切换城市?", "切换", new DialogUtil.IPositiveButtonDialogListener() {
             @Override
             public void onPositiveButtonClicked(int requestCode) {
                 startCityListActivity();
             }
-        }, "取消", new INegativeButtonDialogListener(){
+        }, "取消", new INegativeButtonDialogListener() {
             @Override
             public void onNegativeButtonClicked(int requestCode) {
 
@@ -207,7 +258,78 @@ public class MainActivity extends BaseActivity {
         super.initTitle();
         showRightText();
     }
+    final Runnable runnable = new Runnable() {
 
+        @Override
+        public void run() {
+            if (this != null && isWheel) {
+                // viewpager依旧静止的话开始滑动
+//                if (!isScrollingOrPressed) {
+                handler.sendEmptyMessage(WHEEL_SIGNAL);
+//                } else {
+//                    handler.removeCallbacks(runnable);
+//                }
+            }
+        }
+    };
+    /**
+     * 设置是否轮播，默认不轮播,轮播一定是循环的
+     *
+     * @param isWheel 是否滚动
+     */
+    public void setWheel(boolean isWheel) {
+        this.isWheel = isWheel;
+        if (isWheel) {
+//            isCycle = true;
+            handler.postDelayed(runnable, time);
+        }
+    }
+    private void getNoticeFromService() {
+        BaseRequest.instance().doRequest(TAG, Request.Method.POST, AppConfig.WebHost + AppConfig.Urls.URL_GET_NOTICE, null, new BaseResponse() {
+
+            @Override
+            public void successful(ResponseBean responseBean) {
+                if (responseBean != null) {
+                    int code = responseBean.getCode();
+                    String msg = responseBean.getMsg();
+
+                    if (code == 0) {
+                        try {
+                            JSONArray data = new JSONArray(responseBean.getData());
+                            if (data != null && data.length() > 0) {
+                                noticeBeanList.clear();
+                                for (int i = 0; i < data.length(); i++) {
+                                    JSONObject noticeJson = data.getJSONObject(i);
+                                    String art_title = JSONUtils.getString(noticeJson, "art_title", "");
+                                    String art_source = JSONUtils.getString(noticeJson, "art_source", "");
+                                    NoticeBean noticeBean = new NoticeBean();
+                                    noticeBean.setArt_source(art_source);
+                                    noticeBean.setArt_title(art_title);
+                                    noticeBeanList.add(noticeBean);
+                                }
+                                if (noticeBeanList.size() > 0) {
+                                    verticalViewPageAdapter.setData(noticeBeanList);
+                                    setWheel(true);
+                                }
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            //  startCityListActivity();
+                        }
+                    } else {
+                        Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
+                        //   startCityListActivity();
+
+                    }
+                }
+            }
+
+            @Override
+            public void failure(VolleyError error) {
+
+            }
+        });
+    }
     /**
      * getLocation from service and save
      */

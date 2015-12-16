@@ -29,15 +29,20 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/slidebanner"/>
-        <TextView
+        <!--<TextView-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="30dp"-->
+            <!--android:drawableLeft="@drawable/ling"-->
+            <!--android:text="最新公告:为庆祝三个阿姨上线充值既有赠送,详情请点击"-->
+            <!--android:drawablePadding="5dp"-->
+            <!--android:textSize="12sp"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:paddingLeft="10dp"/>-->
+        <team.house.cn.HuoseApp.views.VerticalViewPager.VerticalViewPager
+            android:id="@+id/vp_notice"
             android:layout_width="fill_parent"
             android:layout_height="30dp"
-            android:drawableLeft="@drawable/ling"
-            android:text="最新公告:为庆祝三个阿姨上线充值既有赠送,详情请点击"
-            android:drawablePadding="5dp"
-            android:textSize="12sp"
-            android:gravity="center_vertical"
-            android:paddingLeft="10dp"/>
+            ></team.house.cn.HuoseApp.views.VerticalViewPager.VerticalViewPager>
         <GridView
             android:layout_marginTop="10dp"
             android:id="@+id/gv_servicetype"

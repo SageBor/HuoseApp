@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/login_title_layout"
+        layout="@layout/public_title" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        >
+
+        <WebView
+            android:id="@+id/web_openurl"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@+id/progressBar" />
+
+        <include
+            android:id="@+id/loading_view"
+            layout="@layout/public_requestloading_web"
+            android:visibility="gone" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:max="100"
+            android:background="@android:color/transparent"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+    <!-- bottom -->
+
+    <LinearLayout
+        android:id="@+id/bottom"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone">
+
+        <include layout="@layout/public_bottom" >
+        </include>
+    </LinearLayout>
+
+</LinearLayout>

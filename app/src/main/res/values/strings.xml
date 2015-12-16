@@ -20,4 +20,6 @@
     <string name="xlistview_footer_hint_normal">查看更多</string>
     <string name="xlistview_footer_hint_ready">松开载入更多</string>
     <string name="sure">确定</string>
+
+    <string name="check"><u>phone:0123456</u></string>
 </resources>

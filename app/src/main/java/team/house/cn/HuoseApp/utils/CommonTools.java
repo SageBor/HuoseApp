@@ -540,16 +540,16 @@ public class CommonTools {
     return (int) (dipValue * scale + 0.5f);
   }
 
-//  /**
-//   * 停用 通过用设置Activity的切换动画
-//   *
-//   * @param activity
-//   * @param inAnim 界面进入的动画
-//   * @param outAnim 界面退出的动画
-//   */
-//  public static void acitvityTransition(Activity activity, int inAnim, int outAnim) {
-//    // activity.overridePendingTransition(inAnim, outAnim);
-//  }
+  /**
+   * 停用 通过用设置Activity的切换动画
+   *
+   * @param activity
+   * @param inAnim 界面进入的动画
+   * @param outAnim 界面退出的动画
+   */
+  public static void acitvityTransition(Activity activity, int inAnim, int outAnim) {
+     activity.overridePendingTransition(inAnim, outAnim);
+  }
 //
 //  public static String encryptURL(BasicNameValuePair[] beat, String encrypt_keyword) {
 //
